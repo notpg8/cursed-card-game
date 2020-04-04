@@ -18,7 +18,17 @@ body {
     width: 66vw;
     height: 33vh;
     margin: 8px;
+    padding: 12px;
+    justify-content: space-evenly;
+    align-items: center;
+    /* text-align:justify; */
 }
+
+/* .play-area:after {
+    display:inline-block;
+    width: 100%;
+    content:'';
+} */
 
 .button-populate-cards{
     background-color: grey;
@@ -39,4 +49,23 @@ body {
     background-color: rgb(171, 218, 144);
     transition: 0.2s;
 
+}
+
+.button-populate-cards:disabled{
+    pointer-events: none;
+}
+
+.card{
+    margin: 5px;
+    width: 130px;
+    height: 172.5px;
+    display: inline-block;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.rareBG{
+    height: 100%;
+    width: 100%;
+    background:linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
 }
