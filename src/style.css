@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+
+.board{
+    background-color: rgb(83, 83, 83);
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.play-area{
+    background-color: rgb(24, 24, 24);
+    width: 66vw;
+    height: 33vh;
+    margin: 8px;
+}
+
+.button-populate-cards{
+    background-color: grey;
+    border-style: none;
+    border-radius: 5px;
+    padding: 8px;
+    transition: 0.5s;
+
+}
+
+.button-populate-cards:hover{
+    background-color: honeydew;
+    transition: 0.5s;
+
+}
+
+.button-populate-cards:active{
+    background-color: rgb(171, 218, 144);
+    transition: 0.2s;
+
+}
