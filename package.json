@@ -1,0 +1,21 @@
+{
+  "name": "card-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "open src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PG-8/card-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PG-8/card-game/issues"
+  },
+  "homepage": "https://github.com/PG-8/card-game#readme",
+  "dependencies": {}
+}

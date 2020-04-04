@@ -2,12 +2,13 @@ const populateRandomCards = () => {
     // randomCommonCards(5)
     // randomRareCard(1)
     renderCards(startingCardsObject)
+    rotateCards()
     // renderCards(1, 'rare')
 
 }
 const startingCardsObject = {
-    common: 5,
-    rare: 1,
+    common: 7,
+    rare: 2,
 }
 
 const returnRandomNumber = () => {
@@ -18,7 +19,8 @@ const randomColor = () => {
     const red = Math.floor(Math.random() * Math.floor(257))
     const green = Math.floor(Math.random() * Math.floor(257))
     const blue = Math.floor(Math.random() * Math.floor(257))
-    const alpha = Math.random().toFixed(2)
+    // const alpha = Math.random().toFixed(2)
+    const alpha = 0.2
     return `${red}, ${green}, ${blue}, ${alpha}`
 }
 
@@ -39,9 +41,16 @@ const randomRareCards = (numberOfCards) => {
 
 const zoomOnCard = (e) => {
     const cardStyle = e.target.style
+    const allCards = document.querySelectorAll('.card')
+    allCards.forEach(card => {
+        card.style.scale = 1
+        card.style.zIndex = 0
+        rotateCards()
+    })
     cardStyle.scale = 2
-    cardStyle.position = 'absolute'
-    cardStyle.left = '45%'
+    cardStyle.zIndex = 100
+    cardStyle.rotate = '0deg'
+    
 }
 
 const renderCards = (cards) => {  
@@ -56,8 +65,8 @@ const renderCards = (cards) => {
         for (i=commonCards; i>0; i--){
             const card = document.createElement("DIV");
             card.classList.add('card',"common")
+            card.setAttribute('draggable', 'true')
             playArea.appendChild(card);
-            
         }
         randomCommonCards()
     } 
@@ -72,13 +81,36 @@ const renderCards = (cards) => {
         randomRareCards()
     }
     disablePopulateButton()
+    document.querySelectorAll('.card').forEach(c => c.addEventListener('click', zoomOnCard))
 }
 
 const disablePopulateButton = () => {
-    document.querySelector('.button-populate-cards').setAttribute('disabled', 'true')
-    setTimeout(()=>{
-        document.querySelector('.button-populate-cards').removeAttribute('disabled')
-    }, 2000)
+    document.querySelector('.populate-cards').setAttribute('disabled', 'true')
 }
 
-document.querySelectorAll('.card').forEach(c => c.addEventListener('click', zoomOnCard))
+const rotateCards = () => {
+    const cardsCommon = document.querySelectorAll('.common')
+    const cardsRare = document.querySelectorAll('.rare')
+
+    const applyRotationStyle = (cardsToRotate) => {
+        cardsToRotate.forEach(card => {
+            const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+            const degrees = (Math.floor(Math.random() * Math.floor(5))+1 )* plusOrMinus
+            card.style.rotate = `${degrees}deg`
+        })
+    }
+    applyRotationStyle(cardsCommon)
+    applyRotationStyle(cardsRare)
+}
+
+const deleteCards = () => {
+    const allCardsParent = document.querySelector('.play-area')
+    while (allCardsParent.firstChild){
+        allCardsParent.removeChild(allCardsParent.firstChild)
+    }
+    document.querySelector('.populate-cards').removeAttribute('disabled')
+}
+
+populateRandomCards()
+
+

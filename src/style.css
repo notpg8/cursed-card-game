@@ -5,7 +5,7 @@ body {
 .board{
     background-color: rgb(83, 83, 83);
     margin: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -16,11 +16,10 @@ body {
 .play-area{
     background-color: rgb(24, 24, 24);
     width: 66vw;
-    height: 33vh;
+    height: 18vh;
     margin: 8px;
     padding: 12px;
-    justify-content: space-evenly;
-    align-items: center;
+    /* align-items: center; */
     /* text-align:justify; */
 }
 
@@ -30,7 +29,7 @@ body {
     content:'';
 } */
 
-.button-populate-cards{
+.button{
     background-color: grey;
     border-style: none;
     border-radius: 5px;
@@ -39,19 +38,24 @@ body {
 
 }
 
-.button-populate-cards:hover{
+.populate-cards:hover{
     background-color: honeydew;
     transition: 0.5s;
 
 }
 
-.button-populate-cards:active{
-    background-color: rgb(171, 218, 144);
-    transition: 0.2s;
+.delete-cards:hover{
+    background-color: rgb(247, 155, 155);
+    transition: 0.5s;
 
 }
 
-.button-populate-cards:disabled{
+.button:active{
+    background-color: rgb(57, 240, 231);
+    transition: 0.2s;
+}
+
+.button:disabled{
     pointer-events: none;
 }
 
@@ -60,12 +64,17 @@ body {
     width: 130px;
     height: 172.5px;
     display: inline-block;
-    align-items: center;
-    flex-grow: 1;
+    border-radius: 4px;
+    box-shadow: black 3px 3px 9px;
+    transition: 0.3s;
 }
 
-.rareBG{
-    height: 100%;
-    width: 100%;
-    background:linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+.common{
+    box-shadow: inset rgba(0, 0, 0, 0.78) 0px -40px 80px;
+    filter: saturate(50%)
+}
+
+.rare{
+    box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
+    filter: saturate(150%)
 }
