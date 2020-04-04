@@ -3,7 +3,7 @@ body {
 }
 
 .board{
-    background-color: rgb(83, 83, 83);
+    background-color: rgb(24, 24, 24);
     margin: 0;
     width: 100vw;
     height: 100vh;
@@ -14,9 +14,9 @@ body {
 }
 
 .play-area{
-    background-color: rgb(24, 24, 24);
-    width: 66vw;
-    height: 18vh;
+    /* background-color: rgb(24, 24, 24); */
+    width: 59vw;
+    height: 23vh;
     margin: 8px;
     padding: 12px;
     /* align-items: center; */
@@ -71,10 +71,18 @@ body {
 
 .common{
     box-shadow: inset rgba(0, 0, 0, 0.78) 0px -40px 80px;
-    filter: saturate(50%)
+    filter: saturate(50%);
 }
 
 .rare{
     box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
     filter: saturate(150%)
+}
+
+.card-info-text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }

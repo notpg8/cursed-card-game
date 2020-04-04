@@ -1,13 +1,9 @@
 const populateRandomCards = () => {
-    // randomCommonCards(5)
-    // randomRareCard(1)
     renderCards(startingCardsObject)
     rotateCards()
-    // renderCards(1, 'rare')
-
 }
 const startingCardsObject = {
-    common: 7,
+    common: 4,
     rare: 2,
 }
 
@@ -43,14 +39,29 @@ const zoomOnCard = (e) => {
     const cardStyle = e.target.style
     const allCards = document.querySelectorAll('.card')
     allCards.forEach(card => {
-        card.style.scale = 1
-        card.style.zIndex = 0
-        rotateCards()
+            card.style.scale = 1
+            card.style.zIndex = 0
+            card.firstChild.style.visibility = 'hidden'
     })
+    rotateCards()
+
     cardStyle.scale = 2
     cardStyle.zIndex = 100
     cardStyle.rotate = '0deg'
-    
+    e.target.firstChild.style.visibility = 'visible'
+}
+
+const createInfo = (currentCard) => {
+    const cardInfo = document.createElement("P");
+    cardInfo.classList.add('card-info-text')
+    cardInfo.style.visibility = 'hidden'
+    if (currentCard.classList[1] === 'common'){
+        cardInfo.appendChild(document.createTextNode("★★☆☆☆"))
+        currentCard.appendChild(cardInfo)
+    } else {
+        cardInfo.appendChild(document.createTextNode("★★★★★"));
+        currentCard.appendChild(cardInfo)
+    }
 }
 
 const renderCards = (cards) => {  
@@ -67,6 +78,7 @@ const renderCards = (cards) => {
             card.classList.add('card',"common")
             card.setAttribute('draggable', 'true')
             playArea.appendChild(card);
+            createInfo(card)
         }
         randomCommonCards()
     } 
@@ -76,7 +88,7 @@ const renderCards = (cards) => {
             const card = document.createElement("DIV");
             card.classList.add('card',"rare")
             playArea.appendChild(card);
-            
+            createInfo(card)           
         }
         randomRareCards()
     }
@@ -94,9 +106,9 @@ const rotateCards = () => {
 
     const applyRotationStyle = (cardsToRotate) => {
         cardsToRotate.forEach(card => {
-            const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-            const degrees = (Math.floor(Math.random() * Math.floor(5))+1 )* plusOrMinus
-            card.style.rotate = `${degrees}deg`
+                const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+                const degrees = (Math.floor(Math.random() * Math.floor(5))+1 )* plusOrMinus
+                card.style.rotate = `${degrees}deg`
         })
     }
     applyRotationStyle(cardsCommon)
