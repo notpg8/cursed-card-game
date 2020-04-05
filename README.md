@@ -1,3 +1,5 @@
 # Smarpft™
 
-###Deployment `firebase deploy`
+This will be a card game.
+
+Deployment `firebase deploy`
