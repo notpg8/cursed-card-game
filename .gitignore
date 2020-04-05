@@ -1,4 +1,5 @@
 firebase-debug.log
+.firebaserc
 .firebase/*
 firebase.json
 public/media/cards-kra/

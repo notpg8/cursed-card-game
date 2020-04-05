@@ -23,7 +23,7 @@ const randomColor = () => {
 const randomCommonCards = () => {
     const cards = document.querySelectorAll('.common')
     cards.forEach(c => {
-        c.setAttribute('style', `background-size: 100%; background-image: url("../public/media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"); background-color: rgb(${randomColor()})`)
+        c.setAttribute('style', `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"); background-color: rgb(${randomColor()})`)
     })
 }
 
@@ -31,14 +31,14 @@ const randomRareCards = (numberOfCards) => {
     const cards = document.querySelectorAll('.rare')
     const goldGradientCSS = 'linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)'
     cards.forEach(c => {
-        c.setAttribute('style', `background-size: 100%; background-image: url("../public/media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"), ${goldGradientCSS};`)
+        c.setAttribute('style', `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"), ${goldGradientCSS};`)
     })
 }
 
 const randomBackCards = () => {
     const cards = document.querySelectorAll('.back')
     cards.forEach(c => {
-        c.setAttribute('style', `background-size: 100%; background-image: url("../public/media/cards-pngs-optimized/medium/back-of-card.png"); background-color: rgb(${randomColor()})`)
+        c.setAttribute('style', `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/back-of-card.png"); background-color: rgb(${randomColor()})`)
     })
 }
 

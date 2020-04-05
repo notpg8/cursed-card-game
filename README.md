@@ -1,1 +1,3 @@
 # Smarpft™
+
+###Deployment `firebase deploy`
