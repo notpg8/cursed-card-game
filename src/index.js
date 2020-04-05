@@ -4,7 +4,8 @@ const dealRandomCards = () => {
 }
 const startingCardsObject = {
     common: 4,
-    rare: 2,
+    rare: 1,
+    back: 1,
 }
 
 const returnRandomNumber = () => {
@@ -15,8 +16,7 @@ const randomColor = () => {
     const red = Math.floor(Math.random() * Math.floor(257))
     const green = Math.floor(Math.random() * Math.floor(257))
     const blue = Math.floor(Math.random() * Math.floor(257))
-    // const alpha = Math.random().toFixed(2)
-    const alpha = 0.2
+    const alpha = 1
     return `${red}, ${green}, ${blue}, ${alpha}`
 }
 
@@ -35,13 +35,22 @@ const randomRareCards = (numberOfCards) => {
     })
 }
 
+const randomBackCards = () => {
+    const cards = document.querySelectorAll('.back')
+    cards.forEach(c => {
+        c.setAttribute('style', `background-size: 100%; background-image: url("../media/cards-pngs-optimized/medium/back-of-card.png"); background-color: rgb(${randomColor()})`)
+    })
+}
+
 const zoomOnCard = (e) => {
     const cardStyle = e.target.style
     const allCards = document.querySelectorAll('.card')
     allCards.forEach(card => {
             card.style.scale = 1
             card.style.zIndex = 0
-            card.firstChild.style.visibility = 'hidden'
+            if (card.classList[1] !== 'back'){
+                card.firstChild.style.visibility = 'hidden'
+            }
     })
     rotateCards()
 
@@ -55,10 +64,16 @@ const createInfo = (currentCard) => {
     const cardInfo = document.createElement("P");
     cardInfo.classList.add('card-info-text')
     cardInfo.style.visibility = 'hidden'
+    if (currentCard.classList[1] === 'back'){
+        cardInfo.appendChild(document.createTextNode("Smarpft™"))
+        currentCard.appendChild(cardInfo)
+        cardInfo.style.visibility = 'visible'
+
+    }
     if (currentCard.classList[1] === 'common'){
         cardInfo.appendChild(document.createTextNode("★★☆☆☆"))
         currentCard.appendChild(cardInfo)
-    } else {
+    } else if (currentCard.classList[1] === 'rare') {
         cardInfo.appendChild(document.createTextNode("★★★★★"));
         currentCard.appendChild(cardInfo)
     }
@@ -68,6 +83,8 @@ const renderCards = (cards) => {
     
     const commonCards = cards.common 
     const rareCards = cards.rare
+    const backCards = cards.back
+
     
     const playArea = document.querySelector('.play-area')
 
@@ -92,6 +109,16 @@ const renderCards = (cards) => {
         }
         randomRareCards()
     }
+
+    if (cards.back && backCards>0) {
+        for (i=backCards; i>0; i--){
+            const card = document.createElement("DIV");
+            card.classList.add('card',"back")
+            playArea.appendChild(card);
+            createInfo(card)
+        }
+        randomBackCards()
+    }
     disableDealButton()
     enableDeleteButton()
     document.querySelectorAll('.card').forEach(c => c.addEventListener('click', zoomOnCard))
@@ -108,6 +135,8 @@ const enableDeleteButton = () => {
 const rotateCards = () => {
     const cardsCommon = document.querySelectorAll('.common')
     const cardsRare = document.querySelectorAll('.rare')
+    const cardsBack = document.querySelectorAll('.back')
+
 
     const applyRotationStyle = (cardsToRotate) => {
         cardsToRotate.forEach(card => {
@@ -118,6 +147,8 @@ const rotateCards = () => {
     }
     applyRotationStyle(cardsCommon)
     applyRotationStyle(cardsRare)
+    applyRotationStyle(cardsBack)
+
 }
 
 const deleteCards = () => {

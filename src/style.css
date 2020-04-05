@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+::selection { 
+    background: transparent; 
+}
+
 .board{
     background-color: rgb(24, 24, 24);
     margin: 0;
@@ -13,14 +17,18 @@ body {
     flex-direction: column;
 }
 
-.play-area{
-    /* background-color: rgb(24, 24, 24); */
+.play-area-self{
     width: 59vw;
     height: 23vh;
     margin: 8px;
     padding: 12px;
-    /* align-items: center; */
-    /* text-align:justify; */
+}
+
+.play-area-opponent{
+    width: 59vw;
+    height: 23vh;
+    margin: 8px;
+    padding: 12px;
 }
 
 /* .play-area:after {
@@ -64,7 +72,7 @@ body {
 .card{
     margin: 5px;
     width: 130px;
-    height: 172.5px;
+    height: 173px;
     display: inline-block;
     border-radius: 4px;
     box-shadow: black 3px 3px 9px;
@@ -78,14 +86,20 @@ body {
 
 .rare{
     box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
-    filter: saturate(150%)
+    filter: saturate(150%);
+}
+
+.back{
+    box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
+    filter: saturate(100%);
 }
 
 .card-info-text{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: small;
-    color: white;
+    font-size: xx-small ;
+    color: rgba(255, 255, 255, 0.5);
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     pointer-events: none;
+    margin: 5px;
 }
