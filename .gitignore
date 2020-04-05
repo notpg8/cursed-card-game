@@ -1,3 +1,4 @@
-media/*
-!media/screenshots/
+media/cards-kra/
+media/cards-pngs-originals/
+media/cards-pngs-optimized/*
 !media/cards-pngs-optimized/medium/
