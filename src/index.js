@@ -1,4 +1,4 @@
-const populateRandomCards = () => {
+const dealRandomCards = () => {
     renderCards(startingCardsObject)
     rotateCards()
 }
@@ -23,7 +23,7 @@ const randomColor = () => {
 const randomCommonCards = () => {
     const cards = document.querySelectorAll('.common')
     cards.forEach(c => {
-        c.setAttribute('style', `background-size: 100%; background-image: url("../cards-pngs/${returnRandomNumber().toString()}.png"); background-color: rgb(${randomColor()})`)
+        c.setAttribute('style', `background-size: 100%; background-image: url("../media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"); background-color: rgb(${randomColor()})`)
     })
 }
 
@@ -31,7 +31,7 @@ const randomRareCards = (numberOfCards) => {
     const cards = document.querySelectorAll('.rare')
     const goldGradientCSS = 'linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)'
     cards.forEach(c => {
-        c.setAttribute('style', `background-size: 100%; background-image: url("../cards-pngs/${returnRandomNumber().toString()}.png"), ${goldGradientCSS};`)
+        c.setAttribute('style', `background-size: 100%; background-image: url("../media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"), ${goldGradientCSS};`)
     })
 }
 
@@ -92,12 +92,17 @@ const renderCards = (cards) => {
         }
         randomRareCards()
     }
-    disablePopulateButton()
+    disableDealButton()
+    enableDeleteButton()
     document.querySelectorAll('.card').forEach(c => c.addEventListener('click', zoomOnCard))
 }
 
-const disablePopulateButton = () => {
+const disableDealButton = () => {
     document.querySelector('.populate-cards').setAttribute('disabled', 'true')
+}
+
+const enableDeleteButton = () => {
+    document.querySelector('.delete-cards').removeAttribute('disabled')
 }
 
 const rotateCards = () => {
@@ -121,8 +126,9 @@ const deleteCards = () => {
         allCardsParent.removeChild(allCardsParent.firstChild)
     }
     document.querySelector('.populate-cards').removeAttribute('disabled')
+    document.querySelector('.delete-cards').setAttribute('disabled', 'true')
 }
 
-populateRandomCards()
+dealRandomCards()
 
 

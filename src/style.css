@@ -35,19 +35,21 @@ body {
     border-radius: 5px;
     padding: 8px;
     transition: 0.5s;
-
 }
 
 .populate-cards:hover{
     background-color: honeydew;
     transition: 0.5s;
-
 }
 
 .delete-cards:hover{
     background-color: rgb(247, 155, 155);
     transition: 0.5s;
 
+}
+
+.buttons{
+    display: inline-block;
 }
 
 .button:active{
@@ -85,4 +87,5 @@ body {
     color: white;
     font-weight: bold;
     text-align: center;
+    pointer-events: none;
 }
