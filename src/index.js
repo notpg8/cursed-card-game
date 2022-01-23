@@ -1,22 +1,31 @@
+// import Card from "./Card.js";
+import { Card, cardDetails } from "./Card.js";
 // check how to import socketio here and use it to trigger server responses
 
 var socket = io();
 
-const dealRandomCards = () => {
-  renderCards(startingCardsObject);
+// [{imageId: 2, rarity: 'common'},{imageId: 1, rarity: 'rare'},{imageId: 2, rarity: 'common'},{imageId: 2, rarity: 'uncommon'},{imageId: 5, rarity: 'rare'}]
+
+const dealRandomCards = (cardsFromServer) => {
+  renderCards(cardsFromServer);
   rotateCards();
 };
-const startingCardsObject = {
-  common: 4,
-  rare: 1,
-  back: 1,
-};
+// const startingCardsObject = {
+//   common: 3,
+//   rare: 1,
+//   back: 1,
+// };
 
 // EXAMPLE OF SOCKET EMIT EVENT
 const emitFuckYouToServer = () => {
   const messageValue = "fuck you";
   return socket.emit("chat", messageValue);
 };
+
+socket.on("deal-cards", (cardsFromServer) => {
+  console.log("cardsFromServer ", cardsFromServer);
+  dealRandomCards(cardsFromServer);
+});
 
 const returnRandomNumber = () => {
   return Math.floor(Math.random() * Math.floor(5)) + 1;
@@ -99,47 +108,63 @@ const createInfo = (currentCard) => {
 };
 
 const renderCards = (cards) => {
-  const commonCards = cards.common;
-  const rareCards = cards.rare;
-  const backCards = cards.back;
+  // [{imageId: 2, rarity: 'common'},{imageId: 1, rarity: 'rare'},{imageId: 2, rarity: 'common'},{imageId: 2, rarity: 'uncommon'},{imageId: 5, rarity: 'rare'}]
 
-  const playArea = document.querySelector(".play-area");
+  cards.map((card) => {
+    const goldGradientCSS =
+      "linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)";
+    const cardDiv = document.createElement("DIV");
+    cardDiv.classList.add("card", card.rarity);
+    cardDiv.setAttribute("draggable", "true");
+    setAttribute(
+      "style",
+      `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${returnRandomNumber().toString()}.png"), ${goldGradientCSS}; draggable: true;`
+    );
+    playArea.appendChild(cardDiv);
+    createInfo(cardDiv);
+  });
 
-  if (cards.common && commonCards > 0) {
-    for (i = commonCards; i > 0; i--) {
-      const card = document.createElement("DIV");
-      card.classList.add("card", "common");
-      card.setAttribute("draggable", "true");
-      playArea.appendChild(card);
-      createInfo(card);
-    }
-    randomCommonCards();
-  }
+  // const commonCards = cards.common;
+  // const rareCards = cards.rare;
+  // const backCards = cards.back;
 
-  if (cards.rare && rareCards > 0) {
-    for (i = rareCards; i > 0; i--) {
-      const card = document.createElement("DIV");
-      card.classList.add("card", "rare");
-      playArea.appendChild(card);
-      createInfo(card);
-    }
-    randomRareCards();
-  }
+  // const playArea = document.querySelector(".play-area");
 
-  if (cards.back && backCards > 0) {
-    for (i = backCards; i > 0; i--) {
-      const card = document.createElement("DIV");
-      card.classList.add("card", "back");
-      playArea.appendChild(card);
-      createInfo(card);
-    }
-    randomBackCards();
-  }
-  disableDealButton();
-  enableDeleteButton();
-  document
-    .querySelectorAll(".card")
-    .forEach((c) => c.addEventListener("click", zoomOnCard));
+  // if (cards.common && commonCards > 0) {
+  //   for (i = commonCards; i > 0; i--) {
+  //     const card = document.createElement("DIV");
+  //     card.classList.add("card", card.rarity);
+  //     card.setAttribute("draggable", "true");
+  //     playArea.appendChild(card);
+  //     createInfo(card);
+  //   }
+  //   randomCommonCards();
+  // }
+
+  // if (cards.rare && rareCards > 0) {
+  //   for (i = rareCards; i > 0; i--) {
+  //     const card = document.createElement("DIV");
+  //     card.classList.add("card", "rare");
+  //     playArea.appendChild(card);
+  //     createInfo(card);
+  //   }
+  //   randomRareCards();
+  // }
+
+  // if (cards.back && backCards > 0) {
+  //   for (i = backCards; i > 0; i--) {
+  //     const card = document.createElement("DIV");
+  //     card.classList.add("card", "back");
+  //     playArea.appendChild(card);
+  //     createInfo(card);
+  //   }
+  //   randomBackCards();
+  // }
+  // disableDealButton();
+  // enableDeleteButton();
+  // document
+  //   .querySelectorAll(".card")
+  //   .forEach((c) => c.addEventListener("click", zoomOnCard));
 };
 
 const disableDealButton = () => {
@@ -176,5 +201,3 @@ const deleteCards = () => {
   document.querySelector(".populate-cards").removeAttribute("disabled");
   document.querySelector(".delete-cards").setAttribute("disabled", "true");
 };
-
-dealRandomCards();
