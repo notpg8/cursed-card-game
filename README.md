@@ -1,5 +1,9 @@
 # Smarpft™
 
-This will be a card game.
+todo
 
-Deployment `firebase deploy`
+- redefine firebase logic
+- define scripts for running project
+- build server
+- make server deal cards
+- other

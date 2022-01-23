@@ -2,7 +2,4 @@ firebase-debug.log
 .firebaserc
 .firebase/*
 firebase.json
-public/media/cards-kra/
-public/media/cards-pngs-originals/
-public/media/cards-pngs-optimized/*
-!public/media/cards-pngs-optimized/medium/
+node_modules
