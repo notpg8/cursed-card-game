@@ -20,9 +20,31 @@ app.get("/style.css", (req, res) => {
   res.sendFile(__dirname + "/style.css");
 });
 
+// SOCKET
+
 io.on("connection", (socket) => {
   console.log("a user connected");
+
+  socket.on("chat", (msg) => {
+    console.log(msg);
+  });
+
+  // EXAMPLES OF MORE EVENTS HANDLING
+
+  // socket.on("other event", (msg) => {
+  //   console.log(msg);
+  // });
+
+  // socket.on("other other event", (msg) => {
+  //   console.log(msg);
+  // });
+
+  // socket.on("other other other event", (msg) => {
+  //   console.log(msg);
+  // });
 });
+
+// SERVER NOTIFICATION
 
 server.listen(3000, () => {
   console.log("listening on *:3000");

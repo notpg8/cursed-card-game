@@ -1,3 +1,7 @@
+// check how to import socketio here and use it to trigger server responses
+
+var socket = io();
+
 const dealRandomCards = () => {
   renderCards(startingCardsObject);
   rotateCards();
@@ -6,6 +10,12 @@ const startingCardsObject = {
   common: 4,
   rare: 1,
   back: 1,
+};
+
+// EXAMPLE OF SOCKET EMIT EVENT
+const emitFuckYouToServer = () => {
+  const messageValue = "fuck you";
+  return socket.emit("chat", messageValue);
 };
 
 const returnRandomNumber = () => {
@@ -65,9 +75,9 @@ const zoomOnCard = (e) => {
   rotateCards();
 
   cardStyle.transform = "scale(1.5)";
-  //   e.target.style.zIndex = 100;
   e.target.firstChild.style.visibility = "visible";
-  console.log(e);
+
+  emitFuckYouToServer();
 };
 
 const createInfo = (currentCard) => {
@@ -141,7 +151,6 @@ const enableDeleteButton = () => {
 };
 
 const rotateCards = () => {
-  console.log("calling rotate");
   const cardsCommon = document.querySelectorAll(".common");
   const cardsRare = document.querySelectorAll(".rare");
   const cardsBack = document.querySelectorAll(".back");
