@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>card-game</title>
-    <link href="style.css" type="text/css" rel="stylesheet">
-</head>
-<body>
-    <div class="board">
-        <div class="play-area"></div>
-        <div class="buttons">
-            <button class="button populate-cards" onClick="dealRandomCards()">Deal cards</button>
-            <button class="button delete-cards" onClick="deleteCards()">Delete cards</button>
-        </div>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+  </head>
+  <nav>
+    <div class="buttons">
+      <button class="button populate-cards" onClick="dealRandomCards()">
+        Deal cards
+      </button>
+      <button class="button delete-cards" onClick="deleteCards()">
+        Delete cards
+      </button>
     </div>
-</body>
-<script src="index.js"></script>
+  </nav>
+  <body>
+    <div class="board">
+      <div class="play-area"></div>
+    </div>
+  </body>
+  <script src="index.js"></script>
 </html>

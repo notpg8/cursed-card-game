@@ -1,34 +1,38 @@
 body {
-    margin: 0;
+  margin: 0;
 }
 
-::selection { 
-    background: transparent; 
+nav {
+  position: fixed;
 }
 
-.board{
-    background-color: rgb(24, 24, 24);
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+::selection {
+  background: transparent;
 }
 
-.play-area-self{
-    width: 59vw;
-    height: 23vh;
-    margin: 8px;
-    padding: 12px;
+.board {
+  background-color: rgb(24, 24, 24);
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.play-area-opponent{
-    width: 59vw;
-    height: 23vh;
-    margin: 8px;
-    padding: 12px;
+.play-area-self {
+  width: 59vw;
+  height: 23vh;
+  margin: 8px;
+  padding: 12px;
+}
+
+.play-area-opponent {
+  width: 59vw;
+  height: 23vh;
+  margin: 8px;
+  padding: 12px;
 }
 
 /* .play-area:after {
@@ -37,69 +41,68 @@ body {
     content:'';
 } */
 
-.button{
-    background-color: grey;
-    border-style: none;
-    border-radius: 5px;
-    padding: 8px;
-    transition: 0.5s;
+.button {
+  background-color: grey;
+  border-style: none;
+  border-radius: 5px;
+  padding: 8px;
+  transition: 0.5s;
 }
 
-.populate-cards:hover{
-    background-color: honeydew;
-    transition: 0.5s;
+.populate-cards:hover {
+  background-color: honeydew;
+  transition: 0.5s;
 }
 
-.delete-cards:hover{
-    background-color: rgb(247, 155, 155);
-    transition: 0.5s;
-
+.delete-cards:hover {
+  background-color: rgb(247, 155, 155);
+  transition: 0.5s;
 }
 
-.buttons{
-    display: inline-block;
+.buttons {
+  display: inline-block;
 }
 
-.button:active{
-    background-color: rgb(57, 240, 231);
-    transition: 0.2s;
+.button:active {
+  background-color: rgb(57, 240, 231);
+  transition: 0.2s;
 }
 
-.button:disabled{
-    pointer-events: none;
+.button:disabled {
+  pointer-events: none;
 }
 
-.card{
-    margin: 5px;
-    width: 130px;
-    height: 173px;
-    display: inline-block;
-    border-radius: 4px;
-    box-shadow: black 3px 3px 9px;
-    transition: 0.3s;
+.card {
+  margin: 5px;
+  width: 130px;
+  height: 173px;
+  display: inline-block;
+  border-radius: 4px;
+  box-shadow: black 3px 3px 9px;
+  transition: 0.3s;
 }
 
-.common{
-    box-shadow: inset rgba(0, 0, 0, 0.78) 0px -40px 80px;
-    filter: saturate(50%);
+.common {
+  box-shadow: inset rgba(0, 0, 0, 0.78) 0px -40px 80px;
+  filter: saturate(50%);
 }
 
-.rare{
-    box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
-    filter: saturate(150%);
+.rare {
+  box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
+  filter: saturate(150%);
 }
 
-.back{
-    box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
-    filter: saturate(100%);
+.back {
+  box-shadow: inset rgba(0, 0, 0, 0.88) 0px -40px 80px;
+  filter: saturate(100%);
 }
 
-.card-info-text{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: xx-small ;
-    color: rgba(255, 255, 255, 0.5);
-    font-weight: bold;
-    text-align: left;
-    pointer-events: none;
-    margin: 5px;
+.card-info-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-small;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  margin: 5px;
 }
