@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon server.js",
-    "build": "webpack"
+    "build": "webpack",
+    "build-start-server": "webpack && nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,7 @@
   },
   "homepage": "https://github.com/PG-8/card-game#readme",
   "dependencies": {
-    "eslint": "^8.7.0",
+    "eslint": "8.7.0",
     "express": "4.17.2",
     "socket.io": "4.4.1"
   },

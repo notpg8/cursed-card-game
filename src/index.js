@@ -1,3 +1,4 @@
+import { Card } from "./Card";
 var socket = io();
 
 let cardsFromServerCopy = [];
@@ -14,7 +15,6 @@ const emitFuckYouToServer = () => {
 };
 
 socket.on("deal-cards", (cardsFromServer) => {
-  console.log("cardsFromServer ", cardsFromServer);
   cardsFromServerCopy.push(...cardsFromServer);
   dealCards(cardsFromServer);
 });
@@ -48,24 +48,24 @@ const zoomOnCard = (e) => {
   emitFuckYouToServer();
 };
 
-const createInfo = (currentCard) => {
+const createInfo = (currentCard, cardDiv) => {
   const cardInfo = document.createElement("P");
   cardInfo.classList.add("card-info-text");
   cardInfo.style.visibility = "visible";
-  if (currentCard.classList[1] === "back") {
+  if (currentCard.rarity === "none") {
     cardInfo.appendChild(document.createTextNode("Smarpft™"));
-    currentCard.appendChild(cardInfo);
+    cardDiv.appendChild(cardInfo);
     cardInfo.style.visibility = "visible";
   }
-  if (currentCard.classList[1] === "common") {
+  if (currentCard.rarity === "common") {
     cardInfo.appendChild(document.createTextNode("●"));
-    currentCard.appendChild(cardInfo);
-  } else if (currentCard.classList[1] === "rare") {
+    cardDiv.appendChild(cardInfo);
+  } else if (currentCard.rarity === "rare") {
     cardInfo.appendChild(document.createTextNode("★"));
-    currentCard.appendChild(cardInfo);
-  } else if (currentCard.classList[1] === "uncommon") {
+    cardDiv.appendChild(cardInfo);
+  } else if (currentCard.rarity === "uncommon") {
     cardInfo.appendChild(document.createTextNode("◆"));
-    currentCard.appendChild(cardInfo);
+    cardDiv.appendChild(cardInfo);
   }
 };
 
@@ -73,17 +73,18 @@ const renderCards = (cards) => {
   const playArea = document.querySelector(".play-area");
 
   cards.map((card) => {
+    const initiateCard = new Card(card);
     const goldGradientCSS =
       "linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)";
     const cardDiv = document.createElement("DIV");
-    cardDiv.classList.add("card", card.rarity);
+    cardDiv.classList.add("card", initiateCard.rarity);
     cardDiv.setAttribute("draggable", "true");
     cardDiv.setAttribute(
       "style",
-      `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${card.imageId.toString()}.png"), ${goldGradientCSS};`
+      `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${initiateCard.id.toString()}.png"), ${goldGradientCSS};`
     );
     playArea.appendChild(cardDiv);
-    createInfo(cardDiv);
+    createInfo(initiateCard, cardDiv);
   });
 
   disableDealButton();

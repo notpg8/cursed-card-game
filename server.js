@@ -45,7 +45,17 @@ const dealCards = () => {
   // assemble object with rarity and number of card, return that instead of rarity and number separately
 
   return Array.from(Array(5)).map((card, i) => {
-    return { imageId: returnRandomNumber(), rarity: returnRandomRarity() };
+    return {
+      id: returnRandomNumber(),
+      rarity: returnRandomRarity(),
+      description:
+        "Some static description to change for dynamically fetched based on the id of the card",
+      stats: {
+        attack: 0, // not used from here, native method of CardClass to randomize value of all stats, to be changed
+        defense: 0,
+        hp: 0,
+      },
+    };
   });
 };
 
