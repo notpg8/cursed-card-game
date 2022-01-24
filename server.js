@@ -30,10 +30,14 @@ const returnRandomNumber = () => {
 const returnRandomRarity = () => {
   // do this part
   const rarity = Math.floor(Math.random() * Math.floor(3)) + 1;
+  const rarity2 = Math.floor(Math.random() * Math.floor(3));
+  const rarity3 = Math.floor(Math.random() * Math.floor(3));
 
-  if (rarity === 1) return "rare";
-  if (rarity === 2) return "uncommon";
-  if (rarity === 3) return "common";
+  const rarityCombined = rarity + rarity2 + rarity3;
+
+  if (rarityCombined === 1) return "rare";
+  if (rarityCombined === 2) return "uncommon";
+  if (rarityCombined >= 3) return "common";
   else {
     throw new Error("some shit with the cards rarity");
   }
