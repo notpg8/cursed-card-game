@@ -3,3 +3,7 @@ firebase-debug.log
 .firebase/*
 firebase.json
 node_modules
+.DS_Store
+src/.DS_Store
+src/media/.DS_Store
+src/media/cards-pngs-optimized/.DS_Store
