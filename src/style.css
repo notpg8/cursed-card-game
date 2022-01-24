@@ -16,7 +16,7 @@ nav {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
 }
@@ -34,12 +34,6 @@ nav {
   margin: 8px;
   padding: 12px;
 }
-
-/* .play-area:after {
-    display:inline-block;
-    width: 100%;
-    content:'';
-} */
 
 .button {
   background-color: grey;
@@ -98,7 +92,7 @@ nav {
   filter: saturate(130%);
 }
 
-.card-info-text {
+.card-rarity {
   font-family: Arial, Helvetica, sans-serif;
   font-size: xx-small;
   color: rgba(255, 255, 255, 0.5);
@@ -106,4 +100,16 @@ nav {
   text-align: left;
   pointer-events: none;
   margin: 5px;
+}
+
+.card-details-area {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  margin: 5px 20px;
+  position: fixed;
+  bottom: 0;
 }

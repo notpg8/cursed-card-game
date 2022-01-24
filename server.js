@@ -48,8 +48,7 @@ const dealCards = () => {
     return {
       id: returnRandomNumber(),
       rarity: returnRandomRarity(),
-      description:
-        "Some static description to change for dynamically fetched based on the id of the card",
+      description: `Some random number dynamic description ${returnRandomNumber()}`,
       stats: {
         attack: 0, // not used from here, native method of CardClass to randomize value of all stats, to be changed
         defense: 0,

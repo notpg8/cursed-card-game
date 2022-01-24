@@ -20,6 +20,23 @@ export class Card {
     };
   }
 
+  get getRarityIcon() {
+    switch (this.rarity) {
+      case "common":
+        return "●";
+      case "uncommon":
+        return "◆";
+      case "rare":
+        return "★";
+      default:
+        console.log(`RARITY ISSUE, NOT MATCHING ANY RARITY`);
+    }
+  }
+
+  get getCardDescription() {
+    return this.description;
+  }
+
   assignRandomStatValue = (maxValue) => {
     return Math.floor(Math.random() * Math.floor(maxValue)) + 1;
   };

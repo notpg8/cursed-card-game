@@ -48,50 +48,39 @@ const zoomOnCard = (e) => {
   emitFuckYouToServer();
 };
 
-const createInfo = (currentCard, cardDiv) => {
-  const cardInfo = document.createElement("P");
-  cardInfo.classList.add("card-info-text");
-  cardInfo.style.visibility = "visible";
-  if (currentCard.rarity === "none") {
-    cardInfo.appendChild(document.createTextNode("Smarpft™"));
-    cardDiv.appendChild(cardInfo);
-    cardInfo.style.visibility = "visible";
-  }
-  if (currentCard.rarity === "common") {
-    cardInfo.appendChild(document.createTextNode("●"));
-    cardDiv.appendChild(cardInfo);
-  } else if (currentCard.rarity === "rare") {
-    cardInfo.appendChild(document.createTextNode("★"));
-    cardDiv.appendChild(cardInfo);
-  } else if (currentCard.rarity === "uncommon") {
-    cardInfo.appendChild(document.createTextNode("◆"));
-    cardDiv.appendChild(cardInfo);
-  }
+const createRarity = (currentCard, cardDiv) => {
+  const cardRarity = document.createElement("P");
+  cardRarity.classList.add("card-rarity");
+  cardRarity.appendChild(document.createTextNode(currentCard.getRarityIcon));
+  cardDiv.appendChild(cardRarity);
 };
 
 const renderCards = (cards) => {
   const playArea = document.querySelector(".play-area");
 
   cards.map((card) => {
-    const initiateCard = new Card(card);
+    const initiatedCard = new Card(card);
     const goldGradientCSS =
       "linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)";
     const cardDiv = document.createElement("DIV");
-    cardDiv.classList.add("card", initiateCard.rarity);
+    cardDiv.classList.add("card", initiatedCard.rarity);
     cardDiv.setAttribute("draggable", "true");
     cardDiv.setAttribute(
       "style",
-      `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${initiateCard.id.toString()}.png"), ${goldGradientCSS};`
+      `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png"), ${goldGradientCSS};`
     );
     playArea.appendChild(cardDiv);
-    createInfo(initiateCard, cardDiv);
+    createRarity(initiatedCard, cardDiv);
+    cardDiv.addEventListener("click", function () {
+      revealCardDescription(initiatedCard);
+    });
   });
 
   disableDealButton();
   enableDeleteButton();
-  document
-    .querySelectorAll(".card")
-    .forEach((card) => card.addEventListener("click", zoomOnCard));
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("click", zoomOnCard);
+  });
 };
 
 const disableDealButton = () => {
@@ -129,7 +118,23 @@ const deleteCards = () => {
   }
   document.querySelector(".populate-cards").removeAttribute("disabled");
   document.querySelector(".delete-cards").setAttribute("disabled", "true");
+  clearInterface();
 };
 
 document.querySelector(".populate-cards").addEventListener("click", dealCards);
 document.querySelector(".delete-cards").addEventListener("click", deleteCards);
+
+const revealCardDescription = (currentCard) => {
+  const existingDescription = document.querySelector(".card-description");
+  existingDescription && existingDescription.remove();
+  const cardDetailsArea = document.querySelector(".card-details-area");
+  const cardDescription = document.createElement("P");
+  cardDescription.classList.add("card-description");
+  cardDescription.appendChild(document.createTextNode(currentCard.description));
+  cardDetailsArea.appendChild(cardDescription);
+};
+
+const clearInterface = () => {
+  const existingDescription = document.querySelector(".card-description");
+  existingDescription && existingDescription.remove();
+};
