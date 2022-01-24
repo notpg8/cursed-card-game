@@ -3,11 +3,15 @@
 
 ### TO DO:
 
-- Add Cursed Card Game™ top right corner of page
-- Add attribution "Made by notpg8 link to github/twitch"
-- redefine firebase logic
-- build server
-- light background switch
+- light theme switch
+- game mechanic rules
+- re-host all pictures elsewhere (or maybe github is good as well with direct links)
+- persisting data
+- create room to play with a friend
+- VS screen
+- erasing single cards
+- assign socket ids to players
+- server to handle all actions and send back responses
 - other
 
 ### SCREENSHOT:
