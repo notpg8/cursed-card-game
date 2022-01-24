@@ -45,8 +45,6 @@ const zoomOnCard = (e) => {
   cardStyle.zIndex = 10;
   e.target.firstChild.style.visibility = "visible";
 
-  console.log(e.target.querySelector(".notification-area"));
-
   statNotify(e);
 
   emitFuckYouToServer();

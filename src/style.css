@@ -97,12 +97,12 @@ nav {
 
 .common {
   /* box-shadow: inset rgba(0, 0, 0, 0.78) 0px -40px 80px; */
-  filter: grayscale(1);
+  filter: grayscale(0.8);
 }
 
 .uncommon {
   /* box-shadow: inset rgba(0, 0, 0, 0.78) 0px -40px 80px; */
-  filter: grayscale(0.6);
+  filter: grayscale(0.4);
 }
 
 .rare {
