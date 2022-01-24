@@ -41,7 +41,7 @@ const zoomOnCard = (e) => {
   });
   rotateCards();
 
-  cardStyle.transform = "scale(1.5)";
+  cardStyle.transform = "scale(1.9)";
   cardStyle.zIndex = 10;
   e.target.firstChild.style.visibility = "visible";
 

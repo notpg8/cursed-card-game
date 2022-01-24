@@ -10,6 +10,17 @@ nav {
   background: transparent;
 }
 
+.board-bg {
+  background-image: url("./media/cards-pngs-optimized/medium/tile.png");
+  background-position: center center;
+  background-repeat: repeat;
+  opacity: 0.05;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
 .board {
   background-color: rgb(24, 24, 24);
   margin: 0;
