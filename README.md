@@ -7,6 +7,7 @@
 - Add attribution "Made by notpg8 link to github/twitch"
 - redefine firebase logic
 - build server
+- light background switch
 - other
 
 ### SCREENSHOT:
