@@ -3,6 +3,8 @@
 
 ### TO DO:
 
+- Add Cursed Card Game™ top right corner of page
+- Add attribution "Made by notpg8 link to github/twitch"
 - redefine firebase logic
 - build server
 - other
