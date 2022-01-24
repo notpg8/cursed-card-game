@@ -4,15 +4,15 @@ export class Card {
     this.rarity = cardDetails.rarity;
     this.description = cardDetails.description;
     this.stats = {
-      attack: this.assignRandomStatValue(20),
-      defense: this.assignRandomStatValue(30),
-      hp: this.assignRandomStatValue(100),
+      attack: this.assignRandomStatValue(20, this.rarity),
+      defense: this.assignRandomStatValue(30, this.rarity),
+      hp: this.assignRandomStatValue(100, this.rarity),
     };
   }
 
   // create card
   get getCardStats() {
-    return `HP : ${this.stats.hp} | ATK: ${this.stats.attack} | DEF: ${this.stats.defense}
+    return `♥ : ${this.stats.hp} | ⚔: ${this.stats.attack} | 🛡: ${this.stats.defense}
     `;
   }
 
@@ -65,7 +65,10 @@ export class Card {
     return this.description;
   }
 
-  assignRandomStatValue = (maxValue) => {
+  assignRandomStatValue = (maxValue, _rarity) => {
+    if (_rarity) {
+      if (_rarity === "rare") return 9000;
+    }
     return Math.floor(Math.random() * Math.floor(maxValue)) + 1;
   };
 }
