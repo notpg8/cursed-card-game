@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>card-game</title>
+    <title>Cursed Card Game™</title>
     <link href="style.css" type="text/css" rel="stylesheet" />
   </head>
   <nav>
     <div class="buttons">
       <button class="button populate-cards">Deal cards</button>
       <button class="button delete-cards">Delete cards</button>
+
     </div>
+    <h3 class="game-name"><span class="server-status animate-flicker" title="SERVER OPERATIVE"></span>Cursed Card Game™</h3>
+
   </nav>
   <body>
     <div class="board">
@@ -19,6 +22,10 @@
     </div>
   </body>
   <div class="card-details-area"></div>
+  <div class="attribution">
+    <p class="text-attribution">Made by notpg8 ♥︎&nbsp;<a href="https://github.com/notpg8"> Github </a>&nbsp;<a href="https://twitch.tv/notpg8"> Twitch  </a>&nbsp;<a href="https://twitter.com/notpg8"> Twitter </a>
+    </p>
+  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="main.js"></script>

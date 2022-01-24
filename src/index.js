@@ -214,3 +214,15 @@ const statNotify = (e) => {
       .setAttribute("style", `opacity: 0;`);
   }, 700);
 };
+
+const checkServerStatus = () =>{
+  // this doesn't do anything for now
+const serverStatusSpan = document.querySelector('.server-status')
+
+serverStatusSpan.innerHTML = "🟢 &nbsp;"
+
+serverStatusSpan.setAttribute("style", "vertical-align: top; font-size: 0.4rem")
+
+}
+
+checkServerStatus()
