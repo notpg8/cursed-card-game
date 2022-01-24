@@ -24,7 +24,7 @@ app.get("/style.css", (req, res) => {
 // UTILS
 
 const returnRandomNumber = () => {
-  return Math.floor(Math.random() * Math.floor(8)) + 1;
+  return Math.floor(Math.random() * Math.floor(18)) + 1;
 };
 
 const returnRandomRarity = () => {
