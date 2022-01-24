@@ -24,7 +24,7 @@ app.get("/style.css", (req, res) => {
 // UTILS
 
 const returnRandomNumber = () => {
-  return Math.floor(Math.random() * Math.floor(5)) + 1;
+  return Math.floor(Math.random() * Math.floor(8)) + 1;
 };
 
 const returnRandomRarity = () => {
@@ -50,7 +50,7 @@ const dealCards = () => {
       rarity: returnRandomRarity(),
       description: `Some random number dynamic description ${returnRandomNumber()}`,
       stats: {
-        attack: 0, // not used from here, native method of CardClass to randomize value of all stats, to be changed
+        attack: 0,
         defense: 0,
         hp: 0,
       },

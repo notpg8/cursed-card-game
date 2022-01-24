@@ -55,6 +55,13 @@ const createRarity = (currentCard, cardDiv) => {
   cardDiv.appendChild(cardRarity);
 };
 
+const createStats = (currentCard, cardDiv) => {
+  const cardStats = document.createElement("P");
+  cardStats.classList.add("card-stats");
+  cardStats.appendChild(document.createTextNode(currentCard.getCardStats));
+  cardDiv.appendChild(cardStats);
+};
+
 const renderCards = (cards) => {
   const playArea = document.querySelector(".play-area");
 
@@ -64,13 +71,14 @@ const renderCards = (cards) => {
       "linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)";
     const cardDiv = document.createElement("DIV");
     cardDiv.classList.add("card", initiatedCard.rarity);
-    cardDiv.setAttribute("draggable", "true");
     cardDiv.setAttribute(
       "style",
       `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png"), ${goldGradientCSS};`
     );
     playArea.appendChild(cardDiv);
     createRarity(initiatedCard, cardDiv);
+    createStats(initiatedCard, cardDiv);
+
     cardDiv.addEventListener("click", function () {
       revealCardDescription(initiatedCard);
     });
@@ -125,16 +133,30 @@ document.querySelector(".populate-cards").addEventListener("click", dealCards);
 document.querySelector(".delete-cards").addEventListener("click", deleteCards);
 
 const revealCardDescription = (currentCard) => {
-  const existingDescription = document.querySelector(".card-description");
-  existingDescription && existingDescription.remove();
+  const existingDescription = document.querySelectorAll(".card-description");
+  existingDescription && existingDescription.forEach((e) => e.remove());
   const cardDetailsArea = document.querySelector(".card-details-area");
   const cardDescription = document.createElement("P");
+  const cardStats = document.createElement("P");
   cardDescription.classList.add("card-description");
+  cardStats.classList.add("card-description");
+
   cardDescription.appendChild(document.createTextNode(currentCard.description));
+  cardStats.appendChild(
+    document.createTextNode(
+      `${currentCard.getRarityIcon} ${currentCard.rarity.toUpperCase()} | HP: ${
+        currentCard.stats.hp
+      } | ATTACK: ${currentCard.stats.attack} | DEFENSE: ${
+        currentCard.stats.defense
+      }`
+    )
+  );
+
   cardDetailsArea.appendChild(cardDescription);
+  cardDetailsArea.appendChild(cardStats);
 };
 
 const clearInterface = () => {
-  const existingDescription = document.querySelector(".card-description");
-  existingDescription && existingDescription.remove();
+  const existingDescription = document.querySelectorAll(".card-description");
+  existingDescription && existingDescription.forEach((e) => e.remove());
 };

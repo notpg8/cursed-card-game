@@ -11,13 +11,9 @@ export class Card {
   }
 
   // create card
-  get getCardDetails() {
-    return {
-      id: this.id,
-      rarity: this.rarity,
-      description: this.description,
-      stats: this.stats,
-    };
+  get getCardStats() {
+    return `HP : ${this.stats.hp} | ATK: ${this.stats.attack} | DEF: ${this.stats.defense}
+    `;
   }
 
   get getRarityIcon() {

@@ -21,6 +21,10 @@ nav {
   flex-direction: column;
 }
 
+.play-area {
+  display: flex;
+}
+
 .play-area-self {
   width: 59vw;
   height: 23vh;
@@ -70,10 +74,13 @@ nav {
   margin: 5px;
   width: 130px;
   height: 173px;
-  display: inline-block;
+  display: flex;
   border-radius: 4px;
   box-shadow: black 3px 3px 9px;
   transition: 0.3s;
+  border: 0.25rem solid gold;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .common {
@@ -100,6 +107,22 @@ nav {
   text-align: left;
   pointer-events: none;
   margin: 5px;
+}
+
+.card-stats {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: xx-small;
+  color: rgba(0, 0, 0, 0.918);
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  background-color: #ffd700db;
+  height: 3rem;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-details-area {
