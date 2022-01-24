@@ -29,6 +29,38 @@ export class Card {
     }
   }
 
+  get getRarityColor() {
+    switch (this.rarity) {
+      case "common":
+        return "gray";
+      case "uncommon":
+        return "#40677a";
+      case "rare":
+        return "gold";
+      default:
+        console.log(`RARITY ISSUE, NOT MATCHING ANY RARITY`);
+    }
+  }
+
+  get getIsWeak() {
+    return this.stats.hp <= 20;
+  }
+
+  get getRandomWeakText() {
+    switch (this.assignRandomStatValue(5)) {
+      case 1:
+        return "OOF";
+      case 2:
+        return "WHACK";
+      case 3:
+        return "SHIT!";
+      case 4:
+        return "CRAP";
+      case 5:
+        return "WEAK!";
+    }
+  }
+
   get getCardDescription() {
     return this.description;
   }

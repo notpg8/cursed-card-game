@@ -45,6 +45,10 @@ const zoomOnCard = (e) => {
   cardStyle.zIndex = 10;
   e.target.firstChild.style.visibility = "visible";
 
+  console.log(e.target.querySelector(".notification-area"));
+
+  statNotify(e);
+
   emitFuckYouToServer();
 };
 
@@ -60,6 +64,18 @@ const createStats = (currentCard, cardDiv) => {
   cardStats.classList.add("card-stats");
   cardStats.appendChild(document.createTextNode(currentCard.getCardStats));
   cardDiv.appendChild(cardStats);
+  cardStats.setAttribute(
+    "style",
+    `${currentCard.rarity !== "rare" && "background-color: gold;"}`
+  );
+};
+
+const createNotificationArea = (currentCard, cardDiv) => {
+  const cardNotificationArea = document.createElement("span");
+  cardNotificationArea.innerHTML = currentCard.getRandomWeakText;
+  cardNotificationArea.setAttribute("style", `opacity: 0;`);
+  cardNotificationArea.classList.add("notification-area");
+  cardDiv.appendChild(cardNotificationArea);
 };
 
 const renderCards = (cards) => {
@@ -68,15 +84,29 @@ const renderCards = (cards) => {
   cards.map((card) => {
     const initiatedCard = new Card(card);
     const goldGradientCSS =
-      "linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)";
+      ", linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)";
     const cardDiv = document.createElement("DIV");
     cardDiv.classList.add("card", initiatedCard.rarity);
     cardDiv.setAttribute(
       "style",
-      `background-size: 100%; background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png"), ${goldGradientCSS};`
+      `background-size: 100%; 
+      background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png");
+      background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png")${
+        initiatedCard.rarity === "rare" && goldGradientCSS
+      };
+      background-color: ${
+        initiatedCard.getRarityColor
+      }; background-size: cover;`
     );
+
+    // add card to the play area in the dom
     playArea.appendChild(cardDiv);
+
+    // Create additional element of card in dom
     createRarity(initiatedCard, cardDiv);
+    if (initiatedCard.getIsWeak) {
+      createNotificationArea(initiatedCard, cardDiv);
+    }
     createStats(initiatedCard, cardDiv);
 
     cardDiv.addEventListener("click", function () {
@@ -86,6 +116,7 @@ const renderCards = (cards) => {
 
   disableDealButton();
   enableDeleteButton();
+
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", zoomOnCard);
   });
@@ -159,4 +190,16 @@ const revealCardDescription = (currentCard) => {
 const clearInterface = () => {
   const existingDescription = document.querySelectorAll(".card-description");
   existingDescription && existingDescription.forEach((e) => e.remove());
+};
+
+const statNotify = (e) => {
+  e.target
+    .querySelector(".notification-area")
+    .setAttribute("style", `opacity: 1;`);
+
+  setTimeout(() => {
+    e.target
+      .querySelector(".notification-area")
+      .setAttribute("style", `opacity: 0;`);
+  }, 700);
 };

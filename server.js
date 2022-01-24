@@ -48,7 +48,7 @@ const dealCards = () => {
     return {
       id: returnRandomNumber(),
       rarity: returnRandomRarity(),
-      description: `Some random number dynamic description ${returnRandomNumber()}`,
+      description: `Add dynamic description based on ID of card}`,
       stats: {
         attack: 0,
         defense: 0,
