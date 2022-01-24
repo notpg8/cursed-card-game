@@ -8,6 +8,14 @@ const dealCards = () => {
   rotateCards();
 };
 
+const requestNewCards = () => {
+  socket.emit("request-new-cards", (response)=>{
+  cardsFromServerCopy = []
+  cardsFromServerCopy.push(...response);
+  dealCards()
+  });
+}
+
 // EXAMPLE OF SOCKET EMIT EVENT
 const emitFuckYouToServer = () => {
   const messageValue = "fuck you";
@@ -16,7 +24,7 @@ const emitFuckYouToServer = () => {
 
 socket.on("deal-cards", (cardsFromServer) => {
   cardsFromServerCopy.push(...cardsFromServer);
-  dealCards(cardsFromServer);
+  dealCards();
 });
 
 const returnRandomNumber = () => {
@@ -45,7 +53,7 @@ const zoomOnCard = (e) => {
   cardStyle.zIndex = 10;
   e.target.firstChild.style.visibility = "visible";
 
-  statNotify(e);
+  e.target.querySelector(".notification-area") && statNotify(e);
 
   emitFuckYouToServer();
 };
@@ -66,6 +74,11 @@ const createStats = (currentCard, cardDiv) => {
     "style",
     `${currentCard.rarity !== "rare" && "background-color: gold;"}`
   );
+  if(currentCard.rarity === "rare"){
+    cardStats.setAttribute(
+      "style", "color: gold; text-shadow: 0 0 2px black"
+    );
+  }
 };
 
 const createNotificationArea = (currentCard, cardDiv) => {
@@ -158,7 +171,7 @@ const deleteCards = () => {
   clearInterface();
 };
 
-document.querySelector(".populate-cards").addEventListener("click", dealCards);
+document.querySelector(".populate-cards").addEventListener("click", requestNewCards);
 document.querySelector(".delete-cards").addEventListener("click", deleteCards);
 
 const revealCardDescription = (currentCard) => {

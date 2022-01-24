@@ -52,7 +52,7 @@ const dealCards = () => {
     return {
       id: returnRandomNumber(),
       rarity: returnRandomRarity(),
-      description: `Add dynamic description based on ID of card}`,
+      description: `This is where the description/quote of the card goes`,
       stats: {
         attack: 0,
         defense: 0,
@@ -71,7 +71,10 @@ io.on("connection", (socket) => {
     console.log(msg);
   });
 
-  // Wrap this in IF statement, if id of the socketio client is the same as before, dont deliver new cards, keep the existing ones
+  socket.on("request-new-cards", (cb) => {
+    cb(dealCards())
+  });
+ 
   socket.emit("deal-cards", dealCards());
 });
 

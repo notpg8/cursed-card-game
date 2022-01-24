@@ -4,15 +4,15 @@ export class Card {
     this.rarity = cardDetails.rarity;
     this.description = cardDetails.description;
     this.stats = {
-      attack: this.assignRandomStatValue(20, this.rarity),
-      defense: this.assignRandomStatValue(30, this.rarity),
-      hp: this.assignRandomStatValue(100, this.rarity),
+      attack: this.assignRandomStatValue(this.rarity),
+      defense: this.assignRandomStatValue(this.rarity),
+      hp: this.assignRandomStatValue(this.rarity),
     };
   }
 
   // create card
   get getCardStats() {
-    return `♥ : ${this.stats.hp} | ⚔: ${this.stats.attack} | 🛡: ${this.stats.defense}
+    return `♥ ${this.stats.hp} | ⚔ ${this.stats.attack} | ❂ ${this.stats.defense}
     `;
   }
 
@@ -47,7 +47,7 @@ export class Card {
   }
 
   get getRandomWeakText() {
-    switch (this.assignRandomStatValue(5)) {
+    switch (this.randomNumber(5)) {
       case 1:
         return "OOF";
       case 2:
@@ -65,22 +65,21 @@ export class Card {
     return this.description;
   }
 
-  assignRandomStatValue = (maxValue, _rarity) => {
-    if (_rarity) {
-      if (_rarity === "rare") return 9000;
+  assignRandomStatValue = (rarity) => {
+    if (rarity) {
+      if (rarity === "rare") {
+        return Math.floor(Math.random() * Math.floor(666)) + 1;
+      }
+      if (rarity === "uncommon") {
+        return Math.floor(Math.random() * Math.floor(120)) + 1;
+      }
+      if (rarity === "common") {
+        return Math.floor(Math.random() * Math.floor(60)) + 1;
+      }
     }
+  };
+
+  randomNumber = (maxValue) => {
     return Math.floor(Math.random() * Math.floor(maxValue)) + 1;
   };
 }
-
-// EXAMPLE OF SHAPE CARD DETAILS
-// const cardDetails = {
-//   id: 1,
-//   rarity: 3,
-//   description: "Some description about the card",
-//   stats: {
-//     attack: 20,
-//     defense: 30,
-//     hp: 10,
-//   },
-// };
