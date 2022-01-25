@@ -114,12 +114,13 @@ nav {
 
 .card-rarity {
 	font-size: xx-small;
-	color: rgb(0, 0, 0);
+	color: gold;
 	font-weight: bold;
 	text-align: left;
 	pointer-events: none;
 	margin: 2px 5px;
 	visibility: hidden;
+	text-shadow: rgb(0, 0, 0, 0.5) 0px 0px 2px;
 }
 
 .card-stats {

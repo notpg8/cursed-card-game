@@ -12,8 +12,8 @@ export class Card {
 
 	// create card
 	get getCardStats() {
-		return `♥ ${this.stats.hp} | ⚔ ${this.stats.attack} | ❂ ${this.stats.defense}
-    `
+		return `⚔ ${this.stats.attack} | ♥ ${this.stats.hp} `
+		//	return `♥ ${this.stats.hp} | ⚔ ${this.stats.attack} | ❂ ${this.stats.defense}`
 	}
 
 	get getRarityIcon() {
@@ -43,7 +43,7 @@ export class Card {
 	}
 
 	get getIsWeak() {
-		return this.stats.hp <= 20
+		return this.stats.attack <= 20 || this.stats.hp <= 20
 	}
 
 	get getRandomWeakText() {
