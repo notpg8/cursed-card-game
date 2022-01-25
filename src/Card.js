@@ -36,7 +36,7 @@ export class Card {
 			case 'common':
 				return 'gray'
 			case 'uncommon':
-				return '#40677a'
+				return 'rgb(97 131 118)'
 			case 'rare':
 				return 'gold'
 			default:
@@ -55,9 +55,9 @@ export class Card {
 			case 2:
 				return 'WHACK'
 			case 3:
-				return 'SHIT!'
+				return 'SO BAD'
 			case 4:
-				return 'CRAP'
+				return 'OH NO'
 			case 5:
 				return 'WEAK!'
 		}
@@ -82,6 +82,10 @@ export class Card {
 			this.rarity === 'rare' ? this.rarity + ' animate-glow' : this.rarity
 		} face-down`
 
+		// const classes = `card ${
+		// 	this.rarity === 'rare' ? ' animate-glow' : null
+		// } face-down`
+
 		const faceUpStyles = `background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${
 			this.id
 		}')${this.rarity === 'rare' ? goldGradientCSS : ''}; background-color: ${
@@ -93,7 +97,7 @@ export class Card {
 		// 	this.rarity === 'rare' ? goldGradientCSS : ';'
 		// } background-color: ${this.getRarityColor}; background-size: cover;`
 
-		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png'); background-color: #537683; background-size: cover;`
+		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png'); background-color: rgb(83, 118, 131); background-size: cover;`
 
 		return {
 			classes: classes.split(' '),
@@ -104,10 +108,10 @@ export class Card {
 	assignRandomStatValue = (rarity) => {
 		if (rarity) {
 			if (rarity === 'rare') {
-				return Math.floor(Math.random() * Math.floor(100)) + 1
+				return Math.floor(Math.random() * Math.floor(100)) + 50
 			}
 			if (rarity === 'uncommon') {
-				return Math.floor(Math.random() * Math.floor(60)) + 1
+				return Math.floor(Math.random() * Math.floor(60)) + 30
 			}
 			if (rarity === 'common') {
 				return Math.floor(Math.random() * Math.floor(30)) + 1

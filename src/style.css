@@ -104,7 +104,7 @@ nav {
 }
 
 .common {
-	/* filter: grayscale(0.86); */
+	/* filter: grayscale(0.36); */
 }
 
 .uncommon {
@@ -113,29 +113,62 @@ nav {
 
 .rare {
 	/* box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.2); */
+	/* filter: saturate(130%); */
+}
+
+.common-image-filter {
+	filter: grayscale(0.7);
+}
+
+.uncommon-image-filter {
+	filter: grayscale(0.2);
+}
+
+.rare-image-filter {
 	filter: saturate(130%);
+}
+
+.common-card-stats {
+	background-color: rgb(107, 107, 107);
+}
+.uncommon-card-stats {
+	background-color: rgb(72, 139, 114);
+}
+.rare-card-stats {
+	color: gold;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.common-card-rarity {
+	color: black;
+	text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
+}
+.uncommon-card-rarity {
+	color: black;
+	text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
+}
+.rare-card-rarity {
+	color: gold;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
 }
 
 .card-rarity {
 	font-size: xx-small;
-	color: gold;
 	font-weight: bold;
 	text-align: left;
 	pointer-events: none;
 	margin: 2px 5px;
 	visibility: hidden;
-	text-shadow: rgb(0, 0, 0, 0.5) 0px 0px 2px;
 }
 
 .card-stats {
 	font-size: 0.8rem;
-	color: rgb(0, 0, 0);
 	font-weight: bold;
 	text-align: left;
 	pointer-events: none;
 	display: flex;
 	align-items: flex-end;
-	height: 3rem;
+	height: 1.8rem;
 	margin: 0;
 	align-items: center;
 	justify-content: center;

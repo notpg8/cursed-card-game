@@ -50,6 +50,8 @@ const zoomOnCard = (e) => {
 const createRarity = (currentCard, cardDiv) => {
 	const cardRarity = document.createElement('P')
 	cardRarity.classList.add('card-rarity')
+
+	cardRarity.classList.add(`${currentCard.rarity}-card-rarity`)
 	cardRarity.appendChild(document.createTextNode(currentCard.getRarityIcon))
 	cardDiv.appendChild(cardRarity)
 }
@@ -57,18 +59,9 @@ const createRarity = (currentCard, cardDiv) => {
 const createStats = (currentCard, cardDiv) => {
 	const cardStats = document.createElement('P')
 	cardStats.classList.add('card-stats')
+	cardStats.classList.add(`${currentCard.rarity}-card-stats`)
 	cardStats.appendChild(document.createTextNode(currentCard.getCardStats))
 	cardDiv.appendChild(cardStats)
-	cardStats.setAttribute(
-		'style',
-		`${currentCard.rarity !== 'rare' && 'background-color: gold;'}`
-	)
-	if (currentCard.rarity === 'rare') {
-		cardStats.setAttribute(
-			'style',
-			'color: white; text-shadow: 0 0 2px rgba(0, 0, 0, 0.5)'
-		)
-	}
 }
 
 const createNotificationArea = (currentCard, cardDiv) => {
@@ -95,6 +88,7 @@ const renderCards = (cards) => {
 		)
 
 		cardImageDiv.classList.add('card-image')
+		cardImageDiv.classList.add(`${initiatedCard.rarity}-image-filter`)
 		cardImageDiv.setAttribute(
 			'style',
 			initiatedCard.getCardDiv.styles.faceUpStyles
