@@ -1,32 +1,32 @@
 {
-  "name": "card-game",
-  "version": "1.0.0",
-  "description": "",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "nodemon server.js",
-    "build": "webpack",
-    "build-start-server": "webpack && nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PG-8/card-game.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PG-8/card-game/issues"
-  },
-  "homepage": "https://github.com/PG-8/card-game#readme",
-  "dependencies": {
-    "eslint": "8.7.0",
-    "express": "4.17.2",
-    "socket.io": "4.4.1"
-  },
-  "devDependencies": {
-    "nodemon": "2.0.15",
-    "webpack": "5.67.0",
-    "webpack-cli": "4.9.1"
-  }
+	"name": "card-game",
+	"version": "1.0.0",
+	"description": "",
+	"private": true,
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start-server": "nodemon server.js",
+		"build": "webpack",
+		"build-start-server": "webpack && nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PG-8/card-game.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PG-8/card-game/issues"
+	},
+	"homepage": "https://github.com/PG-8/card-game#readme",
+	"dependencies": {
+		"eslint": "8.7.0",
+		"express": "4.17.2",
+		"socket.io": "4.4.1"
+	},
+	"devDependencies": {
+		"nodemon": "2.0.15",
+		"webpack": "5.67.0",
+		"webpack-cli": "4.9.1"
+	}
 }
