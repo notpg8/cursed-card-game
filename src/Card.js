@@ -102,13 +102,13 @@ export class Card {
 	assignRandomStatValue = (rarity) => {
 		if (rarity) {
 			if (rarity === 'rare') {
-				return Math.floor(Math.random() * Math.floor(666)) + 1
+				return Math.floor(Math.random() * Math.floor(100)) + 1
 			}
 			if (rarity === 'uncommon') {
-				return Math.floor(Math.random() * Math.floor(120)) + 1
+				return Math.floor(Math.random() * Math.floor(60)) + 1
 			}
 			if (rarity === 'common') {
-				return Math.floor(Math.random() * Math.floor(60)) + 1
+				return Math.floor(Math.random() * Math.floor(30)) + 1
 			}
 		}
 	}
