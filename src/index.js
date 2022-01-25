@@ -199,9 +199,11 @@ const revealCardDescription = (currentCard) => {
 	cardDescription.appendChild(document.createTextNode(currentCard.description))
 	cardStats.appendChild(
 		document.createTextNode(
-			`${currentCard.getRarityIcon} ${currentCard.rarity.toUpperCase()} | HP: ${
-				currentCard.stats.hp
-			} | ATTACK: ${currentCard.stats.attack}`
+			`${
+				currentCard.getRarityIcon
+			} ${currentCard.rarity.toUpperCase()} | ATTACK: ${
+				currentCard.stats.attack
+			} | HP: ${currentCard.stats.hp}`
 		)
 	)
 
