@@ -1,6 +1,5 @@
 # Cursed Card Game™
 
-
 ### TO DO:
 
 - light theme switch
@@ -12,7 +11,7 @@
 - erasing single cards
 - assign socket ids to players
 - server to handle all actions and send back responses
-- other
+- prevent card spam pushing to array (too many cards while developing)
 
 ### SCREENSHOT:
 

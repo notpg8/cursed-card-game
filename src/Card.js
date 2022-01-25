@@ -65,6 +65,28 @@ export class Card {
 		return this.description
 	}
 
+	get getCardImagesUrls() {
+		return {
+			front: `./media/cards-pngs-optimized/medium/${this.id.toString()}.png`,
+			back: `./media/cards-pngs-optimized/medium/originalback.png`,
+		}
+	}
+
+	get getCardDiv() {
+		const goldGradientCSS =
+			', linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)'
+
+		const classes = `card ${
+			this.rarity === 'rare' ? this.rarity + ' animate-glow' : this.rarity
+		}`
+
+		const styles = `background-size: 100%; background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png')${
+			this.rarity === 'rare' ? goldGradientCSS : null
+		}; background-color: ${this.getRarityColor}; background-size: cover;`
+
+		return { classes: classes.split(' '), styles: styles }
+	}
+
 	assignRandomStatValue = (rarity) => {
 		if (rarity) {
 			if (rarity === 'rare') {

@@ -54,6 +54,7 @@ const zoomOnCard = (e) => {
 	e.target.firstChild.style.visibility = 'visible'
 
 	e.target.querySelector('.notification-area') && statNotify(e)
+	flipCard(cardStyle)
 
 	emitFuckYouToServer()
 }
@@ -92,21 +93,11 @@ const renderCards = (cards) => {
 
 	cards.map((card) => {
 		const initiatedCard = new Card(card)
-		const goldGradientCSS =
-			', linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C)'
 		const cardDiv = document.createElement('DIV')
-		cardDiv.classList.add('card', initiatedCard.rarity)
-		cardDiv.setAttribute(
-			'style',
-			`background-size: 100%; 
-      background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png");
-      background-image: url("./media/cards-pngs-optimized/medium/${initiatedCard.id.toString()}.png")${
-				initiatedCard.rarity === 'rare' && goldGradientCSS
-			};
-      background-color: ${
-				initiatedCard.getRarityColor
-			}; background-size: cover;`
-		)
+
+		// classes and styles set up inside Card class
+		cardDiv.classList.add(...initiatedCard.getCardDiv.classes)
+		cardDiv.setAttribute('style', initiatedCard.getCardDiv.styles)
 
 		// add card to the play area in the dom
 		playArea.appendChild(cardDiv)
@@ -228,3 +219,8 @@ const checkServerStatus = () => {
 }
 
 checkServerStatus()
+
+const flipCard = (cardStyle) => {
+	console.log(cardStyle)
+	cardStyle.backgroundImage = `url(./media/cards-pngs-optimized/medium/originalback.png)`
+}

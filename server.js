@@ -3,7 +3,6 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
-const { SourceMapDevToolPlugin } = require('webpack')
 const io = new Server(server)
 
 // middleware serves static content from media for all requests sent to media endpoint

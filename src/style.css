@@ -108,7 +108,7 @@ nav {
 }
 
 .rare {
-	box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.2);
+	/* box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.2); */
 	filter: saturate(130%);
 }
 
@@ -243,4 +243,55 @@ nav {
 	-moz-animation: flickerAnimation 2s infinite;
 	-o-animation: flickerAnimation 2s infinite;
 	animation: flickerAnimation 2s infinite;
+}
+
+@keyframes glowAnimation {
+	0% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+	50% {
+		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+	}
+	100% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+}
+@-o-keyframes glowAnimation {
+	0% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+	50% {
+		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+	}
+	100% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+}
+@-moz-keyframes glowAnimation {
+	0% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+	50% {
+		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+	}
+	100% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+}
+@-webkit-keyframes glowAnimation {
+	0% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+	50% {
+		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+	}
+	100% {
+		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+	}
+}
+.animate-glow {
+	-webkit-animation: glowAnimation 3s infinite;
+	-moz-animation: glowAnimation 3s infinite;
+	-o-animation: glowAnimation 3s infinite;
+	animation: glowAnimation 3s infinite;
 }
