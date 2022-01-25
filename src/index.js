@@ -1,4 +1,5 @@
 import { Card } from './Card'
+import { toggleDuelScreen } from './Duel'
 var socket = io()
 
 let cardsFromServerCopy = []
@@ -42,7 +43,7 @@ const zoomOnCard = (e) => {
 	rotateCards()
 
 	cardStyle.transform = 'scale(1.6)'
-	cardStyle.zIndex = 10
+	cardStyle.zIndex = 2
 	e.target.firstChild.style.visibility = 'visible'
 
 	e.target.querySelector('.notification-area') && statNotify(e)
@@ -181,6 +182,7 @@ document.querySelector('.delete-cards').addEventListener('click', deleteCards)
 document
 	.querySelector('.reveal-all-cards')
 	.addEventListener('click', revealCards)
+document.querySelector('.duel-page-button').addEventListener('click', toggleDuelScreen)
 
 const revealCardDescription = (currentCard) => {
 	const existingDescription = document.querySelectorAll('.card-description')
