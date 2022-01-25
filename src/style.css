@@ -39,6 +39,8 @@ nav {
 
 .play-area {
 	display: flex;
+	flex-wrap: wrap;
+	margin: 0 7vw;
 }
 
 .play-area-self {
