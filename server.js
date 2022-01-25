@@ -25,6 +25,7 @@ app.get('/style.css', (req, res) => {
 
 let numberOfAvailableImages = 0
 let imageNamesMap = []
+
 fs.readdir('./src/media/cards-pngs-optimized/medium/', (err, files) => {
 	numberOfAvailableImages = files.filter(
 		(file) =>
@@ -75,10 +76,13 @@ const dealCards = () => {
 	// assemble object with rarity and number of card, return that instead of rarity and number separately
 
 	return Array.from(Array(5)).map((card, i) => {
+		const cardId = returnRandomImageName()
+		// const cardName = cardId.substring(0, cardId.indexOf('.'))
 		return {
 			// id: returnRandomNumber(),
-			id: returnRandomImageName(),
+			id: cardId,
 			rarity: returnRandomRarity(),
+			name: cardId,
 			description: `This is where the description/quote of the card goes`,
 			stats: {
 				attack: 0,

@@ -116,7 +116,7 @@ const renderCards = (cards) => {
 		})
 	})
 
-	disableDealButton()
+	// disableDealButton()
 	enableDeleteButton()
 
 	document.querySelectorAll('.card').forEach((card) => {
@@ -188,22 +188,30 @@ const revealCardDescription = (currentCard) => {
 	const existingDescription = document.querySelectorAll('.card-description')
 	existingDescription && existingDescription.forEach((e) => e.remove())
 	const cardDetailsArea = document.querySelector('.card-details-area')
+
+	const cardName = document.createElement('H2')
 	const cardDescription = document.createElement('P')
 	const cardStats = document.createElement('P')
+
+	cardName.classList.add('card-name', 'card-description')
 	cardDescription.classList.add('card-description')
 	cardStats.classList.add('card-description')
 
+	cardName.appendChild(
+		document.createTextNode(
+			currentCard.name.substring(0, currentCard.name.indexOf('.')).toUpperCase()
+		)
+	)
 	cardDescription.appendChild(document.createTextNode(currentCard.description))
 	cardStats.appendChild(
 		document.createTextNode(
 			`${currentCard.getRarityIcon} ${currentCard.rarity.toUpperCase()} | HP: ${
 				currentCard.stats.hp
-			} | ATTACK: ${currentCard.stats.attack} | DEFENSE: ${
-				currentCard.stats.defense
-			}`
+			} | ATTACK: ${currentCard.stats.attack}`
 		)
 	)
 
+	cardDetailsArea.appendChild(cardName)
 	cardDetailsArea.appendChild(cardDescription)
 	cardDetailsArea.appendChild(cardStats)
 }

@@ -2,6 +2,8 @@ export class Card {
 	constructor(cardDetails) {
 		this.id = cardDetails.id
 		this.rarity = cardDetails.rarity
+		this.name = cardDetails.name
+
 		this.description = cardDetails.description
 		this.stats = {
 			attack: this.assignRandomStatValue(this.rarity),
