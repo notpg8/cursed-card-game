@@ -223,6 +223,7 @@ nav {
 	position: fixed;
 	bottom: 0;
 	text-decoration: none;
+	z-index: 21;
 }
 
 .text-attribution > a {
@@ -358,6 +359,10 @@ nav {
 	z-index: 5;
 }
 
+.duel-page-backgrounds {
+	overflow: hidden;
+}
+
 .opponent-duel-page {
 	display: flex;
 	width: 50vw;
@@ -373,12 +378,12 @@ nav {
 }
 
 .skewed {
-	transform: skew(-20deg);
+	transform: skew(-30deg);
 }
 
 .opponent-card-duel {
-	height: 50vh;
-	width: 30vw;
+	height: 25rem;
+	width: 20rem;
 	background-color: tomato;
 	z-index: 20;
 	display: flex;
@@ -387,8 +392,8 @@ nav {
 }
 
 .own-card-duel {
-	height: 50vh;
-	width: 30vw;
+	height: 28rem;
+	width: 23rem;
 	background-color: skyblue;
 	z-index: 20;
 	display: flex;
