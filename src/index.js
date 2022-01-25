@@ -27,14 +27,18 @@ socket.on('deal-cards', (cardsFromServer) => {
 	dealCards()
 })
 
-const zoomOnCard = (e) => {
-	const cardStyle = e.target.style
+const resetCardZoom = () => {
 	const allCards = document.querySelectorAll('.card')
 	allCards.forEach((card) => {
-		card.style.scale = 1
+		card.style.transform = 'scale(1)'
 		card.style.zIndex = 0
 		card.style.position = 'relative'
 	})
+}
+
+const zoomOnCard = (e) => {
+	const cardStyle = e.target.style
+	resetCardZoom()
 	rotateCards()
 
 	cardStyle.transform = 'scale(1.6)'
@@ -258,3 +262,9 @@ const flipCard = (e) => {
 	}
 	return null
 }
+
+document.addEventListener('click', (e)=> { 
+	if(e.target.className === 'board' || e.target.className === 'play-area'){
+		resetCardZoom()
+	}
+})

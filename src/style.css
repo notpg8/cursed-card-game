@@ -104,6 +104,10 @@ nav {
 	justify-content: space-between;
 }
 
+.card:hover {
+	filter:brightness(1.2)
+}
+
 .common {
 	/* filter: grayscale(0.36); */
 }
@@ -336,3 +340,19 @@ nav {
 	-o-animation: glowAnimation 3s infinite;
 	animation: glowAnimation 3s infinite;
 }
+
+
+/* .card-shine {
+	position: absolute;
+	top: 0;
+	left: -80px;
+	height: 200px;
+	width: 40px;
+	background: rgba(255, 255, 255, 0.4);
+	transition: all .4s ease-out;
+	transform: skewX(20deg) translateX(0);
+  }
+
+  .card:hover .card-shine {
+	transform: skewX(20deg) translateX(200px);
+  } */
