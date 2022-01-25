@@ -100,11 +100,11 @@ nav {
 }
 
 .common {
-	filter: grayscale(0.86);
+	/* filter: grayscale(0.86); */
 }
 
 .uncommon {
-	filter: grayscale(0.4);
+	/* filter: grayscale(0.4); */
 }
 
 .rare {
@@ -119,6 +119,7 @@ nav {
 	text-align: left;
 	pointer-events: none;
 	margin: 2px 5px;
+	visibility: hidden;
 }
 
 .card-stats {
@@ -133,6 +134,7 @@ nav {
 	margin: 0;
 	align-items: center;
 	justify-content: center;
+	visibility: hidden;
 }
 
 .card-details-area {
@@ -146,7 +148,7 @@ nav {
 }
 
 .notification-area {
-	z-index: 200;
+	z-index: 10000;
 	text-align: center;
 	transition: 0.3s;
 	color: rgb(255, 255, 255);
@@ -247,46 +249,46 @@ nav {
 
 @keyframes glowAnimation {
 	0% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 	50% {
-		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+		box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.35);
 	}
 	100% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 }
 @-o-keyframes glowAnimation {
 	0% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 	50% {
-		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+		box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.35);
 	}
 	100% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 }
 @-moz-keyframes glowAnimation {
 	0% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 	50% {
-		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+		box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.35);
 	}
 	100% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 }
 @-webkit-keyframes glowAnimation {
 	0% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 	50% {
-		box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.05);
+		box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.35);
 	}
 	100% {
-		box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.3);
+		box-shadow: 0px 0px 50px 0px rgba(255, 217, 0, 0.692);
 	}
 }
 .animate-glow {

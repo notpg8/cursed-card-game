@@ -27,17 +27,13 @@ socket.on('deal-cards', (cardsFromServer) => {
 	dealCards()
 })
 
-const returnRandomNumber = () => {
-	return Math.floor(Math.random() * Math.floor(5)) + 1
-}
-
-const randomColor = () => {
-	const red = Math.floor(Math.random() * Math.floor(257))
-	const green = Math.floor(Math.random() * Math.floor(257))
-	const blue = Math.floor(Math.random() * Math.floor(257))
-	const alpha = 1
-	return `${red}, ${green}, ${blue}, ${alpha}`
-}
+// const randomColor = () => {
+// 	const red = Math.floor(Math.random() * Math.floor(257))
+// 	const green = Math.floor(Math.random() * Math.floor(257))
+// 	const blue = Math.floor(Math.random() * Math.floor(257))
+// 	const alpha = 1
+// 	return `${red}, ${green}, ${blue}, ${alpha}`
+// }
 
 const zoomOnCard = (e) => {
 	const cardStyle = e.target.style
@@ -49,12 +45,12 @@ const zoomOnCard = (e) => {
 	})
 	rotateCards()
 
-	cardStyle.transform = 'scale(1.9)'
+	cardStyle.transform = 'scale(1.6)'
 	cardStyle.zIndex = 10
 	e.target.firstChild.style.visibility = 'visible'
 
 	e.target.querySelector('.notification-area') && statNotify(e)
-	flipCard(cardStyle)
+	flipCard(e)
 
 	emitFuckYouToServer()
 }
@@ -76,7 +72,10 @@ const createStats = (currentCard, cardDiv) => {
 		`${currentCard.rarity !== 'rare' && 'background-color: gold;'}`
 	)
 	if (currentCard.rarity === 'rare') {
-		cardStats.setAttribute('style', 'color: gold; text-shadow: 0 0 2px black')
+		cardStats.setAttribute(
+			'style',
+			'color: white; text-shadow: 0 0 2px rgba(0, 0, 0, 0.5)'
+		)
 	}
 }
 
@@ -94,13 +93,24 @@ const renderCards = (cards) => {
 	cards.map((card) => {
 		const initiatedCard = new Card(card)
 		const cardDiv = document.createElement('DIV')
+		const cardImageDiv = document.createElement('DIV')
 
 		// classes and styles set up inside Card class
 		cardDiv.classList.add(...initiatedCard.getCardDiv.classes)
-		cardDiv.setAttribute('style', initiatedCard.getCardDiv.styles)
+		cardDiv.setAttribute(
+			'style',
+			initiatedCard.getCardDiv.styles.faceDownStyles
+		)
+
+		cardImageDiv.classList.add('card-image')
+		cardImageDiv.setAttribute(
+			'style',
+			initiatedCard.getCardDiv.styles.faceUpStyles
+		)
 
 		// add card to the play area in the dom
 		playArea.appendChild(cardDiv)
+		cardDiv.appendChild(cardImageDiv)
 
 		// Create additional element of card in dom
 		createRarity(initiatedCard, cardDiv)
@@ -220,7 +230,32 @@ const checkServerStatus = () => {
 
 checkServerStatus()
 
-const flipCard = (cardStyle) => {
-	console.log(cardStyle)
-	cardStyle.backgroundImage = `url(./media/cards-pngs-optimized/medium/originalback.png)`
+const flipCard = (e) => {
+	const cardSelected = e.target
+
+	if (cardSelected.classList.value.includes('face-down')) {
+		e.target.classList.remove('face-down')
+		e.target.classList.add('face-up')
+		e.target.querySelector('.card-rarity').style.visibility = 'visible'
+		e.target.querySelector('.card-stats').style.visibility = 'visible'
+		e.target.querySelector('.notification-area').style.visibility = 'visible'
+		e.target.querySelector('.card-image').style.visibility = 'visible'
+
+		return
+	}
+	return null
+
+	// if (cardSelected.classList.value.includes('face-up')) {
+	// 	console.log('in here')
+	// 	e.target.classList.remove('face-up')
+	// 	e.target.classList.add('face-down')
+	// 	// console.log(e.target.querySelector('.card-rarity'))
+	// 	e.target.querySelector('.card-rarity').style.visibility = 'hidden'
+	// 	e.target.querySelector('.card-stats').style.visibility = 'hidden'
+	// 	e.target.querySelector('.notification-area').style.visibility = 'hidden'
+
+	// 	e.target.querySelector('.card-image').style.visibility = 'hidden'
+
+	// 	return
+	// }
 }
