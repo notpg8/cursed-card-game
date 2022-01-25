@@ -67,8 +67,8 @@ export class Card {
 
 	get getCardImagesUrls() {
 		return {
-			front: `./media/cards-pngs-optimized/medium/${this.id.toString()}.png`,
-			back: `./media/cards-pngs-optimized/medium/originalback.png`,
+			front: `./media/cards-pngs-optimized/medium/${this.id}`,
+			back: `./media/cards-pngs-optimized/medium/back/originalback.png`,
 		}
 	}
 
@@ -80,18 +80,18 @@ export class Card {
 			this.rarity === 'rare' ? this.rarity + ' animate-glow' : this.rarity
 		} face-down`
 
-		const faceUpStyles = `background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png')${
-			this.rarity === 'rare' ? goldGradientCSS : ''
-		}; background-color: ${
+		const faceUpStyles = `background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${
+			this.id
+		}')${this.rarity === 'rare' ? goldGradientCSS : ''}; background-color: ${
 			this.getRarityColor
 		}; background-size: cover; width: 100%; height:100%; pointer-events: none; visibility: hidden; position: absolute; z-index: -1;`
 
 		// ORIGINAL SETTING
-		// const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/originalback.png')${
+		// const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png')${
 		// 	this.rarity === 'rare' ? goldGradientCSS : ';'
 		// } background-color: ${this.getRarityColor}; background-size: cover;`
 
-		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/originalback.png'); background-color: #537683; background-size: cover;`
+		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png'); background-color: #537683; background-size: cover;`
 
 		return {
 			classes: classes.split(' '),

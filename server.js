@@ -4,6 +4,7 @@ const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
+const fs = require('fs')
 
 // middleware serves static content from media for all requests sent to media endpoint
 app.use('/media', express.static(__dirname + '/src/media'))
@@ -22,8 +23,34 @@ app.get('/style.css', (req, res) => {
 
 // UTILS
 
+let numberOfAvailableImages = 0
+let imageNamesMap = []
+fs.readdir('./src/media/cards-pngs-optimized/medium/', (err, files) => {
+	numberOfAvailableImages = files.filter(
+		(file) =>
+			file.includes('.png') ||
+			file.includes('.jpg') ||
+			file.includes('.jpeg') ||
+			file.includes('.gif')
+	).length
+})
+
+fs.readdir('./src/media/cards-pngs-optimized/medium/', (err, files) => {
+	imageNamesMap = files.filter(
+		(file) =>
+			file.includes('.png') ||
+			file.includes('.jpg') ||
+			file.includes('.jpeg') ||
+			file.includes('.gif')
+	)
+})
+
 const returnRandomNumber = () => {
-	return Math.floor(Math.random() * Math.floor(31)) + 1
+	return Math.floor(Math.random() * Math.floor(numberOfAvailableImages)) + 1
+}
+
+const returnRandomImageName = () => {
+	return imageNamesMap[returnRandomNumber() - 1]
 }
 
 const returnRandomRarity = () => {
@@ -47,9 +74,10 @@ const dealCards = () => {
 
 	// assemble object with rarity and number of card, return that instead of rarity and number separately
 
-	return Array.from(Array(5)).map((card, i) => {
+	return Array.from(Array(8)).map((card, i) => {
 		return {
-			id: returnRandomNumber(),
+			// id: returnRandomNumber(),
+			id: returnRandomImageName(),
 			rarity: returnRandomRarity(),
 			description: `This is where the description/quote of the card goes`,
 			stats: {

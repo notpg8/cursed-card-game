@@ -15,7 +15,7 @@ nav {
 }
 
 .board-bg {
-	background-image: url('./media/cards-pngs-optimized/medium/tile.png');
+	background-image: url('./media/cards-pngs-optimized/medium/back/tile.png');
 	background-position: center center;
 	background-repeat: repeat;
 	opacity: 0.05;
@@ -90,6 +90,8 @@ nav {
 
 .card {
 	margin: 5px;
+	/* width: 100px;
+	height: 133px; */
 	width: 130px;
 	height: 173px;
 	display: flex;
