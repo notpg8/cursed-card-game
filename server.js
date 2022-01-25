@@ -74,7 +74,7 @@ const dealCards = () => {
 
 	// assemble object with rarity and number of card, return that instead of rarity and number separately
 
-	return Array.from(Array(8)).map((card, i) => {
+	return Array.from(Array(5)).map((card, i) => {
 		return {
 			// id: returnRandomNumber(),
 			id: returnRandomImageName(),

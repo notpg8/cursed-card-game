@@ -27,14 +27,6 @@ socket.on('deal-cards', (cardsFromServer) => {
 	dealCards()
 })
 
-// const randomColor = () => {
-// 	const red = Math.floor(Math.random() * Math.floor(257))
-// 	const green = Math.floor(Math.random() * Math.floor(257))
-// 	const blue = Math.floor(Math.random() * Math.floor(257))
-// 	const alpha = 1
-// 	return `${red}, ${green}, ${blue}, ${alpha}`
-// }
-
 const zoomOnCard = (e) => {
 	const cardStyle = e.target.style
 	const allCards = document.querySelectorAll('.card')
@@ -170,10 +162,27 @@ const deleteCards = () => {
 	clearInterface()
 }
 
+const revealCards = () => {
+	document.querySelectorAll('.card').forEach((card) => {
+		card.classList.remove('face-down')
+		card.classList.add('face-up')
+		card.querySelector('.card-rarity').style.visibility = 'visible'
+		card.querySelector('.card-stats').style.visibility = 'visible'
+		card.querySelector('.card-image').style.visibility = 'visible'
+		if (card.querySelector('.notification-area')) {
+			card.querySelector('.notification-area').style.visibility = 'visible'
+		}
+	})
+}
+
+// buttons nav event listeners
 document
 	.querySelector('.populate-cards')
 	.addEventListener('click', requestNewCards)
 document.querySelector('.delete-cards').addEventListener('click', deleteCards)
+document
+	.querySelector('.reveal-all-cards')
+	.addEventListener('click', revealCards)
 
 const revealCardDescription = (currentCard) => {
 	const existingDescription = document.querySelectorAll('.card-description')
@@ -244,18 +253,4 @@ const flipCard = (e) => {
 		return
 	}
 	return null
-
-	// if (cardSelected.classList.value.includes('face-up')) {
-	// 	console.log('in here')
-	// 	e.target.classList.remove('face-up')
-	// 	e.target.classList.add('face-down')
-	// 	// console.log(e.target.querySelector('.card-rarity'))
-	// 	e.target.querySelector('.card-rarity').style.visibility = 'hidden'
-	// 	e.target.querySelector('.card-stats').style.visibility = 'hidden'
-	// 	e.target.querySelector('.notification-area').style.visibility = 'hidden'
-
-	// 	e.target.querySelector('.card-image').style.visibility = 'hidden'
-
-	// 	return
-	// }
 }
