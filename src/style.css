@@ -65,13 +65,8 @@ nav {
 	transition: 0.5s;
 }
 
-.populate-cards:hover {
-	background-color: honeydew;
-	transition: 0.5s;
-}
-
-.delete-cards:hover {
-	background-color: rgb(247, 155, 155);
+.buttons button:hover {
+	background-color: rgb(137, 223, 245);
 	transition: 0.5s;
 }
 
@@ -97,7 +92,7 @@ nav {
 	height: 173px;
 	display: flex;
 	border-radius: 4px;
-	box-shadow: black 3px 3px 9px;
+	box-shadow: rgb(14, 14, 14) 3px 3px 9px;
 	transition: 0.3s;
 	border: 0.25rem solid gold;
 	flex-direction: column;
@@ -141,20 +136,20 @@ nav {
 }
 .rare-card-stats {
 	color: gold;
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+	text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
 }
 
 .common-card-rarity {
-	color: black;
+	color: rgb(14, 14, 14);
 	text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
 }
 .uncommon-card-rarity {
-	color: black;
+	color: rgb(14, 14, 14);
 	text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
 }
 .rare-card-rarity {
 	color: gold;
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+	text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
 }
 
 .card-rarity {
@@ -182,7 +177,7 @@ nav {
 
 .card-details-area {
 	font-size: x-small;
-	color: rgba(255, 255, 255, 1);
+	color: rgb(226, 226, 226);
 	text-align: left;
 	pointer-events: none;
 	margin: 5px 20px;
@@ -191,22 +186,22 @@ nav {
 }
 
 .notification-area {
-	z-index: 10000;
+	z-index: 100;
 	text-align: center;
 	transition: 0.3s;
-	color: rgb(255, 255, 255);
+	color: rgb(226, 226, 226);
 	font-size: 2rem;
 	font-weight: 900;
 	pointer-events: none;
 	opacity: 0;
 	font-weight: 600;
-	-webkit-text-stroke: rgb(0, 0, 0) 0.016rem;
+	-webkit-text-stroke: rgb(14, 14, 14) 0.016rem;
 }
 
 .game-name {
 	margin: 0.5rem 0.5rem 0 auto;
 	margin-left: auto;
-	color: white;
+	color: rgb(226, 226, 226);
 }
 
 .attribution {
@@ -216,7 +211,7 @@ nav {
 
 .text-attribution {
 	font-size: xx-small;
-	color: rgba(255, 255, 255, 1);
+	color: rgb(226, 226, 226);
 	margin: 0 0.5rem 0.5rem auto;
 	margin-left: auto;
 	display: flex;
@@ -228,12 +223,12 @@ nav {
 
 .text-attribution > a {
 	text-decoration: none;
-	color: white;
+	color: rgb(226, 226, 226);
 }
 
 .text-attribution > a:visited {
 	text-decoration: none;
-	color: white;
+	color: rgb(226, 226, 226);
 }
 
 .server-status {
@@ -347,10 +342,10 @@ nav {
 	width: 100vw;
 	background: linear-gradient(
 		90deg,
-		rgba(245, 245, 245, 1) 0%,
-		rgba(245, 245, 245, 1) 49%,
-		rgba(0, 0, 0, 1) 50%,
-		rgba(0, 0, 0, 1) 100%
+		rgb(226, 226, 226) 0%,
+		rgb(226, 226, 226) 49%,
+		rgb(14, 14, 14) 50%,
+		rgb(14, 14, 14) 100%
 	);
 	position: absolute;
 	visibility: hidden;
@@ -367,14 +362,14 @@ nav {
 	display: flex;
 	width: 50vw;
 	height: 100vh;
-	background-color: whitesmoke;
+	background-color: rgb(226, 226, 226);
 }
 
 .own-duel-page {
 	display: flex;
 	width: 50vw;
 	height: 100vh;
-	background-color: black;
+	background-color: rgb(14, 14, 14);
 }
 
 .skewed {
