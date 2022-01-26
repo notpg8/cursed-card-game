@@ -38,17 +38,25 @@ const resetCardZoom = () => {
 }
 
 const zoomOnCard = (e) => {
-	// if(e.target.className.includes())
-	const cardStyle = e.target.style
-	resetCardZoom()
-	rotateCards()
-	cardStyle.transform = 'scale(1.6)'
-	cardStyle.zIndex = 2
-	e.target.firstChild.style.visibility = 'visible'
-	e.target.querySelector('.notification-area') && statNotify(e)
-	flipCard(e)
+	if (e.target.classList.contains('card')) {
+		const cardStyle = e.target.style
+		resetCardZoom()
+		rotateCards()
+		cardStyle.transform = 'scale(1.6)'
+		cardStyle.zIndex = 2
+		e.target.firstChild.style.visibility = 'visible'
+		e.target.querySelector('.notification-area') && statNotify(e)
+		flipCard(e)
+	}
 
 	emitFuckYouToServer()
+}
+
+const parseCardToHTML = (unparsedCard) => {
+	const tempWrapper = document.createElement('DIV')
+	tempWrapper.innerHTML = unparsedCard
+	const cardParsedDiv = tempWrapper.firstChild
+	return cardParsedDiv
 }
 
 const renderCards = (cardsFromServer) => {
@@ -57,29 +65,23 @@ const renderCards = (cardsFromServer) => {
 	const ownCard = document.querySelector('.own-card-duel')
 
 	cardsFromServer.map((card, i) => {
+		if (i === 0) {
+			const initiatedCard = new Card(card)
+			ownCard.appendChild(parseCardToHTML(initiatedCard.getUnparsedCardForDuel))
+		}
+
+		if (i === 1) {
+			const initiatedCard = new Card(card)
+			opponentCard.appendChild(
+				parseCardToHTML(initiatedCard.getUnparsedCardForDuel)
+			)
+		}
+
 		const initiatedCard = new Card(card)
 
-		const cardUnparsedDiv = initiatedCard.getCard
-
-		// --- START ---
-		//THIS IS NEEDED TO PARSE THE STRING BUILT BY THE CARD CLATT TO HTML
-		const tempWrapper = document.createElement('DIV')
-		tempWrapper.innerHTML = cardUnparsedDiv
-		const cardParsedDiv = tempWrapper.firstChild
-		// --- END ---
+		const cardParsedDiv = parseCardToHTML(initiatedCard.getUnparsedCard)
 
 		playArea.appendChild(cardParsedDiv)
-		if (i === 1) {
-			cardParsedDiv.classList.add('duel-card')
-			opponentCard.appendChild(cardParsedDiv)
-		}
-		if (i === 2) {
-			cardParsedDiv.classList.add('duel-card')
-			cardParsedDiv.classList.remove('face-down')
-			cardParsedDiv.classList.add('face-up')
-
-			ownCard.appendChild(cardParsedDiv)
-		}
 
 		cardParsedDiv.addEventListener('click', function () {
 			revealCardDescription(initiatedCard)
@@ -138,6 +140,21 @@ const revealCards = () => {
 		if (card.querySelector('.notification-area')) {
 			card.querySelector('.notification-area').style.visibility = 'visible'
 		}
+	})
+}
+
+export const revealDuelCards = () => {
+	const duelCards = document.querySelector('.duel-cards')
+
+	duelCards.querySelectorAll('.card').forEach((card) => {
+		card.classList.remove('face-down')
+		card.classList.add('face-up')
+		card.querySelector('.card-rarity').style.visibility = 'visible'
+		card.querySelector('.card-stats').style.visibility = 'visible'
+		card.querySelector('.card-image').style.visibility = 'visible'
+		// if (card.querySelector('.notification-area')) {
+		// 	card.querySelector('.notification-area').style.visibility = 'visible'
+		// }
 	})
 }
 
@@ -214,6 +231,7 @@ const flipCard = (e) => {
 		e.target.querySelector('.card-stats').style.visibility = 'visible'
 		e.target.querySelector('.notification-area').style.visibility = 'visible'
 		e.target.querySelector('.card-image').style.visibility = 'visible'
+		e.target.querySelector('.fight-button').style.visibility = 'visible'
 
 		return
 	}

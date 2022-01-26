@@ -72,7 +72,7 @@ const returnRandomRarity = () => {
 
 const dealCards = () => {
 	// creates an N lenght array with 1-5 random values
-	const N = 5
+	const N = 2
 	// assemble object with rarity and number of card, return that instead of rarity and number separately
 
 	return Array.from(Array(N)).map((card, i) => {

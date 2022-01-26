@@ -73,9 +73,14 @@ export class Card {
 		}
 	}
 
-	get getCard() {
-		const card = this.buildHtml()
+	get getUnparsedCard() {
+		const card = this.buildCard()
 		return card
+	}
+
+	get getUnparsedCardForDuel() {
+		const cardForDuel = this.buildCard()
+		return cardForDuel
 	}
 
 	assignRandomStatValue = (rarity) => {
@@ -144,12 +149,20 @@ export class Card {
 		}
 	}
 
-	buildHtml = () => {
+	buildCardFightButton = () => {
+		const classes = `fight-button`
+		return {
+			fightButtonClasses: classes,
+		}
+	}
+
+	buildCard = () => {
 		const { cardClasses, cardStyles } = this.buildCss()
 		const { rarityClasses } = this.buildCardRarityP()
 		const { notificationClasses, notificationStyles } =
 			this.buildCardNotificationSpan()
 		const { statsClasses } = this.buildCardStatsP()
+		const { fightButtonClasses } = this.buildCardFightButton()
 
 		// DON'T TOUCH THE INDENTATION OF THIS SHIT
 		const cardUnparsedDiv = `<div class="${cardClasses}" style="${
@@ -162,6 +175,7 @@ export class Card {
 			this.getIsWeak ? this.getRandomWeakText : ''
 		}</span>
 		<p class="${statsClasses}">${this.getCardStats}</p>
+		<button class="${fightButtonClasses}" title="Fight!">🥊</button>
 		</div>`
 
 		return cardUnparsedDiv
