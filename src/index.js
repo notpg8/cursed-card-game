@@ -41,82 +41,36 @@ const zoomOnCard = (e) => {
 	const cardStyle = e.target.style
 	resetCardZoom()
 	rotateCards()
-
 	cardStyle.transform = 'scale(1.6)'
 	cardStyle.zIndex = 2
 	e.target.firstChild.style.visibility = 'visible'
-
 	e.target.querySelector('.notification-area') && statNotify(e)
 	flipCard(e)
 
 	emitFuckYouToServer()
 }
 
-const createRarity = (currentCard, cardDiv) => {
-	const cardRarity = document.createElement('P')
-	cardRarity.classList.add('card-rarity')
-
-	cardRarity.classList.add(`${currentCard.rarity}-card-rarity`)
-	cardRarity.appendChild(document.createTextNode(currentCard.getRarityIcon))
-	cardDiv.appendChild(cardRarity)
-}
-
-const createStats = (currentCard, cardDiv) => {
-	const cardStats = document.createElement('P')
-	cardStats.classList.add('card-stats')
-	cardStats.classList.add(`${currentCard.rarity}-card-stats`)
-	cardStats.appendChild(document.createTextNode(currentCard.getCardStats))
-	cardDiv.appendChild(cardStats)
-}
-
-const createNotificationArea = (currentCard, cardDiv) => {
-	const cardNotificationArea = document.createElement('span')
-	cardNotificationArea.innerHTML = currentCard.getRandomWeakText
-	cardNotificationArea.setAttribute('style', `opacity: 0;`)
-	cardNotificationArea.classList.add('notification-area')
-	cardDiv.appendChild(cardNotificationArea)
-}
-
-const renderCards = (cards) => {
+const renderCards = (cardsFromServer) => {
 	const playArea = document.querySelector('.play-area')
 
-	cards.map((card) => {
+	cardsFromServer.map((card) => {
 		const initiatedCard = new Card(card)
-		const cardDiv = document.createElement('DIV')
-		const cardImageDiv = document.createElement('DIV')
 
-		// classes and styles set up inside Card class
-		cardDiv.classList.add(...initiatedCard.getCardDiv.classes)
-		cardDiv.setAttribute(
-			'style',
-			initiatedCard.getCardDiv.styles.faceDownStyles
-		)
+		const cardUnparsedDiv = initiatedCard.getCard
 
-		cardImageDiv.classList.add('card-image')
-		cardImageDiv.classList.add(`${initiatedCard.rarity}-image-filter`)
-		cardImageDiv.setAttribute(
-			'style',
-			initiatedCard.getCardDiv.styles.faceUpStyles
-		)
+		// --- START ---
+		//THIS IS NEEDED TO PARSE THE STRING BUILT BY THE CARD CLATT TO HTML
+		const tempWrapper = document.createElement('DIV')
+		tempWrapper.innerHTML = cardUnparsedDiv
+		const cardParsedDiv = tempWrapper.firstChild
+		// --- END ---
 
-		// add card to the play area in the dom
-		playArea.appendChild(cardDiv)
-		cardDiv.appendChild(cardImageDiv)
+		playArea.appendChild(cardParsedDiv)
 
-		// Create additional element of card in dom
-		createRarity(initiatedCard, cardDiv)
-		if (initiatedCard.getIsWeak) {
-			createNotificationArea(initiatedCard, cardDiv)
-		}
-		createStats(initiatedCard, cardDiv)
-
-		cardDiv.addEventListener('click', function () {
+		cardParsedDiv.addEventListener('click', function () {
 			revealCardDescription(initiatedCard)
 		})
 	})
-
-	// disableDealButton()
-	enableDeleteButton()
 
 	document.querySelectorAll('.card').forEach((card) => {
 		card.addEventListener('click', zoomOnCard)
@@ -157,7 +111,6 @@ const deleteCards = () => {
 		allCardsParent.removeChild(allCardsParent.firstChild)
 	}
 	document.querySelector('.populate-cards').removeAttribute('disabled')
-	document.querySelector('.delete-cards').setAttribute('disabled', 'true')
 	clearInterface()
 }
 
@@ -174,20 +127,10 @@ const revealCards = () => {
 	})
 }
 
-// buttons nav event listeners
-document
-	.querySelector('.populate-cards')
-	.addEventListener('click', requestNewCards)
-document.querySelector('.delete-cards').addEventListener('click', deleteCards)
-document
-	.querySelector('.reveal-all-cards')
-	.addEventListener('click', revealCards)
-document.querySelector('.duel-page-button').addEventListener('click', toggleDuelScreen)
-
 const revealCardDescription = (currentCard) => {
 	const existingDescription = document.querySelectorAll('.card-description')
 	existingDescription && existingDescription.forEach((e) => e.remove())
-	const cardDetailsArea = document.querySelector('.card-details-area')
+	const cardDetailsArea = document.querySelector('.card-info-tooltip')
 
 	const cardName = document.createElement('H2')
 	const cardDescription = document.createElement('P')
@@ -247,8 +190,6 @@ const checkServerStatus = () => {
 	)
 }
 
-checkServerStatus()
-
 const flipCard = (e) => {
 	const cardSelected = e.target
 
@@ -265,8 +206,25 @@ const flipCard = (e) => {
 	return null
 }
 
-document.addEventListener('click', (e)=> { 
-	if(e.target.className === 'board' || e.target.className === 'play-area'){
+// initiate check server status to be replaced by socket events
+
+checkServerStatus()
+
+// --- EVENT LISTENERS ---
+
+document
+	.querySelector('.populate-cards')
+	.addEventListener('click', requestNewCards)
+document.querySelector('.delete-cards').addEventListener('click', deleteCards)
+document
+	.querySelector('.reveal-all-cards')
+	.addEventListener('click', revealCards)
+document
+	.querySelector('.duel-page-button')
+	.addEventListener('click', toggleDuelScreen)
+
+document.addEventListener('click', (e) => {
+	if (e.target.className === 'board' || e.target.className === 'play-area') {
 		resetCardZoom()
 	}
 })

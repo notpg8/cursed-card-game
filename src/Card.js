@@ -74,26 +74,9 @@ export class Card {
 		}
 	}
 
-	get getCardDiv() {
-		const goldGradientCSS =
-			', linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C);'
-
-		const classes = `card ${
-			this.rarity === 'rare' ? this.rarity + ' animate-glow' : this.rarity
-		} face-down`
-
-		const faceUpStyles = `background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${
-			this.id
-		}')${this.rarity === 'rare' ? goldGradientCSS : ''}; background-color: ${
-			this.getRarityColor
-		}; background-size: cover; width: 100%; height:100%; pointer-events: none; visibility: hidden; position: absolute; z-index: -1;`
-
-		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png'); background-color: rgb(83, 118, 131); background-size: cover;`
-
-		return {
-			classes: classes.split(' '),
-			styles: { faceUpStyles, faceDownStyles },
-		}
+	get getCard() {
+		const card = this.buildHtml()
+		return card
 	}
 
 	assignRandomStatValue = (rarity) => {
@@ -113,4 +96,77 @@ export class Card {
 	randomNumber = (maxValue) => {
 		return Math.floor(Math.random() * Math.floor(maxValue)) + 1
 	}
+
+	buildCss = () => {
+		const goldGradientCSS =
+			', linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C);'
+
+		const classes = `card ${
+			this.rarity === 'rare' ? this.rarity + ' animate-glow' : this.rarity
+		} face-down`
+
+		const faceUpStyles = `background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${
+			this.id
+		}')${this.rarity === 'rare' ? goldGradientCSS : ''}; background-color: ${
+			this.getRarityColor
+		}; background-size: cover; width: 100%; height:100%; pointer-events: none; visibility: hidden; position: absolute; z-index: -1;`
+
+		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png'); background-color: rgb(83, 118, 131); background-size: cover;`
+
+		return {
+			cardClasses: classes,
+			cardStyles: { faceUpStyles, faceDownStyles },
+		}
+	}
+
+	buildCardRarityP = () => {
+		const classes = `card-rarity ${this.rarity}-card-rarity`
+
+		return {
+			rarityClasses: classes,
+		}
+	}
+
+	buildCardNotificationSpan = () => {
+		// if (this.getIsWeak) {
+		const classes = `notification-area`
+		const styles = `opacity: 0;`
+		return {
+			notificationClasses: classes,
+			notificationStyles: styles,
+		}
+		// }
+	}
+
+	buildCardStatsP = () => {
+		const classes = `card-stats ${this.rarity}-card-stats`
+		return {
+			statsClasses: classes,
+		}
+	}
+
+	buildHtml = () => {
+		const { cardClasses, cardStyles } = this.buildCss()
+		const { rarityClasses } = this.buildCardRarityP()
+		const { notificationClasses, notificationStyles } =
+			this.buildCardNotificationSpan()
+		const { statsClasses } = this.buildCardStatsP()
+
+		// DON'T TOUCH THE INDENTATION OF THIS SHIT
+		const cardUnparsedDiv = `<div class="${cardClasses}" style="${
+			cardStyles.faceDownStyles
+		}"><div class="card-image ${this.rarity}-image-filter" style="${
+			cardStyles.faceUpStyles
+		}"></div>
+		<p class="${rarityClasses}">${this.getRarityIcon}	</p>
+		<span class="${notificationClasses}" style="${notificationStyles}">${
+			this.getIsWeak ? this.getRandomWeakText : ''
+		}</span>
+		<p class="${statsClasses}">${this.getCardStats}</p>
+		</div>`
+
+		return cardUnparsedDiv
+	}
+
+	buildCardInfoTooltip = () => {}
 }
