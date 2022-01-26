@@ -61,21 +61,23 @@ const parseCardToHTML = (unparsedCard) => {
 
 const renderCards = (cardsFromServer) => {
 	const playArea = document.querySelector('.play-area')
-	const opponentCard = document.querySelector('.opponent-card-duel')
-	const ownCard = document.querySelector('.own-card-duel')
+	// const opponentCard = document.querySelector('.opponent-card-duel')
+	// const ownCard = document.querySelector('.own-card-duel')
 
+	// ---------- DUEL -------------
 	cardsFromServer.map((card, i) => {
-		if (i === 0) {
-			const initiatedCard = new Card(card)
-			ownCard.appendChild(parseCardToHTML(initiatedCard.getUnparsedCardForDuel))
-		}
+		// if (i === 0) {
+		// 	const initiatedCard = new Card(card)
+		// 	ownCard.appendChild(parseCardToHTML(initiatedCard.getUnparsedCardForDuel))
+		// }
 
-		if (i === 1) {
-			const initiatedCard = new Card(card)
-			opponentCard.appendChild(
-				parseCardToHTML(initiatedCard.getUnparsedCardForDuel)
-			)
-		}
+		// if (i === 1) {
+		// 	const initiatedCard = new Card(card)
+		// 	opponentCard.appendChild(
+		// 		parseCardToHTML(initiatedCard.getUnparsedCardForDuel)
+		// 	)
+		// }
+		// ---------- DUEL -------------
 
 		const initiatedCard = new Card(card)
 
@@ -86,6 +88,10 @@ const renderCards = (cardsFromServer) => {
 		cardParsedDiv.addEventListener('click', function () {
 			revealCardDescription(initiatedCard)
 		})
+
+		cardParsedDiv
+			.querySelector('.fight-button')
+			.addEventListener('click', sendCardToDuelPage)
 	})
 
 	document.querySelectorAll('.card').forEach((card) => {
@@ -192,7 +198,7 @@ const revealCardDescription = (currentCard) => {
 	cardDetailsArea.appendChild(cardStats)
 }
 
-const clearInterface = () => {
+export const clearInterface = () => {
 	const existingDescription = document.querySelectorAll('.card-description')
 	existingDescription && existingDescription.forEach((e) => e.remove())
 }
@@ -238,6 +244,25 @@ const flipCard = (e) => {
 	return null
 }
 
+const sendCardToDuelPage = (e) => {
+	// removes existing card before sending another
+	// const opponentCard = document.querySelector('.opponent-card-duel')
+	// opponentCard.childNodes.forEach((cn) => {
+	// 	if (cn?.classList?.contains('card')) {
+	// 		opponentCard.querySelector('.card').remove()
+	// 	}
+	// })
+
+	const selectedCard = e.target.parentElement
+
+	selectedCard.style.transform = 'scale(1.3)'
+
+	selectedCard.querySelector('button').remove()
+	toggleDuelScreen()
+
+	document.querySelector('.opponent-card-duel').appendChild(selectedCard)
+}
+
 // initiate check server status to be replaced by socket events
 
 checkServerStatus()
@@ -247,10 +272,13 @@ checkServerStatus()
 document
 	.querySelector('.populate-cards')
 	.addEventListener('click', requestNewCards)
+
 document.querySelector('.delete-cards').addEventListener('click', deleteCards)
+
 document
 	.querySelector('.reveal-all-cards')
 	.addEventListener('click', revealCards)
+
 document
 	.querySelector('.duel-page-button')
 	.addEventListener('click', toggleDuelScreen)
