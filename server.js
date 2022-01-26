@@ -70,9 +70,8 @@ const returnRandomRarity = () => {
 	}
 }
 
-const dealCards = () => {
+const dealCards = (N = 5) => {
 	// creates an N lenght array with 1-5 random values
-	const N = 5
 	// assemble object with rarity and number of card, return that instead of rarity and number separately
 
 	return Array.from(Array(N)).map((card, i) => {
@@ -104,6 +103,10 @@ io.on('connection', (socket) => {
 
 	socket.on('request-new-cards', (cb) => {
 		cb(dealCards())
+	})
+
+	socket.on('request-duel', (cb) => {
+		cb(dealCards(1))
 	})
 
 	socket.emit('deal-cards', dealCards())

@@ -79,7 +79,7 @@ export class Card {
 	}
 
 	get getUnparsedCardForDuel() {
-		const cardForDuel = this.buildCard()
+		const cardForDuel = this.buildCardForDuel()
 		return cardForDuel
 	}
 
@@ -109,17 +109,28 @@ export class Card {
 			this.rarity === 'rare' ? this.rarity + ' animate-glow' : this.rarity
 		} face-down`
 
-		const faceUpStyles = `background-image: url('./media/cards-pngs-optimized/medium/${this.id.toString()}.png'); background-image: url('./media/cards-pngs-optimized/medium/${
-			this.id
-		}')${this.rarity === 'rare' ? goldGradientCSS : ''}; background-color: ${
+		const faceUpStyles = `background-image: url('${
+			this.getCardImagesUrls.back
+		}'); background-image: url('${this.getCardImagesUrls.front}')${
+			this.rarity === 'rare' ? goldGradientCSS : ''
+		}; background-color: ${
 			this.getRarityColor
 		}; background-size: cover; width: 100%; height:100%; pointer-events: none; visibility: hidden; position: absolute; z-index: -1;`
 
-		const faceDownStyles = `background-image: url('./media/cards-pngs-optimized/medium/back/originalback.png'); background-color: rgb(83, 118, 131); background-size: cover;`
+		const faceDownStyles = `background-image: url('${this.getCardImagesUrls.back}'); background-color: rgb(83, 118, 131); background-size: cover;`
+
+		const duelFaceUpStyles = `background-image: url('${
+			this.getCardImagesUrls.front
+		}')${this.rarity === 'rare' ? goldGradientCSS : ''}; background-color: ${
+			this.getRarityColor
+		}; background-size: cover; width: 100%; height:100%; pointer-events: none; position: absolute; z-index: -1;`
+
+		const duelFaceDownStyles = ''
 
 		return {
 			cardClasses: classes,
 			cardStyles: { faceUpStyles, faceDownStyles },
+			duelCardStyles: { duelFaceUpStyles, duelFaceDownStyles },
 		}
 	}
 
@@ -171,6 +182,31 @@ export class Card {
 			cardStyles.faceUpStyles
 		}"></div>
 		<p class="${rarityClasses}">${this.getRarityIcon}	</p>
+		<span class="${notificationClasses}" style="${notificationStyles}">${
+			this.getIsWeak ? this.getRandomWeakText : ''
+		}</span>
+		<p class="${statsClasses}">${this.getCardStats}</p>
+		<button class="${fightButtonClasses}" title="Fight!">🥊</button>
+		</div>`
+
+		return cardUnparsedDiv
+	}
+
+	buildCardForDuel = () => {
+		const { cardClasses, cardStyles, duelCardStyles } = this.buildCss()
+		const { rarityClasses } = this.buildCardRarityP()
+		const { notificationClasses, notificationStyles } =
+			this.buildCardNotificationSpan()
+		const { statsClasses } = this.buildCardStatsP()
+		const { fightButtonClasses } = this.buildCardFightButton()
+
+		// DON'T TOUCH THE INDENTATION OF THIS SHIT
+		const cardUnparsedDiv = `<div class="${cardClasses}" style="${
+			duelCardStyles.duelFaceUpStyles
+		}"><div class="card-image ${this.rarity}-image-filter" style="${
+			duelCardStyles.duelFaceUpStyles
+		}"></div>
+		<p class="${rarityClasses}">${this.getRarityIcon}</p>
 		<span class="${notificationClasses}" style="${notificationStyles}">${
 			this.getIsWeak ? this.getRandomWeakText : ''
 		}</span>

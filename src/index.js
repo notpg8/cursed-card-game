@@ -1,6 +1,6 @@
 import { Card } from './Card'
 import { toggleDuelScreen } from './Duel'
-var socket = io()
+export var socket = io()
 
 let cardsFromServerCopy = []
 
@@ -38,6 +38,7 @@ const resetCardZoom = () => {
 }
 
 const zoomOnCard = (e) => {
+	console.log('inside zoom on card')
 	if (e.target.classList.contains('card')) {
 		const cardStyle = e.target.style
 		resetCardZoom()
@@ -52,7 +53,7 @@ const zoomOnCard = (e) => {
 	emitFuckYouToServer()
 }
 
-const parseCardToHTML = (unparsedCard) => {
+export const parseCardToHTML = (unparsedCard) => {
 	const tempWrapper = document.createElement('DIV')
 	tempWrapper.innerHTML = unparsedCard
 	const cardParsedDiv = tempWrapper.firstChild
@@ -214,6 +215,7 @@ const checkServerStatus = () => {
 
 const flipCard = (e) => {
 	const cardSelected = e.target
+	console.log('inside flip card')
 
 	if (cardSelected.classList.value.includes('face-down')) {
 		e.target.classList.remove('face-down')
@@ -229,23 +231,17 @@ const flipCard = (e) => {
 	return null
 }
 
-const sendCardToDuelPage = (e) => {
-	// removes existing card before sending another
-	// const opponentCard = document.querySelector('.opponent-card-duel')
-	// opponentCard.childNodes.forEach((cn) => {
-	// 	if (cn?.classList?.contains('card')) {
-	// 		opponentCard.querySelector('.card').remove()
-	// 	}
-	// })
-
+export const sendCardToDuelPage = (e) => {
 	const selectedCard = e.target.parentElement
 
 	selectedCard.style.transform = 'scale(1.3)'
 
 	selectedCard.querySelector('button').remove()
-	toggleDuelScreen()
+	selectedCard.querySelector('.card-stats').remove()
+	selectedCard.querySelector('.card-rarity').style.fontSize = '1rem'
+	toggleDuelScreen(socket)
 
-	document.querySelector('.opponent-card-duel').appendChild(selectedCard)
+	document.querySelector('.own-card-duel').appendChild(selectedCard)
 }
 
 // initiate check server status to be replaced by socket events
