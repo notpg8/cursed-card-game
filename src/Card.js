@@ -15,7 +15,6 @@ export class Card {
 	// create card
 	get getCardStats() {
 		return `⚔ ${this.stats.attack} | ♥ ${this.stats.hp} `
-		//	return `♥ ${this.stats.hp} | ⚔ ${this.stats.attack} | ❂ ${this.stats.defense}`
 	}
 
 	get getRarityIcon() {

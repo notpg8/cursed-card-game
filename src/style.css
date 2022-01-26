@@ -354,10 +354,6 @@ nav {
 	z-index: 5;
 }
 
-.duel-page-backgrounds {
-	overflow: hidden;
-}
-
 .opponent-duel-page {
 	display: flex;
 	width: 50vw;
@@ -379,17 +375,27 @@ nav {
 .opponent-card-duel {
 	height: 25rem;
 	width: 20rem;
-	background-color: tomato;
+	/* background-color: tomato; */
 	z-index: 20;
 	display: flex;
 	transform: rotate(6deg);
 	border-radius: 0.5rem;
 }
 
+.opponent-card-duel .card {
+	width: 100%;
+	height: 100%;
+}
+
+.own-card-duel .card {
+	width: 100%;
+	height: 100%;
+}
+
 .own-card-duel {
 	height: 28rem;
 	width: 23rem;
-	background-color: skyblue;
+	/* background-color: skyblue; */
 	z-index: 20;
 	display: flex;
 	transform: rotate(-6deg);
@@ -409,4 +415,29 @@ nav {
 .duel-page-backgrounds {
 	display: flex;
 	flex-direction: row;
+	overflow: hidden;
+}
+
+.atk-hp-opponent {
+	z-index: 300;
+	color: rgb(14, 14, 14);
+	top: -24vh;
+	text-align: center;
+	font-size: 5rem;
+	font-weight: 900;
+	width: 100vw;
+	position: absolute;
+	left: calc(-50vw + 50%);
+}
+
+.atk-hp-self {
+	z-index: 300;
+	color: rgb(226, 226, 226);
+	bottom: -24vh;
+	text-align: center;
+	font-size: 5rem;
+	font-weight: 900;
+	width: 100vw;
+	position: absolute;
+	left: calc(-50vw + 50%);
 }

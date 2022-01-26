@@ -38,6 +38,7 @@ const resetCardZoom = () => {
 }
 
 const zoomOnCard = (e) => {
+	// if(e.target.className.includes())
 	const cardStyle = e.target.style
 	resetCardZoom()
 	rotateCards()
@@ -52,8 +53,10 @@ const zoomOnCard = (e) => {
 
 const renderCards = (cardsFromServer) => {
 	const playArea = document.querySelector('.play-area')
+	const opponentCard = document.querySelector('.opponent-card-duel')
+	const ownCard = document.querySelector('.own-card-duel')
 
-	cardsFromServer.map((card) => {
+	cardsFromServer.map((card, i) => {
 		const initiatedCard = new Card(card)
 
 		const cardUnparsedDiv = initiatedCard.getCard
@@ -66,6 +69,17 @@ const renderCards = (cardsFromServer) => {
 		// --- END ---
 
 		playArea.appendChild(cardParsedDiv)
+		if (i === 1) {
+			cardParsedDiv.classList.add('duel-card')
+			opponentCard.appendChild(cardParsedDiv)
+		}
+		if (i === 2) {
+			cardParsedDiv.classList.add('duel-card')
+			cardParsedDiv.classList.remove('face-down')
+			cardParsedDiv.classList.add('face-up')
+
+			ownCard.appendChild(cardParsedDiv)
+		}
 
 		cardParsedDiv.addEventListener('click', function () {
 			revealCardDescription(initiatedCard)
