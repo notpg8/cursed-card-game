@@ -61,24 +61,8 @@ const parseCardToHTML = (unparsedCard) => {
 
 const renderCards = (cardsFromServer) => {
 	const playArea = document.querySelector('.play-area')
-	// const opponentCard = document.querySelector('.opponent-card-duel')
-	// const ownCard = document.querySelector('.own-card-duel')
 
-	// ---------- DUEL -------------
 	cardsFromServer.map((card, i) => {
-		// if (i === 0) {
-		// 	const initiatedCard = new Card(card)
-		// 	ownCard.appendChild(parseCardToHTML(initiatedCard.getUnparsedCardForDuel))
-		// }
-
-		// if (i === 1) {
-		// 	const initiatedCard = new Card(card)
-		// 	opponentCard.appendChild(
-		// 		parseCardToHTML(initiatedCard.getUnparsedCardForDuel)
-		// 	)
-		// }
-		// ---------- DUEL -------------
-
 		const initiatedCard = new Card(card)
 
 		const cardParsedDiv = parseCardToHTML(initiatedCard.getUnparsedCard)
@@ -143,6 +127,7 @@ const revealCards = () => {
 		card.querySelector('.card-rarity').style.visibility = 'visible'
 		card.querySelector('.card-stats').style.visibility = 'visible'
 		card.querySelector('.card-image').style.visibility = 'visible'
+		card.querySelector('.fight-button').style.visibility = 'visible'
 		if (card.querySelector('.notification-area')) {
 			card.querySelector('.notification-area').style.visibility = 'visible'
 		}
