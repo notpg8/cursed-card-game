@@ -266,13 +266,16 @@ const announceResult = (result) => {
 	document.querySelector('.fight-result').innerHTML = result.toUpperCase()
 
 	setTimeout(() => {
-		document.querySelector('.fight-result').style.opacity = 0
 		document.querySelector('.duel-page').style.opacity = 0
 		document.querySelectorAll('.own-card-duel > div').forEach((c) => c.remove())
 		document
 			.querySelectorAll('.opponent-card-duel > div')
 			.forEach((c) => c.remove())
 	}, 3000)
+
+	setTimeout(() => {
+		document.querySelector('.fight-result').style.opacity = 0
+	}, 900)
 }
 
 // append duel page to dom
@@ -293,10 +296,6 @@ document.querySelector('.delete-cards').addEventListener('click', deleteCards)
 document
 	.querySelector('.reveal-all-cards')
 	.addEventListener('click', revealCards)
-
-document
-	.querySelector('.duel-page-button')
-	.addEventListener('click', toggleDuelScreen)
 
 document.addEventListener('click', (e) => {
 	if (e.target.className === 'board' || e.target.className === 'play-area') {

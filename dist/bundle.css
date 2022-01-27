@@ -445,9 +445,9 @@ nav {
   width: 100vw;
   top: 33%;
   z-index: 500;
-  font-size: 12rem;
+  font-size: 10rem;
   margin: 0;
-  text-shadow: 0px 0px 30px rgba(26, 26, 26, 0.66);
+  text-shadow: 0px 0px 25px rgba(14, 14, 14, 0.76);
   transition: 0.2s;
   opacity: 0;
   pointer-events: none;
