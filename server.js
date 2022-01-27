@@ -62,8 +62,8 @@ const returnRandomRarity = () => {
 	const rarityCombined = rarity + rarity2 + rarity3
 
 	if (rarityCombined === 1) return 'rare'
-	if (rarityCombined === 2) return 'uncommon'
-	if (rarityCombined >= 3) return 'common'
+	if (rarityCombined > 1 && rarityCombined <= 3) return 'uncommon'
+	if (rarityCombined > 3) return 'common'
 	else {
 		throw new Error('some shit with the cards rarity')
 	}
