@@ -31,7 +31,7 @@ export class Card {
 			case 'common':
 				return 'gray'
 			case 'uncommon':
-				return 'rgb(97 131 118)'
+				return 'rgb(0 167 212);'
 			case 'rare':
 				return 'gold'
 			default:

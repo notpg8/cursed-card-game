@@ -99,11 +99,7 @@ nav {
 }
 
 .common-image-filter {
-  filter: grayscale(0.7);
-}
-
-.uncommon-image-filter {
-  filter: grayscale(0.2);
+  filter: grayscale(1) brightness(0.9);
 }
 
 .rare-image-filter {
@@ -111,15 +107,16 @@ nav {
 }
 
 .common-card-stats {
-  background-color: #6b6b6b;
+  background-color: #444444;
 }
 
 .uncommon-card-stats {
-  background-color: #488b72;
+  background-color: #00c4fa;
 }
 
 .rare-card-stats {
-  color: gold;
+  color: white;
+  background-color: gold;
   text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
 }
 
@@ -175,7 +172,7 @@ nav {
   z-index: 100;
   text-align: center;
   transition: 0.3s;
-  color: #e2e2e2;
+  color: white;
   font-size: 2rem;
   font-weight: 900;
   pointer-events: none;
@@ -483,7 +480,6 @@ nav {
   z-index: 500;
   font-size: 2rem;
   margin: 0;
-  text-shadow: 0px 0px 25px rgba(14, 14, 14, 0.76);
   transition: 0.2s;
   opacity: 0;
   pointer-events: none;

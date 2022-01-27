@@ -275,7 +275,7 @@ const announceResult = (result) => {
 		document
 			.querySelector('.fight-result')
 			.classList.remove('animate-scale-up-down')
-	}, 3000)
+	}, 3200)
 
 	setTimeout(() => {
 		document.querySelector('.fight-result').style.opacity = 0

@@ -124,14 +124,18 @@ const calculateFightResult = ({ ownId, opponentId }, socket) => {
 
 	if (ownCard[0].stats.attack === opponentCard[0].stats.attack) {
 		result = 'attack tie'
-	}
-
-	if (ownCard[0].stats.attack >= opponentCard[0].stats.hp) {
+	} else if (
+		ownCard[0].stats.attack >= opponentCard[0].stats.hp &&
+		ownCard[0].stats.hp > opponentCard[0].stats.attack
+	) {
 		result = 'you win'
-	}
-
-	if (opponentCard[0].stats.attack >= ownCard[0].stats.hp) {
+	} else if (
+		opponentCard[0].stats.attack >= ownCard[0].stats.hp &&
+		opponentCard[0].stats.hp > ownCard[0].stats.attack
+	) {
 		result = 'you lose'
+	} else {
+		result = 'stalemate'
 	}
 
 	socket.emit('fight-result', result)
