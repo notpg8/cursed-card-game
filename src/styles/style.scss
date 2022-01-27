@@ -1,3 +1,10 @@
+// ---- START OF VARIABLES ----
+
+$card-width: 8rem;
+$card-height: 10.5rem;
+
+// ---- END OF VARIABLES ----
+
 body {
 	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
@@ -86,8 +93,8 @@ nav {
 
 .card {
 	margin: 5px;
-	width: 130px;
-	height: 173px;
+	width: $card-width;
+	height: $card-height;
 	display: flex;
 	border-radius: 4px;
 	box-shadow: rgb(14, 14, 14) 3px 3px 9px;
