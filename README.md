@@ -12,6 +12,7 @@
 - add animations on duel scrreen
 - add twitch-styles transition before showing the duel page
 - add other images
+- on refresh page remove all data (remove cards, score, etc)
 
 ### SCREENSHOT:
 
