@@ -427,9 +427,9 @@ nav {
 .atk-hp-opponent {
   z-index: 300;
   color: #e2e2e2;
-  bottom: -24vh;
+  bottom: -15vh;
   text-align: center;
-  font-size: 5rem;
+  font-size: 3.6rem;
   font-weight: 900;
   width: 100vw;
   position: absolute;
