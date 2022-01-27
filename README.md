@@ -16,6 +16,8 @@
 - assign socket ids to players
 - server to handle all actions and send back responses
 - prevent card spam pushing to array (too many cards while developing)
+- add scoreboard
+- add mechanics to track the current score. if you want a new card while you still have others available on the board, you lose a score point. if you have zero score points, you can't get new cards
 
 ### SCREENSHOT:
 
