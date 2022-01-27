@@ -32,6 +32,10 @@ socket.on('fight-result', (result) => {
 	announceResult(result)
 })
 
+socket.on('score', ({own, opponent})=>{
+	document.querySelector('.score').innerHTML = `${own} - ${opponent}`
+})
+
 const resetCardZoom = () => {
 	const allCards = document.querySelectorAll('.card')
 	allCards.forEach((card) => {
@@ -265,6 +269,10 @@ const announceResult = (result) => {
 	document.querySelector('.fight-result').style.opacity = 1
 	document.querySelector('.fight-result').innerHTML = result.toUpperCase()
 	document.querySelector('.fight-result').classList.add('animate-scale-up-down')
+
+	socket.on('score', ({own, opponent}) => {
+		document.querySelector('.score').innerHTML = `${own} - ${opponent}`
+	})
 
 	setTimeout(() => {
 		document.querySelector('.duel-page').style.opacity = 0

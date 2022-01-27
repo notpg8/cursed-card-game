@@ -233,6 +233,17 @@ nav {
   transform: scale(1.6);
 }
 
+.score {
+  font-size: 4rem;
+  color: #e2e2e2;
+  font-weight: 900;
+  position: absolute;
+  margin: 0 auto;
+  top: 2.5rem;
+  right: 2.5rem;
+  text-align: center;
+}
+
 @keyframes flickerAnimation {
   0% {
     opacity: 1;
