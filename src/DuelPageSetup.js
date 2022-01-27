@@ -17,13 +17,16 @@ export const toggleDuelScreen = () => {
 		)
 
 		const opponentCardDuel = document.querySelector('.opponent-card-duel')
-		document
-			.querySelector('.opponent-card-duel')
-			.appendChild(parsedDuelCardFromServer)
 
-		console.log(opponentCardDuel)
+		opponentCardDuel.appendChild(parsedDuelCardFromServer)
+
 		opponentCardDuel.querySelector('.card-rarity').style.visibility = 'visible'
 		opponentCardDuel.querySelector('.card-rarity').style.fontSize = '1rem'
+		const cardStatsAtkHp =
+			opponentCardDuel.querySelector('.card-stats').innerHTML
+
+		opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
+			cardStatsAtkHp
 	})
 
 	const duelDiv = document.querySelector('.duel-page')

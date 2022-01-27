@@ -1,5 +1,5 @@
 import { Card } from './Card'
-import { toggleDuelScreen } from './Duel'
+import { toggleDuelScreen } from './DuelPageSetup'
 export var socket = io()
 
 let cardsFromServerCopy = []
@@ -38,7 +38,6 @@ const resetCardZoom = () => {
 }
 
 const zoomOnCard = (e) => {
-	console.log('inside zoom on card')
 	if (e.target.classList.contains('card')) {
 		const cardStyle = e.target.style
 		resetCardZoom()
@@ -215,7 +214,6 @@ const checkServerStatus = () => {
 
 const flipCard = (e) => {
 	const cardSelected = e.target
-	console.log('inside flip card')
 
 	if (cardSelected.classList.value.includes('face-down')) {
 		e.target.classList.remove('face-down')
@@ -233,15 +231,22 @@ const flipCard = (e) => {
 
 export const sendCardToDuelPage = (e) => {
 	const selectedCard = e.target.parentElement
+	const cardStatsAtkHp = selectedCard.querySelector('.card-stats').innerHTML
 
 	selectedCard.style.transform = 'scale(1.3)'
-
+	// document.querySelector('.card-stats').style.visibility = 'hidden'
 	selectedCard.querySelector('button').remove()
-	selectedCard.querySelector('.card-stats').remove()
 	selectedCard.querySelector('.card-rarity').style.fontSize = '1rem'
+
 	toggleDuelScreen(socket)
 
-	document.querySelector('.own-card-duel').appendChild(selectedCard)
+	const ownCardDuel = document.querySelector('.own-card-duel')
+
+	ownCardDuel.appendChild(selectedCard)
+	// ownCardDuel.querySelector('.card-stats').visibility = 'hidden'
+	selectedCard.querySelector('.card-stats').remove()
+
+	document.querySelector('.atk-hp-self').innerHTML = cardStatsAtkHp
 }
 
 // initiate check server status to be replaced by socket events
