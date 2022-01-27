@@ -1,5 +1,5 @@
 import { Card } from './Card'
-import { toggleDuelScreen } from './DuelPageSetup'
+import { toggleDuelScreen, createDuelPage } from './DuelPageSetup'
 export var socket = io()
 
 let cardsFromServerCopy = []
@@ -26,6 +26,10 @@ const emitFuckYouToServer = () => {
 socket.on('deal-cards', (cardsFromServer) => {
 	cardsFromServerCopy.push(...cardsFromServer)
 	dealCards()
+})
+
+socket.on('fight-result', (result) => {
+	announceResult(result)
 })
 
 const resetCardZoom = () => {
@@ -234,20 +238,45 @@ export const sendCardToDuelPage = (e) => {
 	const cardStatsAtkHp = selectedCard.querySelector('.card-stats').innerHTML
 
 	selectedCard.style.transform = 'scale(1.3)'
-	// document.querySelector('.card-stats').style.visibility = 'hidden'
 	selectedCard.querySelector('button').remove()
 	selectedCard.querySelector('.card-rarity').style.fontSize = '1rem'
 
 	toggleDuelScreen(socket)
 
 	const ownCardDuel = document.querySelector('.own-card-duel')
+	const opponentCardDuel = document.querySelector('.opponent-card-duel')
 
 	ownCardDuel.appendChild(selectedCard)
-	// ownCardDuel.querySelector('.card-stats').visibility = 'hidden'
 	selectedCard.querySelector('.card-stats').remove()
 
 	document.querySelector('.atk-hp-self').innerHTML = cardStatsAtkHp
+
+	setTimeout(() => {
+		const ownId = ownCardDuel.querySelector('.card').getAttribute('id')
+		const opponentId = opponentCardDuel
+			.querySelector('.card')
+			.getAttribute('id')
+
+		socket.emit('fight', { ownId, opponentId })
+	}, 400)
 }
+
+const announceResult = (result) => {
+	document.querySelector('.fight-result').style.opacity = 1
+	document.querySelector('.fight-result').innerHTML = result.toUpperCase()
+
+	setTimeout(() => {
+		document.querySelector('.fight-result').style.opacity = 0
+		document.querySelector('.duel-page').style.opacity = 0
+		document.querySelectorAll('.own-card-duel > div').forEach((c) => c.remove())
+		document
+			.querySelectorAll('.opponent-card-duel > div')
+			.forEach((c) => c.remove())
+	}, 3000)
+}
+
+// append duel page to dom
+createDuelPage()
 
 // initiate check server status to be replaced by socket events
 

@@ -5,11 +5,7 @@ export class Card {
 		this.name = cardDetails.name
 
 		this.description = cardDetails.description
-		this.stats = {
-			attack: this.assignRandomStatValue(this.rarity),
-			defense: this.assignRandomStatValue(this.rarity),
-			hp: this.assignRandomStatValue(this.rarity),
-		}
+		this.stats = cardDetails.stats
 	}
 
 	// create card
@@ -68,7 +64,7 @@ export class Card {
 
 	get getCardImagesUrls() {
 		return {
-			front: `./media/cards-pngs-optimized/medium/${this.id}`,
+			front: `./media/cards-pngs-optimized/medium/${this.name}`,
 			back: `./media/cards-pngs-optimized/medium/back/originalback.png`,
 		}
 	}
@@ -81,20 +77,6 @@ export class Card {
 	get getUnparsedCardForDuel() {
 		const cardForDuel = this.buildCardForDuel()
 		return cardForDuel
-	}
-
-	assignRandomStatValue = (rarity) => {
-		if (rarity) {
-			if (rarity === 'rare') {
-				return Math.floor(Math.random() * Math.floor(100)) + 50
-			}
-			if (rarity === 'uncommon') {
-				return Math.floor(Math.random() * Math.floor(60)) + 30
-			}
-			if (rarity === 'common') {
-				return Math.floor(Math.random() * Math.floor(30)) + 1
-			}
-		}
 	}
 
 	randomNumber = (maxValue) => {
@@ -176,7 +158,9 @@ export class Card {
 		const { fightButtonClasses } = this.buildCardFightButton()
 
 		// DON'T TOUCH THE INDENTATION OF THIS SHIT
-		const cardUnparsedDiv = `<div class="${cardClasses}" style="${
+		const cardUnparsedDiv = `<div id="${
+			this.id
+		}" class="${cardClasses}" style="${
 			cardStyles.faceDownStyles
 		}"><div class="card-image ${this.rarity}-image-filter" style="${
 			cardStyles.faceUpStyles
@@ -201,7 +185,9 @@ export class Card {
 		const { fightButtonClasses } = this.buildCardFightButton()
 
 		// DON'T TOUCH THE INDENTATION OF THIS SHIT
-		const cardUnparsedDiv = `<div class="${cardClasses}" style="${
+		const cardUnparsedDiv = `<div id="${
+			this.id
+		}" class="${cardClasses}" style="${
 			duelCardStyles.duelFaceUpStyles
 		}"><div class="card-image ${this.rarity}-image-filter" style="${
 			duelCardStyles.duelFaceUpStyles

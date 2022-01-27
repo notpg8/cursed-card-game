@@ -5,14 +5,16 @@ const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 const fs = require('fs')
-const path = require('path')
 
 // middleware serves static content from media for all requests sent to media endpoint
 app.use('/media', express.static(__dirname + '/src/media'))
 app.use('/', express.static(__dirname + '/dist'))
 
 // UTILS
-
+const dealtCards = {
+	own: [],
+	opponent: [],
+}
 let numberOfAvailableImages = 0
 let imageNamesMap = []
 
@@ -36,8 +38,12 @@ fs.readdir('./src/media/cards-pngs-optimized/medium/', (err, files) => {
 	)
 })
 
-const returnRandomNumber = () => {
-	return Math.floor(Math.random() * Math.floor(numberOfAvailableImages)) + 1
+let isDuelPageOpen = false
+
+const returnRandomNumber = (N) => {
+	return (
+		Math.floor(Math.random() * Math.floor(N || numberOfAvailableImages)) + 1
+	)
 }
 
 const returnRandomImageName = () => {
@@ -60,26 +66,75 @@ const returnRandomRarity = () => {
 	}
 }
 
-const dealCards = (N = 5) => {
+assignRandomStatValue = (rarity) => {
+	if (rarity) {
+		if (rarity === 'rare') {
+			return Math.floor(Math.random() * Math.floor(100)) + 50
+		}
+		if (rarity === 'uncommon') {
+			return Math.floor(Math.random() * Math.floor(60)) + 30
+		}
+		if (rarity === 'common') {
+			return Math.floor(Math.random() * Math.floor(30)) + 1
+		}
+	}
+}
+
+const dealCards = (N = 5, isServer = false) => {
 	// creates an N lenght array with 1-5 random values
 	// assemble object with rarity and number of card, return that instead of rarity and number separately
-
-	return Array.from(Array(N)).map((card, i) => {
+	const cards = Array.from(Array(N)).map((card, i) => {
 		const cardId = returnRandomImageName()
-		// const cardName = cardId.substring(0, cardId.indexOf('.'))
-		return {
-			// id: returnRandomNumber(),
-			id: cardId,
-			rarity: returnRandomRarity(),
+		const rarity = returnRandomRarity()
+
+		const c = {
+			id: `${returnRandomNumber(9999)}-${returnRandomNumber(
+				9999
+			)}-${returnRandomNumber(9999)}-${returnRandomNumber(9999)}`,
+			rarity: rarity,
 			name: cardId,
 			description: `This is where the description/quote of the card goes`,
 			stats: {
-				attack: 0,
-				defense: 0,
-				hp: 0,
+				attack: assignRandomStatValue(rarity),
+				defense: assignRandomStatValue(rarity),
+				hp: assignRandomStatValue(rarity),
 			},
 		}
+
+		isServer ? dealtCards.opponent.push(c) : dealtCards.own.push(c)
+		return c
 	})
+
+	return cards
+}
+
+const calculateFightResult = ({ ownId, opponentId }, socket) => {
+	let result = ''
+	const ownCard = dealtCards.own.filter((card) => {
+		if (card.id === ownId) {
+			return card
+		}
+	})
+
+	const opponentCard = dealtCards.opponent.filter((card) => {
+		if (card.id === opponentId) {
+			return card
+		}
+	})
+
+	if (ownCard[0].stats.attack === opponentCard[0].stats.attack) {
+		result = 'attack tie'
+	}
+
+	if (ownCard[0].stats.attack >= opponentCard[0].stats.hp) {
+		result = 'you win'
+	}
+
+	if (opponentCard[0].stats.attack >= ownCard[0].stats.hp) {
+		result = 'you lose'
+	}
+
+	socket.emit('fight-result', result)
 }
 
 // SOCKET
@@ -92,11 +147,21 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('request-new-cards', (cb) => {
-		cb(dealCards())
+		cb(dealCards(1))
 	})
 
 	socket.on('request-duel', (cb) => {
-		cb(dealCards(1))
+		const isServer = true
+		cb(dealCards(1, isServer))
+	})
+
+	socket.on('fight', ({ ownId, opponentId }) => {
+		calculateFightResult({ ownId, opponentId }, socket)
+	})
+
+	socket.on('duel-page-status', (cb) => {
+		isDuelPageOpen = !isDuelPageOpen
+		cb(isDuelPageOpen)
 	})
 
 	socket.emit('deal-cards', dealCards())

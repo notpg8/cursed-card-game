@@ -2,10 +2,7 @@ import { Card } from './Card'
 import { clearInterface, socket, parseCardToHTML } from './app'
 
 export const toggleDuelScreen = () => {
-	if (!document.querySelector('.duel-page')) {
-		const parsedDuelPageChildren = parseDuelPageToHTML(duelUnparsedHtml)
-		document.querySelector('.board').appendChild(parsedDuelPageChildren)
-	}
+	document.querySelector('.duel-page').style.opacity = 1
 
 	socket.emit('request-duel', (response) => {
 		const duelCardFromServer = response[0]
@@ -29,14 +26,12 @@ export const toggleDuelScreen = () => {
 			cardStatsAtkHp
 	})
 
-	const duelDiv = document.querySelector('.duel-page')
-
-	if (duelDiv.style.visibility === 'visible') {
-		duelDiv.remove()
-	} else {
-		duelDiv.style.visibility = 'visible'
-	}
 	clearInterface()
+}
+
+export const createDuelPage = () => {
+	const parsedDuelPageChildren = parseDuelPageToHTML(duelUnparsedHtml)
+	document.querySelector('.board').appendChild(parsedDuelPageChildren)
 }
 
 const parseDuelPageToHTML = (unparsedHTML) => {
