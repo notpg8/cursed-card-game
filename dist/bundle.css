@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 nav {
@@ -337,6 +338,33 @@ nav {
   animation: glowAnimation 3s infinite;
 }
 
+@keyframes scaleUpDown {
+  100% {
+    transform: rotate(-8deg) scale(5);
+  }
+}
+@-o-keyframes scaleUpDown {
+  100% {
+    transform: rotate(-8deg) scale(5);
+  }
+}
+@-moz-keyframes scaleUpDown {
+  100% {
+    transform: rotate(-8deg) scale(5);
+  }
+}
+@-webkit-keyframes scaleUpDown {
+  100% {
+    transform: rotate(-8deg) scale(5);
+  }
+}
+.animate-scale-up-down {
+  -webkit-animation: scaleUpDown 2s 1;
+  -moz-animation: scaleUpDown 2s 1;
+  -o-animation: scaleUpDown 2s 1;
+  animation: scaleUpDown 2s 1;
+}
+
 .duel-page {
   height: 100vh;
   width: 100vw;
@@ -354,6 +382,7 @@ nav {
   width: 50vw;
   height: 100vh;
   background-color: #e2e2e2;
+  pointer-events: none;
 }
 
 .opponent-duel-page {
@@ -361,6 +390,7 @@ nav {
   width: 50vw;
   height: 100vh;
   background-color: #0e0e0e;
+  pointer-events: none;
 }
 
 .skewed {
@@ -376,6 +406,7 @@ nav {
   justify-content: space-evenly;
   align-items: center;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .own-card-duel {
@@ -385,6 +416,7 @@ nav {
   display: flex;
   transform: rotate(6deg);
   border-radius: 0.5rem;
+  pointer-events: none;
 }
 
 .opponent-card-duel {
@@ -394,23 +426,27 @@ nav {
   display: flex;
   transform: rotate(-6deg);
   border-radius: 0.5rem;
+  pointer-events: none;
 }
 
 .own-card-duel .card {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  pointer-events: none;
 }
 
 .opponent-card-duel .card {
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .duel-page-backgrounds {
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .atk-hp-self {
@@ -423,6 +459,7 @@ nav {
   width: 100vw;
   position: absolute;
   left: calc(-50vw + 50%);
+  pointer-events: none;
 }
 
 .atk-hp-opponent {
@@ -435,20 +472,22 @@ nav {
   width: 100vw;
   position: absolute;
   left: calc(-50vw + 50%);
+  pointer-events: none;
 }
 
 .fight-result {
-  color: #e2e2e2;
+  color: white;
   font-weight: 900;
   text-align: center;
   position: absolute;
-  width: 100vw;
-  top: 33%;
   z-index: 500;
-  font-size: 10rem;
+  font-size: 2rem;
   margin: 0;
   text-shadow: 0px 0px 25px rgba(14, 14, 14, 0.76);
   transition: 0.2s;
   opacity: 0;
   pointer-events: none;
+  vertical-align: middle;
+  padding: 0 3.3rem;
+  overflow: hidden;
 }

@@ -99,3 +99,39 @@
 	-o-animation: glowAnimation 3s infinite;
 	animation: glowAnimation 3s infinite;
 }
+
+@keyframes scaleUpDown {
+	0% {
+	}
+	100% {
+		transform: rotate(-8deg) scale(5);
+	}
+}
+@-o-keyframes scaleUpDown {
+	0% {
+	}
+	100% {
+		transform: rotate(-8deg) scale(5);
+	}
+}
+@-moz-keyframes scaleUpDown {
+	0% {
+	}
+	100% {
+		transform: rotate(-8deg) scale(5);
+	}
+}
+@-webkit-keyframes scaleUpDown {
+	0% {
+	}
+	100% {
+		transform: rotate(-8deg) scale(5);
+	}
+}
+
+.animate-scale-up-down {
+	-webkit-animation: scaleUpDown 2s 1;
+	-moz-animation: scaleUpDown 2s 1;
+	-o-animation: scaleUpDown 2s 1;
+	animation: scaleUpDown 2s 1;
+}

@@ -264,6 +264,7 @@ export const sendCardToDuelPage = (e) => {
 const announceResult = (result) => {
 	document.querySelector('.fight-result').style.opacity = 1
 	document.querySelector('.fight-result').innerHTML = result.toUpperCase()
+	document.querySelector('.fight-result').classList.add('animate-scale-up-down')
 
 	setTimeout(() => {
 		document.querySelector('.duel-page').style.opacity = 0
@@ -271,11 +272,14 @@ const announceResult = (result) => {
 		document
 			.querySelectorAll('.opponent-card-duel > div')
 			.forEach((c) => c.remove())
+		document
+			.querySelector('.fight-result')
+			.classList.remove('animate-scale-up-down')
 	}, 3000)
 
 	setTimeout(() => {
 		document.querySelector('.fight-result').style.opacity = 0
-	}, 900)
+	}, 800)
 }
 
 // append duel page to dom
@@ -297,8 +301,8 @@ document
 	.querySelector('.reveal-all-cards')
 	.addEventListener('click', revealCards)
 
-document.addEventListener('click', (e) => {
-	if (e.target.className === 'board' || e.target.className === 'play-area') {
-		resetCardZoom()
-	}
-})
+// document.addEventListener('click', (e) => {
+// 	if (e.target.className === 'board' || e.target.className === 'play-area') {
+// 		resetCardZoom()
+// 	}
+// })
