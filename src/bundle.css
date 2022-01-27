@@ -1,0 +1,465 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  z-index: 10;
+}
+
+::selection {
+  background: transparent;
+}
+
+.board-bg {
+  background-image: url("./media/cards-pngs-optimized/medium/back/tile.png");
+  background-position: center center;
+  background-repeat: repeat;
+  opacity: 0.05;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  pointer-events: none;
+}
+
+.board {
+  background-color: #181818;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.play-area {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 7vw;
+}
+
+.play-area-self {
+  width: 59vw;
+  height: 23vh;
+  margin: 8px;
+  padding: 12px;
+}
+
+.play-area-opponent {
+  width: 59vw;
+  height: 23vh;
+  margin: 8px;
+  padding: 12px;
+}
+
+.button {
+  border-style: none;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  transition: 0.5s;
+}
+
+.buttons button:hover {
+  background-color: #89dff5;
+  transition: 0.5s;
+}
+
+.buttons {
+  display: inline-block;
+  margin: 0.5rem 0 0 0.5rem;
+}
+
+.button:active {
+  background-color: #c3da5e;
+  transition: 0.2s;
+}
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.card {
+  margin: 5px;
+  /* width: 100px;
+  height: 133px; */
+  width: 130px;
+  height: 173px;
+  display: flex;
+  border-radius: 4px;
+  box-shadow: #0e0e0e 3px 3px 9px;
+  transition: 0.3s;
+  border: 0.25rem solid gold;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  /* filter: brightness(1.02); */
+}
+
+.common {
+  /* filter: grayscale(0.36); */
+}
+
+.uncommon {
+  /* filter: grayscale(0.4); */
+}
+
+.rare {
+  /* box-shadow: 0px 0px 30px 5px rgba(255, 255, 255, 0.2); */
+  /* filter: saturate(130%); */
+}
+
+.common-image-filter {
+  filter: grayscale(0.7);
+}
+
+.uncommon-image-filter {
+  filter: grayscale(0.2);
+}
+
+.rare-image-filter {
+  filter: saturate(130%);
+}
+
+.common-card-stats {
+  background-color: #6b6b6b;
+}
+
+.uncommon-card-stats {
+  background-color: #488b72;
+}
+
+.rare-card-stats {
+  color: gold;
+  text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
+}
+
+.common-card-rarity {
+  color: #0e0e0e;
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
+}
+
+.uncommon-card-rarity {
+  color: #0e0e0e;
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
+}
+
+.rare-card-rarity {
+  color: gold;
+  text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
+}
+
+.card-rarity {
+  font-size: xx-small;
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  margin: 2px 5px;
+  visibility: hidden;
+}
+
+.card-stats {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  height: 2rem;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.card-info-tooltip {
+  font-size: x-small;
+  color: #e2e2e2;
+  text-align: left;
+  pointer-events: none;
+  margin: 5px 20px;
+  position: fixed;
+  bottom: 0;
+}
+
+.notification-area {
+  z-index: 100;
+  text-align: center;
+  transition: 0.3s;
+  color: #e2e2e2;
+  font-size: 2rem;
+  font-weight: 900;
+  pointer-events: none;
+  opacity: 0;
+  font-weight: 600;
+  -webkit-text-stroke: #0e0e0e 0.016rem;
+}
+
+.game-name {
+  margin: 0.5rem 0.5rem 0 auto;
+  margin-left: auto;
+  color: #e2e2e2;
+}
+
+.attribution {
+  display: flex;
+  justify-content: right;
+}
+
+.text-attribution {
+  font-size: xx-small;
+  color: #e2e2e2;
+  margin: 0 0.5rem 0.5rem auto;
+  margin-left: auto;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  text-decoration: none;
+  z-index: 21;
+}
+
+.text-attribution > a {
+  text-decoration: none;
+  color: #e2e2e2;
+}
+
+.text-attribution > a:visited {
+  text-decoration: none;
+  color: #e2e2e2;
+}
+
+.server-status {
+  cursor: default;
+}
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animate-flicker {
+  -webkit-animation: flickerAnimation 2s infinite;
+  -moz-animation: flickerAnimation 2s infinite;
+  -o-animation: flickerAnimation 2s infinite;
+  animation: flickerAnimation 2s infinite;
+}
+
+@keyframes glowAnimation {
+  0% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+  50% {
+    box-shadow: 0px 0px 40px 0px rgba(253, 93, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+}
+@-o-keyframes glowAnimation {
+  0% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+  50% {
+    box-shadow: 0px 0px 40px 0px rgba(253, 93, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+}
+@-moz-keyframes glowAnimation {
+  0% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+  50% {
+    box-shadow: 0px 0px 40px 0px rgba(253, 93, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+}
+@-webkit-keyframes glowAnimation {
+  0% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+  50% {
+    box-shadow: 0px 0px 40px 0px rgba(253, 93, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 20px 0px rgba(255, 217, 0, 0.692);
+  }
+}
+.animate-glow {
+  -webkit-animation: glowAnimation 3s infinite;
+  -moz-animation: glowAnimation 3s infinite;
+  -o-animation: glowAnimation 3s infinite;
+  animation: glowAnimation 3s infinite;
+}
+
+.duel-page {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(90deg, #e2e2e2 0%, #e2e2e2 49%, #0e0e0e 50%, #0e0e0e 100%);
+  position: absolute;
+  visibility: hidden;
+  display: flex;
+  flex-direction: row;
+  z-index: 5;
+}
+
+.own-duel-page {
+  display: flex;
+  width: 50vw;
+  height: 100vh;
+  background-color: #e2e2e2;
+}
+
+.opponent-duel-page {
+  display: flex;
+  width: 50vw;
+  height: 100vh;
+  background-color: #0e0e0e;
+}
+
+.skewed {
+  transform: skew(-30deg);
+}
+
+.own-card-duel {
+  height: 25rem;
+  width: 20rem;
+  /* background-color: tomato; */
+  z-index: 20;
+  display: flex;
+  transform: rotate(6deg);
+  border-radius: 0.5rem;
+}
+
+.own-card-duel .card {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.opponent-card-duel .card {
+  width: 100%;
+  height: 100%;
+  /* pointer-events: none; */
+}
+
+.opponent-card-duel {
+  height: 28rem;
+  width: 23rem;
+  /* background-color: skyblue; */
+  z-index: 20;
+  display: flex;
+  transform: rotate(-6deg);
+  border-radius: 0.5rem;
+}
+
+.duel-cards {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+
+.duel-page-backgrounds {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.atk-hp-self {
+  z-index: 300;
+  color: #0e0e0e;
+  top: -24vh;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 900;
+  width: 100vw;
+  position: absolute;
+  left: calc(-50vw + 50%);
+}
+
+.atk-hp-opponent {
+  z-index: 300;
+  color: #e2e2e2;
+  bottom: -24vh;
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 900;
+  width: 100vw;
+  position: absolute;
+  left: calc(-50vw + 50%);
+}
+
+.fight-button {
+  position: fixed;
+  right: 0;
+  visibility: hidden;
+  color: #0e0e0e;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  transition: 0.3s;
+}
+
+.fight-button:hover {
+  transform: scale(1.6);
+}
+
+.somecl {
+  color: red;
+}
+
+/*# sourceMappingURL=bundle.css.map */

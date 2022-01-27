@@ -5,21 +5,11 @@ const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 const fs = require('fs')
+const path = require('path')
 
 // middleware serves static content from media for all requests sent to media endpoint
 app.use('/media', express.static(__dirname + '/src/media'))
-
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/dist/index.html')
-})
-
-app.get('/main.js', (req, res) => {
-	res.sendFile(__dirname + '/dist/main.js')
-})
-
-app.get('/style.css', (req, res) => {
-	res.sendFile(__dirname + '/src/style.css')
-})
+app.use('/', express.static(__dirname + '/dist'))
 
 // UTILS
 

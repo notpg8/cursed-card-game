@@ -1,5 +1,5 @@
 import { Card } from './Card'
-import { clearInterface, socket, parseCardToHTML } from './index'
+import { clearInterface, socket, parseCardToHTML } from './app'
 
 export const toggleDuelScreen = () => {
 	if (!document.querySelector('.duel-page')) {

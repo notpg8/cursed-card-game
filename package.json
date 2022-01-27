@@ -7,7 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start-server": "nodemon server.js",
 		"build": "webpack",
-		"build-start-server": "webpack && nodemon server.js"
+		"build-start-server": "sass src/main.scss dist/bundle.css --no-source-map && webpack && nodemon server.js"
 	},
 	"repository": {
 		"type": "git",
@@ -26,6 +26,7 @@
 	},
 	"devDependencies": {
 		"nodemon": "2.0.15",
+		"sass": "1.49.0",
 		"webpack": "5.67.0",
 		"webpack-cli": "4.9.1"
 	}
