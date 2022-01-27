@@ -5,7 +5,6 @@ const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 const fs = require('fs')
-const { SocketAddress } = require('net')
 
 // middleware serves static content from media for all requests sent to media endpoint
 app.use('/media', express.static(__dirname + '/src/media'))
@@ -150,6 +149,17 @@ const calculateFightResult = ({ ownId, opponentId }, socket) => {
 
 	socket.emit('fight-result', result)
 	socket.emit('score', SCORE)
+	if(SCORE.own >= 3 || SCORE.opponent >= 3){
+		let winner = ''
+		if(SCORE.own === SCORE.opponent){
+			winner = 'TIE' 
+		} else if (SCORE.own > SCORE.opponent){
+			winner = 'YOU'
+		} else {
+			winner = 'OPPONENT'
+		}
+		socket.emit('game-over', winner)
+	}
 
 }
 
@@ -180,9 +190,19 @@ io.on('connection', (socket) => {
 		calculateFightResult({ ownId, opponentId }, socket)
 	})
 
-	socket.on('update-score', (cb) => {
-		isDuelPageOpen = !isDuelPageOpen
-		cb(isDuelPageOpen)
+	// socket.on('update-score', (cb) => {
+	// 	isDuelPageOpen = !isDuelPageOpen
+	// 	cb(isDuelPageOpen)
+	// })
+
+	socket.on('play-again', () => {
+		SCORE.own = 0
+		SCORE.opponent = 0
+		dealtCards.own = []
+		dealtCards.opponent = []
+		socket.emit('start-new-game')
+		socket.emit('score', SCORE)
+		socket.emit('deal-cards', dealCards())
 	})
 
 	socket.emit('score', SCORE)

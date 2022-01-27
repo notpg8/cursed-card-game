@@ -16,7 +16,6 @@ nav {
 	display: flex;
 	flex-direction: row;
 	width: 100vw;
-	z-index: 10;
 }
 
 ::selection {
@@ -202,8 +201,11 @@ nav {
 
 .game-name {
 	margin: 0.5rem 0.5rem 0 auto;
-	margin-left: auto;
 	color: rgb(226, 226, 226);
+	z-index: 5000;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 
 .attribution {
@@ -261,4 +263,34 @@ nav {
 	top: 2.5rem;
 	right: 2.5rem;
 	text-align: center;
+}
+
+.game-over {
+	font-size: 4rem;
+	color: rgb(226, 226, 226);
+	font-weight: 900;
+	position: absolute;
+	margin: 0 auto;
+	top: 40vh;
+	text-align: center;
+	width: 100vw;
+	background-color: rgb(24, 24, 24);
+	transition: 0.4s;
+}
+
+.game-over-wrapper {
+	background-color: rgb(24, 24, 24);
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000;
+	position: absolute;
+	opacity: 0;
+	transition: 0.4s;
+	pointer-events: none;
+}
+
+.play-again {
+	position: absolute;
+	top: 55vh;
+	width: 100vw;
 }

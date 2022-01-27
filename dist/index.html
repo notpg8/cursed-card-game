@@ -8,17 +8,10 @@
 	</head>
 	<nav>
 		<div class="buttons">
-			<button class="button populate-cards">Deal cards</button>
-			<button class="button delete-cards">Delete cards</button>
+			<button class="button populate-cards">Draw card</button>
+			<button class="button delete-cards" hidden>Delete cards</button>
 			<button class="button reveal-all-cards">Reveal all cards</button>
 		</div>
-		<h3 class="game-name">
-			<span
-				class="server-status animate-flicker"
-				title="SERVER OPERATIVE"
-			></span
-			>Cursed Card Game™
-		</h3>
 	</nav>
 	<body>
 		<div class="board">
@@ -26,6 +19,10 @@
 			<div class="board-bg"></div>
 			<div class="play-area"></div>
 			<div class="fight-result"></div>
+			<div class="game-over-wrapper">
+				<div class="game-over"></div>
+				<button class="play-again">Play again</button>
+			</div>
 		</div>
 	</body>
 	<div class="card-info-tooltip"></div>
@@ -39,6 +36,13 @@
 			</a>
 		</p>
 	</div>
+	<h3 class="game-name">
+		<span
+			class="server-status animate-flicker"
+			title="SERVER OPERATIVE"
+		></span
+		>Cursed Card Game™
+	</h3>
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="main.js"></script>

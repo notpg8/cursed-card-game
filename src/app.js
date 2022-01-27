@@ -34,6 +34,20 @@ socket.on('fight-result', (result) => {
 
 socket.on('score', ({own, opponent})=>{
 	document.querySelector('.score').innerHTML = `${own} - ${opponent}`
+	clearInterface()
+})
+
+socket.on('game-over', (response)=>{
+	setTimeout(()=>{
+		document.querySelector('.game-over-wrapper').style.opacity = 1
+		document.querySelector('.game-over-wrapper').style.pointerEvents = 'all'
+		document.querySelector('.game-over').innerHTML = `Winner: ${response}`
+	},3000)
+})
+
+socket.on('start-new-game', ()=>{
+	console.log('starting new game')
+	document.querySelector('.game-over-wrapper').style.pointerEvents = 'none'
 })
 
 const resetCardZoom = () => {
@@ -191,7 +205,7 @@ const revealCardDescription = (currentCard) => {
 	cardDetailsArea.appendChild(cardStats)
 }
 
-export const clearInterface = () => {
+const clearInterface = () => {
 	const existingDescription = document.querySelectorAll('.card-description')
 	existingDescription && existingDescription.forEach((e) => e.remove())
 }
@@ -276,6 +290,9 @@ const announceResult = (result) => {
 
 	setTimeout(() => {
 		document.querySelector('.duel-page').style.opacity = 0
+		document.querySelector('.board').style.pointerEvents = 'all'
+		document.querySelector('nav').style.pointerEvents = 'all'
+
 		document.querySelectorAll('.own-card-duel > div').forEach((c) => c.remove())
 		document
 			.querySelectorAll('.opponent-card-duel > div')
@@ -288,6 +305,14 @@ const announceResult = (result) => {
 	setTimeout(() => {
 		document.querySelector('.fight-result').style.opacity = 0
 	}, 800)
+}
+
+const playAgain = () => {
+	socket.emit('play-again')
+	document.querySelector('.game-over-wrapper').style.opacity = 0
+	document.querySelector('.game-over').innerHTML = ''
+	cardsFromServerCopy = []
+	deleteCards()
 }
 
 // append duel page to dom
@@ -314,3 +339,7 @@ document
 // 		resetCardZoom()
 // 	}
 // })
+
+document
+	.querySelector('.play-again')
+	.addEventListener('click', playAgain)

@@ -1,8 +1,11 @@
 import { Card } from './Card'
-import { clearInterface, socket, parseCardToHTML } from './app'
+import { socket, parseCardToHTML } from './app'
 
 export const toggleDuelScreen = () => {
 	document.querySelector('.duel-page').style.opacity = 1
+	document.querySelector('.board').style.pointerEvents = 'none'
+	document.querySelector('nav').style.pointerEvents = 'none'
+
 
 	socket.emit('request-duel', (response) => {
 		const duelCardFromServer = response[0]
@@ -25,8 +28,6 @@ export const toggleDuelScreen = () => {
 		opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
 			cardStatsAtkHp
 	})
-
-	clearInterface()
 }
 
 export const createDuelPage = () => {
