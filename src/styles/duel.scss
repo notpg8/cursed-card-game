@@ -79,13 +79,14 @@ $duel-card-height: 22rem;
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	pointer-events: none;
+	border: 0.55rem solid gold;
 }
 
 .opponent-card-duel .card {
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
+	border: 0.55rem solid gold;
 }
 
 .duel-page-backgrounds {
