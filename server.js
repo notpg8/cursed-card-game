@@ -147,7 +147,8 @@ const calculateFightResult = ({ ownId, opponentId }, socket) => {
 
   socket.emit('fight-result', result)
   socket.emit('score', SCORE)
-  if (SCORE.own >= 3 || SCORE.opponent >= 3) {
+  const scoreGoal = 1
+  if (SCORE.own >= scoreGoal || SCORE.opponent >= scoreGoal) {
     let winner = ''
     if (SCORE.own === SCORE.opponent) {
       winner = 'TIE'

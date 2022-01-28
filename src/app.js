@@ -1,5 +1,6 @@
 import { Card } from './Card'
 import { toggleDuelScreen, createDuelPage } from './DuelPageSetup'
+import { startTransition } from './TransitionPage'
 
 export var socket = io() /* eslint-disable-line*/
 let cardsFromServerCopy = []
@@ -42,7 +43,7 @@ socket.on('game-over', (response) => {
     document.querySelector('.game-over-wrapper').style.opacity = 1
     document.querySelector('.game-over-wrapper').style.pointerEvents = 'all'
     document.querySelector('.game-over').innerHTML = `Winner: ${response}`
-  }, 3000)
+  }, 1800)
 })
 
 socket.on('start-new-game', () => {
@@ -272,7 +273,7 @@ export const sendCardToDuelPage = (e) => {
       .getAttribute('id')
 
     socket.emit('fight', { ownId, opponentId })
-  }, 400)
+  }, 1400)
 }
 
 const announceResult = (result) => {
@@ -296,7 +297,11 @@ const announceResult = (result) => {
     document
       .querySelector('.fight-result')
       .classList.remove('animate-scale-up-down')
-  }, 3200)
+  }, 2000)
+
+  setTimeout(() => {
+    startTransition()
+  }, 1700)
 
   setTimeout(() => {
     document.querySelector('.fight-result').style.opacity = 0

@@ -266,7 +266,7 @@ nav {
   z-index: 1000;
   position: absolute;
   opacity: 0;
-  transition: 0.4s;
+  transition: 0.3s;
   pointer-events: none;
 }
 
@@ -530,4 +530,15 @@ nav {
   vertical-align: middle;
   padding: 0 3.3rem;
   overflow: hidden;
+}
+
+.transition-page {
+  opacity: 0;
+  background-color: #0e0e0e;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.3s;
+  position: absolute;
+  pointer-events: none;
 }

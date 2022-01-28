@@ -1,32 +1,39 @@
 import { Card } from './Card'
 import { socket, parseCardToHTML } from './app'
+import { startTransition } from './TransitionPage'
 
 export const toggleDuelScreen = () => {
-  document.querySelector('.duel-page').style.opacity = 1
-  document.querySelector('.board').style.pointerEvents = 'none'
-  document.querySelector('nav').style.pointerEvents = 'none'
+  const transitionTime = 600
+  startTransition(transitionTime)
 
-  socket.emit('request-duel', (response) => {
-    const duelCardFromServer = response[0]
+  setTimeout(() => {
+    document.querySelector('.duel-page').style.opacity = 1
+    document.querySelector('.board').style.pointerEvents = 'none'
+    document.querySelector('nav').style.pointerEvents = 'none'
 
-    const initiatedCard = new Card(duelCardFromServer)
+    socket.emit('request-duel', (response) => {
+      const duelCardFromServer = response[0]
 
-    const parsedDuelCardFromServer = parseCardToHTML(
-      initiatedCard.getUnparsedCardForDuel
-    )
+      const initiatedCard = new Card(duelCardFromServer)
 
-    const opponentCardDuel = document.querySelector('.opponent-card-duel')
+      const parsedDuelCardFromServer = parseCardToHTML(
+        initiatedCard.getUnparsedCardForDuel
+      )
 
-    opponentCardDuel.appendChild(parsedDuelCardFromServer)
+      const opponentCardDuel = document.querySelector('.opponent-card-duel')
 
-    opponentCardDuel.querySelector('.card-rarity').style.visibility = 'visible'
-    opponentCardDuel.querySelector('.card-rarity').style.fontSize = '1rem'
-    const cardStatsAtkHp =
-      opponentCardDuel.querySelector('.card-stats').innerHTML
+      opponentCardDuel.appendChild(parsedDuelCardFromServer)
 
-    opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
-      cardStatsAtkHp
-  })
+      opponentCardDuel.querySelector('.card-rarity').style.visibility =
+        'visible'
+      opponentCardDuel.querySelector('.card-rarity').style.fontSize = '1rem'
+      const cardStatsAtkHp =
+        opponentCardDuel.querySelector('.card-stats').innerHTML
+
+      opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
+        cardStatsAtkHp
+    })
+  }, transitionTime / 2)
 }
 
 export const createDuelPage = () => {
