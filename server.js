@@ -109,8 +109,34 @@ const dealCards = (N = 5, isServer = false) => {
   return cards
 }
 
+const getCardNames = ({ ownId, opponentId }, socket) => {
+  let result = {
+    nameOfCards: { own: '', opponent: '' },
+  }
+
+  dealtCards.own.filter((card) => {
+    if (card.id === ownId) {
+      // console.log(card)
+      // return card
+      result.nameOfCards.own = card.name.substring(0, card.name.indexOf('.'))
+    }
+  })
+
+  dealtCards.opponent.filter((card) => {
+    if (card.id === opponentId) {
+      // console.log(card)
+      // return card
+      result.nameOfCards.opponent = card.name.substring(
+        0,
+        card.name.indexOf('.')
+      )
+    }
+  })
+
+  socket.emit('names-result', result)
+}
+
 const calculateFightResult = ({ ownId, opponentId }, socket) => {
-  let result = ''
   const ownCard = dealtCards.own.filter((card) => {
     if (card.id === ownId) {
       return card
@@ -123,24 +149,28 @@ const calculateFightResult = ({ ownId, opponentId }, socket) => {
     }
   })
 
+  let result = {
+    msg: '',
+  }
+
   if (ownCard[0].stats.attack === opponentCard[0].stats.attack) {
-    result = 'attack tie'
+    result.msg = 'attack tie'
     SCORE.own++
     SCORE.opponent++
   } else if (
     ownCard[0].stats.attack >= opponentCard[0].stats.hp &&
     ownCard[0].stats.hp > opponentCard[0].stats.attack
   ) {
-    result = 'you win'
+    result.msg = 'you win'
     SCORE.own++
   } else if (
     opponentCard[0].stats.attack >= ownCard[0].stats.hp &&
     opponentCard[0].stats.hp > ownCard[0].stats.attack
   ) {
-    result = 'you lose'
+    result.msg = 'you lose'
     SCORE.opponent++
   } else {
-    result = 'stalemate'
+    result.msg = 'stalemate'
     SCORE.own++
     SCORE.opponent++
   }
@@ -188,10 +218,9 @@ io.on('connection', (socket) => {
     calculateFightResult({ ownId, opponentId }, socket)
   })
 
-  // socket.on('update-score', (cb) => {
-  // 	isDuelPageOpen = !isDuelPageOpen
-  // 	cb(isDuelPageOpen)
-  // })
+  socket.on('get-card-names', ({ ownId, opponentId }) => {
+    getCardNames({ ownId, opponentId }, socket)
+  })
 
   socket.on('play-again', () => {
     SCORE.own = 0

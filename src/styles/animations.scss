@@ -135,3 +135,51 @@
   -o-animation: scaleUpDown 2s 1;
   animation: scaleUpDown 2s 1;
 }
+
+@keyframes shake1 {
+  10%,
+  20%,
+  60% {
+    transform: translate3d(10px, 1px, 0);
+  }
+
+  30%,
+  40% {
+    transform: translate3d(-12px, -3px, 0);
+  }
+  50%,
+  80% {
+    transform: translate3d(-3px, -13px, 0);
+  }
+}
+
+@keyframes shake2 {
+  10%,
+  20%,
+  80% {
+    transform: translate3d(-10px, -1px, 0);
+  }
+
+  30%,
+  50% {
+    transform: translate3d(-2px, 3px, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(2px, -3px, 0);
+  }
+}
+
+.card-duel-animation1 {
+  animation: shake1 3.9s cubic-bezier(0.26, 0.67, 0.39, 0.77) infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.card-duel-animation2 {
+  animation: shake2 5.9s cubic-bezier(0.36, 0.97, 0.19, 0.57) infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

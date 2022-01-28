@@ -86,7 +86,7 @@ export class Card {
   }
 
   buildCss = () => {
-    const bgColorFaceDownCards = `background-color: rgb(30 60 113);`
+    const bgColorFaceDownCards = `background-color: rgb(45 73 121);;`
 
     const goldGradientCSS =
       ', linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C);'
@@ -167,7 +167,8 @@ export class Card {
     }"><div class="card-image ${this.rarity}-image-filter" style="${
       cardStyles.faceUpStyles
     }"></div>
-		<p class="${rarityClasses}">${this.getRarityIcon}	</p>
+		<p class="card-name" hidden>${this.name}</p>
+		<p class="${rarityClasses}">${this.getRarityIcon}</p>
 		<span class="${notificationClasses}" style="${notificationStyles}">${
       this.getIsWeak ? this.getRandomWeakText : ''
     }</span>
@@ -194,6 +195,7 @@ export class Card {
     }"><div class="card-image ${this.rarity}-image-filter" style="${
       duelCardStyles.duelFaceUpStyles
     }"></div>
+		<p class="card-name" hidden>${this.name}</p>
 		<p class="${rarityClasses}">${this.getRarityIcon}</p>
 		<span class="${notificationClasses}" style="${notificationStyles}">${
       this.getIsWeak ? this.getRandomWeakText : ''

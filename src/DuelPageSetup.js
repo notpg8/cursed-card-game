@@ -20,6 +20,7 @@ export const toggleDuelScreen = () => {
       )
 
       const opponentCardDuel = document.querySelector('.opponent-card-duel')
+      const ownCardDuel = document.querySelector('.own-card-duel')
 
       opponentCardDuel.appendChild(parsedDuelCardFromServer)
 
@@ -31,6 +32,12 @@ export const toggleDuelScreen = () => {
 
       opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
         cardStatsAtkHp
+
+      const opponentCard = opponentCardDuel.querySelector('.card')
+      const ownCard = ownCardDuel.querySelector('.card')
+
+      opponentCard.classList.add('card-duel-animation1')
+      ownCard.classList.add('card-duel-animation2')
     })
   }, 300)
 }
@@ -47,4 +54,4 @@ const parseDuelPageToHTML = (unparsedHTML) => {
   return parsedDiv
 }
 
-const duelUnparsedHtml = `<div class="duel-page"><div class="duel-cards"><div class="own-card-duel"><h1 class="atk-hp-self">⚔ 999 | ♥ 999</h1></div><div class="opponent-card-duel"><h1 class="atk-hp-opponent">⚔ 999 | ♥ 999</h1></div></div><div class="duel-page-backgrounds"><div class="own-duel-page skewed"></div><div class="opponent-duel-page skewed"></div></div></div>`
+const duelUnparsedHtml = `<div class="duel-page"><div class="duel-cards"><div class="own-card-duel"><h1 class="atk-hp-self">⚔ ? | ♥ ?</h1></div><div class="opponent-card-duel"><h1 class="atk-hp-opponent">⚔ ? | ♥ ?</h1></div></div><h2 class="card-names-duel"></h2><div class="duel-page-backgrounds"><div class="own-duel-page skewed"></div><div class="opponent-duel-page skewed"></div></div></div>`

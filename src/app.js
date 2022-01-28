@@ -29,8 +29,17 @@ socket.on('deal-cards', (cardsFromServer) => {
   dealCards()
 })
 
+socket.on('names-result', (result) => {
+  console.log('received names', result)
+  const { nameOfCards } = result
+  const nameOfCardsCompiled = `${nameOfCards.own} <span style="color: rgb(165, 33, 33); font-size: 3rem; font-weight: 900;">VS</span> ${nameOfCards.opponent}`
+  document.querySelector('.card-names-duel').innerHTML =
+    nameOfCardsCompiled.toUpperCase()
+})
+
 socket.on('fight-result', (result) => {
-  announceResult(result)
+  const { msg } = result
+  announceResult(msg)
 })
 
 socket.on('score', ({ own, opponent }) => {
@@ -252,7 +261,7 @@ export const sendCardToDuelPage = (e) => {
   const selectedCard = e.target.parentElement
   const cardStatsAtkHp = selectedCard.querySelector('.card-stats').innerHTML
 
-  selectedCard.style.transform = 'scale(1.3)'
+  selectedCard.style.transform = 'scale(1)'
   selectedCard.querySelector('button').remove()
   selectedCard.querySelector('.card-rarity').style.fontSize = '1rem'
 
@@ -265,6 +274,15 @@ export const sendCardToDuelPage = (e) => {
   selectedCard.querySelector('.card-stats').remove()
 
   document.querySelector('.atk-hp-self').innerHTML = cardStatsAtkHp
+
+  setTimeout(() => {
+    const ownId = ownCardDuel.querySelector('.card').getAttribute('id')
+    const opponentId = opponentCardDuel
+      .querySelector('.card')
+      .getAttribute('id')
+    socket.emit('get-card-names', { ownId, opponentId })
+    console.log('ids', ownId, opponentId)
+  }, 320)
 
   setTimeout(() => {
     const ownId = ownCardDuel.querySelector('.card').getAttribute('id')

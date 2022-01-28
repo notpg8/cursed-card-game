@@ -1,7 +1,7 @@
 // ---- START OF VARIABLES ----
 
-$duel-card-width: 17.5rem;
-$duel-card-height: 22rem;
+$duel-card-width: 19.5rem;
+$duel-card-height: 24rem;
 
 // ---- END OF VARIABLES ----
 
@@ -99,7 +99,7 @@ $duel-card-height: 22rem;
 .atk-hp-self {
   z-index: 300;
   color: rgb(14, 14, 14);
-  top: -24vh;
+  top: -17vh;
   text-align: center;
   font-size: 4rem;
   font-weight: 900;
@@ -136,4 +136,19 @@ $duel-card-height: 22rem;
   vertical-align: middle;
   padding: 0 3.3rem;
   overflow: hidden;
+}
+
+.card-names-duel {
+  position: absolute;
+  bottom: 0;
+  color: rgb(226, 226, 226);
+  font-size: 2rem;
+  z-index: 2000;
+  max-width: 100vw;
+  overflow: hidden;
+  text-align: center;
+  pointer-events: none;
+  width: 100vw;
+  text-shadow: 0 0 3px rgba(14, 14, 14, 0.932);
+  vertical-align: middle;
 }
