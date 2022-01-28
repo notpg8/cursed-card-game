@@ -6,102 +6,102 @@ $card-height: 10.5rem;
 // ---- END OF VARIABLES ----
 
 body {
-	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
-	overflow: hidden;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
 nav {
-	position: fixed;
-	display: flex;
-	flex-direction: row;
-	width: 100vw;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
 }
 
 ::selection {
-	background: transparent;
+  background: transparent;
 }
 
 .board-bg {
-	background-image: url('./media/cards-pngs-optimized/medium/back/tile.png');
-	background-position: center center;
-	background-repeat: repeat;
-	opacity: 0.05;
-	margin: 0;
-	width: 100vw;
-	height: 100vh;
-	position: absolute;
-	pointer-events: none;
+  background-image: url("./media/cards-pngs-optimized/medium/back/tile.png");
+  background-position: center center;
+  background-repeat: repeat;
+  opacity: 0.05;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  pointer-events: none;
 }
 
 .board {
-	background-color: rgb(24, 24, 24);
-	margin: 0;
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	flex-direction: column;
+  background-color: rgb(24, 24, 24);
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 }
 
 .play-area {
-	display: flex;
-	flex-wrap: wrap;
-	margin: 0 7vw;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 7vw;
 }
 
 .play-area-self {
-	width: 59vw;
-	height: 23vh;
-	margin: 8px;
-	padding: 12px;
+  width: 59vw;
+  height: 23vh;
+  margin: 8px;
+  padding: 12px;
 }
 
 .play-area-opponent {
-	width: 59vw;
-	height: 23vh;
-	margin: 8px;
-	padding: 12px;
+  width: 59vw;
+  height: 23vh;
+  margin: 8px;
+  padding: 12px;
 }
 
 .button {
-	border-style: none;
-	border-radius: 0.3rem;
-	padding: 0.3rem;
-	transition: 0.5s;
+  border-style: none;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  transition: 0.5s;
 }
 
 .buttons button:hover {
-	background-color: rgb(137, 223, 245);
-	transition: 0.5s;
+  background-color: rgb(137, 223, 245);
+  transition: 0.5s;
 }
 
 .buttons {
-	display: inline-block;
-	margin: 0.5rem 0 0 0.5rem;
+  display: inline-block;
+  margin: 0.5rem 0 0 0.5rem;
 }
 
 .button:active {
-	background-color: rgb(195, 218, 94);
-	transition: 0.2s;
+  background-color: rgb(195, 218, 94);
+  transition: 0.2s;
 }
 
 .button:disabled {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 .card {
-	margin: 5px;
-	width: $card-width;
-	height: $card-height;
-	display: flex;
-	border-radius: 4px;
-	box-shadow: rgb(14, 14, 14) 3px 3px 9px;
-	transition: 0.3s;
-	border: 0.25rem solid gold;
-	flex-direction: column;
-	justify-content: space-between;
+  margin: 5px;
+  width: $card-width;
+  height: $card-height;
+  display: flex;
+  border-radius: 4px;
+  box-shadow: rgb(14, 14, 14) 3px 3px 9px;
+  transition: 0.3s;
+  border: 0.25rem solid gold;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card:hover {
@@ -117,180 +117,180 @@ nav {
 }
 
 .common-image-filter {
-	filter: grayscale(1) brightness(0.9);
+  filter: grayscale(1) brightness(0.9);
 }
 
 .uncommon-image-filter {
-	// filter: grayscale(0.2);
+  // filter: grayscale(0.2);
 }
 
 .rare-image-filter {
-	filter: saturate(120%);
+  filter: saturate(120%);
 }
 
 .common-card-stats {
-	background-color: rgb(68, 68, 68);
+  background-color: rgb(68, 68, 68);
 }
 .uncommon-card-stats {
-	background-color: rgb(0, 196, 250);
+  background-color: rgb(0, 196, 250);
 }
 .rare-card-stats {
-	color: rgb(255, 255, 255);
-	background-color: gold;
-	text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
+  color: rgb(255, 255, 255);
+  background-color: gold;
+  text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
 }
 
 .common-card-rarity {
-	color: rgb(14, 14, 14);
-	text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
+  color: rgb(14, 14, 14);
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
 }
 .uncommon-card-rarity {
-	color: rgb(14, 14, 14);
-	text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
+  color: rgb(14, 14, 14);
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 0px 2px;
 }
 .rare-card-rarity {
-	color: gold;
-	text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
+  color: gold;
+  text-shadow: 0 0 2px rgba(14, 14, 14, 0.8);
 }
 
 .card-rarity {
-	font-size: xx-small;
-	font-weight: bold;
-	text-align: left;
-	pointer-events: none;
-	margin: 2px 5px;
-	visibility: hidden;
+  font-size: xx-small;
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  margin: 2px 5px;
+  visibility: hidden;
 }
 
 .card-stats {
-	font-size: 0.8rem;
-	font-weight: bold;
-	text-align: left;
-	pointer-events: none;
-	display: flex;
-	align-items: flex-end;
-	height: 2rem;
-	margin: 0;
-	align-items: center;
-	justify-content: center;
-	visibility: hidden;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: left;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  height: 2rem;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
 }
 
 .card-info-tooltip {
-	font-size: x-small;
-	color: rgb(226, 226, 226);
-	text-align: left;
-	pointer-events: none;
-	margin: 5px 20px;
-	position: fixed;
-	bottom: 0;
+  font-size: x-small;
+  color: rgb(226, 226, 226);
+  text-align: left;
+  pointer-events: none;
+  margin: 5px 20px;
+  position: fixed;
+  bottom: 0;
 }
 
 .notification-area {
-	z-index: 100;
-	text-align: center;
-	transition: 0.3s;
-	color: rgb(255, 255, 255);
-	font-size: 2rem;
-	font-weight: 900;
-	pointer-events: none;
-	opacity: 0;
-	font-weight: 600;
-	-webkit-text-stroke: rgb(14, 14, 14) 0.016rem;
+  z-index: 100;
+  text-align: center;
+  transition: 0.3s;
+  color: rgb(255, 255, 255);
+  font-size: 2rem;
+  font-weight: 900;
+  pointer-events: none;
+  opacity: 0;
+  font-weight: 600;
+  -webkit-text-stroke: rgb(14, 14, 14) 0.016rem;
 }
 
 .game-name {
-	margin: 0.5rem 0.5rem 0 auto;
-	color: rgb(226, 226, 226);
-	z-index: 5000;
-	position: absolute;
-	right: 0;
-	top: 0;
+  margin: 0.5rem 0.5rem 0 auto;
+  color: rgb(226, 226, 226);
+  z-index: 5000;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .attribution {
-	display: flex;
-	justify-content: right;
+  display: flex;
+  justify-content: right;
 }
 
 .text-attribution {
-	font-size: xx-small;
-	color: rgb(226, 226, 226);
-	margin: 0 0.5rem 0.5rem auto;
-	margin-left: auto;
-	display: flex;
-	position: fixed;
-	bottom: 0;
-	text-decoration: none;
-	z-index: 21;
+  font-size: xx-small;
+  color: rgb(226, 226, 226);
+  margin: 0 0.5rem 0.5rem auto;
+  margin-left: auto;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  text-decoration: none;
+  z-index: 21;
 }
 
 .text-attribution > a {
-	text-decoration: none;
-	color: rgb(226, 226, 226);
+  text-decoration: none;
+  color: rgb(226, 226, 226);
 }
 
 .text-attribution > a:visited {
-	text-decoration: none;
-	color: rgb(226, 226, 226);
+  text-decoration: none;
+  color: rgb(226, 226, 226);
 }
 
 .server-status {
-	cursor: default;
+  cursor: default;
 }
 
 .fight-button {
-	position: fixed;
-	right: 0;
-	visibility: hidden;
-	color: rgb(14, 14, 14);
-	border: none;
-	padding: 0;
-	background-color: transparent;
-	transition: 0.3s;
+  position: fixed;
+  right: 0;
+  visibility: hidden;
+  color: rgb(14, 14, 14);
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  transition: 0.3s;
 }
 
 .fight-button:hover {
-	transform: scale(1.6);
+  transform: scale(1.6);
 }
 
 .score {
-	font-size: 4rem;
-	color: rgb(226, 226, 226);
-	font-weight: 900;
-	position: absolute;
-	margin: 0 auto;
-	top: 2.5rem;
-	right: 2.5rem;
-	text-align: center;
+  font-size: 4rem;
+  color: rgb(226, 226, 226);
+  font-weight: 900;
+  position: absolute;
+  margin: 0 auto;
+  top: 2.5rem;
+  right: 2.5rem;
+  text-align: center;
 }
 
 .game-over {
-	font-size: 4rem;
-	color: rgb(226, 226, 226);
-	font-weight: 900;
-	position: absolute;
-	margin: 0 auto;
-	top: 40vh;
-	text-align: center;
-	width: 100vw;
-	background-color: rgb(24, 24, 24);
-	transition: 0.4s;
+  font-size: 4rem;
+  color: rgb(226, 226, 226);
+  font-weight: 900;
+  position: absolute;
+  margin: 0 auto;
+  top: 40vh;
+  text-align: center;
+  width: 100vw;
+  background-color: rgb(24, 24, 24);
+  transition: 0.4s;
 }
 
 .game-over-wrapper {
-	background-color: rgb(24, 24, 24);
-	width: 100vw;
-	height: 100vh;
-	z-index: 1000;
-	position: absolute;
-	opacity: 0;
-	transition: 0.4s;
-	pointer-events: none;
+  background-color: rgb(24, 24, 24);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  position: absolute;
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none;
 }
 
 .play-again {
-	position: absolute;
-	top: 55vh;
-	width: 100vw;
+  position: absolute;
+  top: 55vh;
+  width: 100vw;
 }
