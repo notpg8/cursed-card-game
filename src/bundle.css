@@ -16,7 +16,7 @@ nav {
 }
 
 .board-bg {
-  background-image: url("./media/cards-pngs-optimized/medium/back/tile.png");
+  background-image: url('./media/cards-pngs-optimized/medium/back/tile.png');
   background-position: center center;
   background-repeat: repeat;
   opacity: 0.05;
