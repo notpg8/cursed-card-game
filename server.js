@@ -147,7 +147,7 @@ const calculateFightResult = ({ ownId, opponentId }, socket) => {
 
   socket.emit('fight-result', result)
   socket.emit('score', SCORE)
-  const scoreGoal = 1
+  const scoreGoal = 2
   if (SCORE.own >= scoreGoal || SCORE.opponent >= scoreGoal) {
     let winner = ''
     if (SCORE.own === SCORE.opponent) {

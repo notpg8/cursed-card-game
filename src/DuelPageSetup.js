@@ -3,8 +3,7 @@ import { socket, parseCardToHTML } from './app'
 import { startTransition } from './TransitionPage'
 
 export const toggleDuelScreen = () => {
-  const transitionTime = 600
-  startTransition(transitionTime)
+  startTransition()
 
   setTimeout(() => {
     document.querySelector('.duel-page').style.opacity = 1
@@ -33,7 +32,7 @@ export const toggleDuelScreen = () => {
       opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
         cardStatsAtkHp
     })
-  }, transitionTime / 2)
+  }, 300)
 }
 
 export const createDuelPage = () => {
