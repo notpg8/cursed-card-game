@@ -22,7 +22,7 @@ export class Card {
       case 'rare':
         return '★'
       default:
-        console.log(`RARITY ISSUE, NOT MATCHING ANY RARITY`)
+        throw new Error(`RARITY ISSUE, NOT MATCHING ANY RARITY`)
     }
   }
 
@@ -35,7 +35,7 @@ export class Card {
       case 'rare':
         return 'gold'
       default:
-        console.log(`RARITY ISSUE, NOT MATCHING ANY RARITY`)
+        throw new Error(`RARITY ISSUE, NOT MATCHING ANY RARITY`)
     }
   }
 
@@ -55,6 +55,8 @@ export class Card {
         return 'OH NO'
       case 5:
         return 'WEAK!'
+      default:
+        return 'F'
     }
   }
 
@@ -84,6 +86,8 @@ export class Card {
   }
 
   buildCss = () => {
+    const bgColorFaceDownCards = `background-color: rgb(30 60 113);`
+
     const goldGradientCSS =
       ', linear-gradient(to right, #BF953F, #FCF6BA, #FBF5B7, #AA771C);'
 
@@ -99,7 +103,7 @@ export class Card {
       this.getRarityColor
     }; background-size: cover; width: 100%; height:100%; pointer-events: none; visibility: hidden; position: absolute; z-index: -1;`
 
-    const faceDownStyles = `background-image: url('${this.getCardImagesUrls.back}'); background-color: rgb(83, 118, 131); background-size: cover;`
+    const faceDownStyles = `background-image: url('${this.getCardImagesUrls.back}'); background-size: cover; ${bgColorFaceDownCards}`
 
     const duelFaceUpStyles = `background-image: url('${
       this.getCardImagesUrls.front
@@ -125,14 +129,12 @@ export class Card {
   }
 
   buildCardNotificationSpan = () => {
-    // if (this.getIsWeak) {
     const classes = `notification-area`
     const styles = `opacity: 0;`
     return {
       notificationClasses: classes,
       notificationStyles: styles,
     }
-    // }
   }
 
   buildCardStatsP = () => {
@@ -177,7 +179,7 @@ export class Card {
   }
 
   buildCardForDuel = () => {
-    const { cardClasses, cardStyles, duelCardStyles } = this.buildCss()
+    const { cardClasses, duelCardStyles } = this.buildCss()
     const { rarityClasses } = this.buildCardRarityP()
     const { notificationClasses, notificationStyles } =
       this.buildCardNotificationSpan()
