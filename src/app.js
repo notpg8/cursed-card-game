@@ -32,21 +32,20 @@ socket.on('fight-result', (result) => {
 	announceResult(result)
 })
 
-socket.on('score', ({own, opponent})=>{
+socket.on('score', ({ own, opponent }) => {
 	document.querySelector('.score').innerHTML = `${own} - ${opponent}`
 	clearInterface()
 })
 
-socket.on('game-over', (response)=>{
-	setTimeout(()=>{
+socket.on('game-over', (response) => {
+	setTimeout(() => {
 		document.querySelector('.game-over-wrapper').style.opacity = 1
 		document.querySelector('.game-over-wrapper').style.pointerEvents = 'all'
 		document.querySelector('.game-over').innerHTML = `Winner: ${response}`
-	},3000)
+	}, 3000)
 })
 
-socket.on('start-new-game', ()=>{
-	console.log('starting new game')
+socket.on('start-new-game', () => {
 	document.querySelector('.game-over-wrapper').style.pointerEvents = 'none'
 })
 
@@ -84,7 +83,7 @@ export const parseCardToHTML = (unparsedCard) => {
 const renderCards = (cardsFromServer) => {
 	const playArea = document.querySelector('.play-area')
 
-	cardsFromServer.map((card, i) => {
+	cardsFromServer.map((card) => {
 		const initiatedCard = new Card(card)
 
 		const cardParsedDiv = parseCardToHTML(initiatedCard.getUnparsedCard)
@@ -105,13 +104,13 @@ const renderCards = (cardsFromServer) => {
 	})
 }
 
-const disableDealButton = () => {
-	document.querySelector('.populate-cards').setAttribute('disabled', 'true')
-}
+// const disableDealButton = () => {
+// 	document.querySelector('.populate-cards').setAttribute('disabled', 'true')
+// }
 
-const enableDeleteButton = () => {
-	document.querySelector('.delete-cards').removeAttribute('disabled')
-}
+// const enableDeleteButton = () => {
+// 	document.querySelector('.delete-cards').removeAttribute('disabled')
+// }
 
 const rotateCards = () => {
 	const cardsCommon = document.querySelectorAll('.common')
@@ -165,9 +164,6 @@ export const revealDuelCards = () => {
 		card.querySelector('.card-rarity').style.visibility = 'visible'
 		card.querySelector('.card-stats').style.visibility = 'visible'
 		card.querySelector('.card-image').style.visibility = 'visible'
-		// if (card.querySelector('.notification-area')) {
-		// 	card.querySelector('.notification-area').style.visibility = 'visible'
-		// }
 	})
 }
 
@@ -284,7 +280,7 @@ const announceResult = (result) => {
 	document.querySelector('.fight-result').innerHTML = result.toUpperCase()
 	document.querySelector('.fight-result').classList.add('animate-scale-up-down')
 
-	socket.on('score', ({own, opponent}) => {
+	socket.on('score', ({ own, opponent }) => {
 		document.querySelector('.score').innerHTML = `${own} - ${opponent}`
 	})
 
@@ -334,12 +330,4 @@ document
 	.querySelector('.reveal-all-cards')
 	.addEventListener('click', revealCards)
 
-// document.addEventListener('click', (e) => {
-// 	if (e.target.className === 'board' || e.target.className === 'play-area') {
-// 		resetCardZoom()
-// 	}
-// })
-
-document
-	.querySelector('.play-again')
-	.addEventListener('click', playAgain)
+document.querySelector('.play-again').addEventListener('click', playAgain)

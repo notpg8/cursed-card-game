@@ -40,7 +40,7 @@ fs.readdir('./src/media/cards-pngs-optimized/medium/', (err, files) => {
 
 const SCORE = {
 	own: 0,
-	opponent: 0 
+	opponent: 0,
 }
 
 const returnRandomNumber = (N) => {
@@ -69,7 +69,7 @@ const returnRandomRarity = () => {
 	}
 }
 
-assignRandomStatValue = (rarity) => {
+const assignRandomStatValue = (rarity) => {
 	if (rarity) {
 		if (rarity === 'rare') {
 			return Math.floor(Math.random() * Math.floor(100)) + 50
@@ -84,9 +84,7 @@ assignRandomStatValue = (rarity) => {
 }
 
 const dealCards = (N = 5, isServer = false) => {
-	// creates an N lenght array with 1-5 random values
-	// assemble object with rarity and number of card, return that instead of rarity and number separately
-	const cards = Array.from(Array(N)).map((card, i) => {
+	const cards = Array.from(Array(N)).map(() => {
 		const cardId = returnRandomImageName()
 		const rarity = returnRandomRarity()
 
@@ -127,40 +125,39 @@ const calculateFightResult = ({ ownId, opponentId }, socket) => {
 
 	if (ownCard[0].stats.attack === opponentCard[0].stats.attack) {
 		result = 'attack tie'
-		SCORE.own ++
-		SCORE.opponent ++
+		SCORE.own++
+		SCORE.opponent++
 	} else if (
 		ownCard[0].stats.attack >= opponentCard[0].stats.hp &&
 		ownCard[0].stats.hp > opponentCard[0].stats.attack
 	) {
 		result = 'you win'
-		SCORE.own ++
+		SCORE.own++
 	} else if (
 		opponentCard[0].stats.attack >= ownCard[0].stats.hp &&
 		opponentCard[0].stats.hp > ownCard[0].stats.attack
 	) {
 		result = 'you lose'
-		SCORE.opponent ++
+		SCORE.opponent++
 	} else {
 		result = 'stalemate'
-		SCORE.own ++
-		SCORE.opponent ++
+		SCORE.own++
+		SCORE.opponent++
 	}
 
 	socket.emit('fight-result', result)
 	socket.emit('score', SCORE)
-	if(SCORE.own >= 3 || SCORE.opponent >= 3){
+	if (SCORE.own >= 3 || SCORE.opponent >= 3) {
 		let winner = ''
-		if(SCORE.own === SCORE.opponent){
-			winner = 'TIE' 
-		} else if (SCORE.own > SCORE.opponent){
+		if (SCORE.own === SCORE.opponent) {
+			winner = 'TIE'
+		} else if (SCORE.own > SCORE.opponent) {
 			winner = 'YOU'
 		} else {
 			winner = 'OPPONENT'
 		}
 		socket.emit('game-over', winner)
 	}
-
 }
 
 // SOCKET
@@ -173,10 +170,10 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('request-new-cards', (cb) => {
-		if(SCORE.own <= 0){
+		if (SCORE.own <= 0) {
 			return
 		}
-		SCORE.own --
+		SCORE.own--
 		socket.emit('score', SCORE)
 		cb(dealCards(1))
 	})

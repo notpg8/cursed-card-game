@@ -1,13 +1,13 @@
 {
-	"name": "card-game",
+	"name": "cursed-card-game",
 	"version": "1.0.0",
-	"description": "",
+	"description": "It's a cursed card game",
 	"private": true,
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"start-server": "nodemon server.js",
 		"build": "webpack",
-		"build-start-server": "sass src/main.scss dist/bundle.css --no-source-map && webpack && nodemon server.js"
+		"build-start-server": "sass src/main.scss dist/bundle.css --no-source-map && webpack && nodemon server.js",
+		"prettier": "npx prettier --check ."
 	},
 	"repository": {
 		"type": "git",
@@ -20,11 +20,11 @@
 	},
 	"homepage": "https://github.com/PG-8/card-game#readme",
 	"dependencies": {
-		"eslint": "8.7.0",
 		"express": "4.17.2",
 		"socket.io": "4.4.1"
 	},
 	"devDependencies": {
+		"eslint": "8.7.0",
 		"nodemon": "2.0.15",
 		"sass": "1.49.0",
 		"webpack": "5.67.0",
