@@ -255,12 +255,11 @@ nav {
   top: 40vh;
   text-align: center;
   width: 100vw;
-  background-color: #181818;
   transition: 0.4s;
 }
 
 .game-over-wrapper {
-  background-color: #181818;
+  background-color: #0e0e0e;
   width: 100vw;
   height: 100vh;
   z-index: 1000;
