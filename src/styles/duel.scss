@@ -55,6 +55,10 @@ $duel-card-height: 24rem;
   pointer-events: none;
 }
 
+.duel-cards div {
+  margin-bottom: 10vh;
+}
+
 .own-card-duel {
   height: $duel-card-height;
   width: $duel-card-width;
@@ -140,7 +144,7 @@ $duel-card-height: 24rem;
 
 .card-names-duel {
   position: absolute;
-  bottom: 0;
+  bottom: 4vh;
   color: rgb(226, 226, 226);
   font-size: 2rem;
   z-index: 2000;
@@ -149,6 +153,6 @@ $duel-card-height: 24rem;
   text-align: center;
   pointer-events: none;
   width: 100vw;
-  text-shadow: 0 0 3px rgba(14, 14, 14, 0.932);
+  background-color: rgb(165, 33, 33);
   vertical-align: middle;
 }

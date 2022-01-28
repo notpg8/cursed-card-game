@@ -32,7 +32,7 @@ socket.on('deal-cards', (cardsFromServer) => {
 socket.on('names-result', (result) => {
   console.log('received names', result)
   const { nameOfCards } = result
-  const nameOfCardsCompiled = `${nameOfCards.own} <span style="color: rgb(165, 33, 33); font-size: 3rem; font-weight: 900;">VS</span> ${nameOfCards.opponent}`
+  const nameOfCardsCompiled = `${nameOfCards.own} <span style="color: rgb(14, 14, 14); font-weight: 900;">VS</span> ${nameOfCards.opponent}`
   document.querySelector('.card-names-duel').innerHTML =
     nameOfCardsCompiled.toUpperCase()
 })

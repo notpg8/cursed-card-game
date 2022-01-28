@@ -33,11 +33,11 @@ export const toggleDuelScreen = () => {
       opponentCardDuel.querySelector('.atk-hp-opponent').innerHTML =
         cardStatsAtkHp
 
-      const opponentCard = opponentCardDuel.querySelector('.card')
       const ownCard = ownCardDuel.querySelector('.card')
+      const opponentCard = opponentCardDuel.querySelector('.card')
 
-      opponentCard.classList.add('card-duel-animation1')
-      ownCard.classList.add('card-duel-animation2')
+      ownCard.classList.add('card-duel-animation1')
+      opponentCard.classList.add('card-duel-animation2')
     })
   }, 300)
 }

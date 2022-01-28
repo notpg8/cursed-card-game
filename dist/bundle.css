@@ -405,29 +405,29 @@ nav {
 }
 
 @keyframes shake1 {
-  10%, 20%, 60% {
-    transform: translate3d(10px, 1px, 0);
+  10%, 20% {
+    transform: translate3d(10px, 1px, 0) scale(1.1) rotate(-2deg);
   }
   30%, 40% {
-    transform: translate3d(-12px, -3px, 0);
+    transform: translate3d(-12px, -3px, 0) scale(0.9) rotate(2deg);
   }
-  50%, 80% {
-    transform: translate3d(-3px, -13px, 0);
+  50%, 100% {
+    transform: translate3d(-3px, -13px, 0) scale(1.1) rotate(-4deg);
   }
 }
 @keyframes shake2 {
   10%, 20%, 80% {
-    transform: translate3d(-10px, -1px, 0);
+    transform: translate3d(-10px, -1px, 0) scale(1) rotate(-5deg);
   }
   30%, 50% {
-    transform: translate3d(-2px, 3px, 0);
+    transform: translate3d(-2px, 3px, 0) scale(0.9) rotate(2deg);
   }
   40%, 60% {
-    transform: translate3d(2px, -3px, 0);
+    transform: translate3d(2px, -3px, 0) scale(1.1) rotate(5deg);
   }
 }
 .card-duel-animation1 {
-  animation: shake1 3.9s cubic-bezier(0.26, 0.67, 0.39, 0.77) infinite;
+  animation: shake1 4.9s cubic-bezier(0.26, 0.67, 0.39, 0.77) infinite;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
@@ -482,6 +482,10 @@ nav {
   align-items: center;
   overflow: hidden;
   pointer-events: none;
+}
+
+.duel-cards div {
+  margin-bottom: 10vh;
 }
 
 .own-card-duel {
@@ -569,7 +573,7 @@ nav {
 
 .card-names-duel {
   position: absolute;
-  bottom: 0;
+  bottom: 4vh;
   color: #e2e2e2;
   font-size: 2rem;
   z-index: 2000;
@@ -578,7 +582,7 @@ nav {
   text-align: center;
   pointer-events: none;
   width: 100vw;
-  text-shadow: 0 0 3px rgba(14, 14, 14, 0.932);
+  background-color: #a52121;
   vertical-align: middle;
 }
 
