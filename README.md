@@ -11,6 +11,7 @@
 - prevent card spam pushing to array (too many cards while developing)
 - on refresh page remove all data (remove cards, score, etc)
 - add deck instead of button
+- remove boxing glove in favor of a triangle popping up behind the card when it's selected (give it an up and down animation) (when hovering it should come out more)
 
 ### SCREENSHOT:
 
