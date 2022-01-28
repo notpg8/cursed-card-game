@@ -9,10 +9,8 @@
 - create room to play with a friend
 - assign socket ids to players
 - prevent card spam pushing to array (too many cards while developing)
-- add animations on duel scrreen
-- add twitch-styles transition before showing the duel page
-- add other images
 - on refresh page remove all data (remove cards, score, etc)
+- add deck instead of button
 
 ### SCREENSHOT:
 
