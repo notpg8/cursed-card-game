@@ -6,8 +6,6 @@ First player reaching 2 points wins
 
 ### Screenshots:
 
-![CFD](https://github.com/notpg8/cursed-card-game/blob/main/src/media/screenshots/CARDS%20FACE%20DOWN.png)
-
 ![CS](https://github.com/notpg8/cursed-card-game/blob/main/src/media/screenshots/CARD%20SELECTED.png)
 
 ![CFU](https://github.com/notpg8/cursed-card-game/blob/main/src/media/screenshots/CARDS%20FACE%20UP.png)
