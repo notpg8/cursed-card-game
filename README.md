@@ -13,6 +13,22 @@
 - add deck instead of button
 - remove boxing glove in favor of a triangle popping up behind the card when it's selected (give it an up and down animation) (when hovering it should come out more)
 
-### SCREENSHOT:
+### SCREENSHOTs:
 
-![Dash](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/dash%20jan%202022.png)
+![CFD](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/CARDS%20FACE%20DOWN.png)
+
+![CS](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/CARD%20SELECTED.png)
+
+![CFU](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/CARDS%20FACE%20UP.png)
+
+![DP](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/DUEL%20PAGE.png)
+
+![S](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/STALEMATE.png)
+
+![W](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/WIN.png)
+
+![L](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/LOSE.png)
+
+![OW](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/OPPONENT%20WIN.png)
+
+![PW](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/PLAYER%20WIN.png)
