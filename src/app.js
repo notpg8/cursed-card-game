@@ -18,12 +18,6 @@ const requestNewCards = () => {
   })
 }
 
-// EXAMPLE OF SOCKET EMIT EVENT
-const emitFuckYouToServer = () => {
-  const messageValue = 'fuck you'
-  return socket.emit('chat', messageValue)
-}
-
 socket.on('deal-cards', (cardsFromServer) => {
   cardsFromServerCopy.push(...cardsFromServer)
   dealCards()
@@ -79,8 +73,6 @@ const zoomOnCard = (e) => {
     e.target.querySelector('.notification-area') && statNotify(e)
     flipCard(e)
   }
-
-  emitFuckYouToServer()
 }
 
 export const parseCardToHTML = (unparsedCard) => {

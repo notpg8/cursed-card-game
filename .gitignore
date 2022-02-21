@@ -7,3 +7,4 @@ node_modules
 src/.DS_Store
 src/media/.DS_Store
 src/media/cards-pngs-optimized/.DS_Store
+/dist

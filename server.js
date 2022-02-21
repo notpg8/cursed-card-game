@@ -94,7 +94,7 @@ const dealCards = (N = 5, isServer = false) => {
       )}-${returnRandomNumber(9999)}-${returnRandomNumber(9999)}`,
       rarity: rarity,
       name: cardId,
-      description: `This is where the description/quote of the card goes`,
+      description: ``,
       stats: {
         attack: assignRandomStatValue(rarity),
         defense: assignRandomStatValue(rarity),
