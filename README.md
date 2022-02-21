@@ -15,20 +15,20 @@
 
 ### SCREENSHOTs:
 
-![CFD](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/CARDS%20FACE%20DOWN.png)
+![CFD](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/CARDS%20FACE%20DOWN.png)
 
-![CS](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/CARD%20SELECTED.png)
+![CS](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/CARD%20SELECTED.png)
 
-![CFU](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/CARDS%20FACE%20UP.png)
+![CFU](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/CARDS%20FACE%20UP.png)
 
-![DP](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/DUEL%20PAGE.png)
+![DP](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/DUEL%20PAGE.png)
 
-![S](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/STALEMATE.png)
+![S](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/STALEMATE.png)
 
-![W](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/WIN.png)
+![W](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/WIN.png)
 
-![L](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/LOSE.png)
+![L](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/LOSE.png)
 
-![OW](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/OPPONENT%20WIN.png)
+![OW](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/OPPONENT%20WIN.png)
 
-![PW](https://github.com/PG-8/card-game/blob/master/src/media/screenshots/PLAYER%20WIN.png)
+![PW](https://github.com/notpg8/cursed-card-game/blob/master/src/media/screenshots/PLAYER%20WIN.png)
