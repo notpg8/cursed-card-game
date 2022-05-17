@@ -1,6 +1,6 @@
 # Cursed Card Game™
 
-### Meme card game written in plain javascript:
+### Meme card game:
 
 First player reaching 2 points wins
 
