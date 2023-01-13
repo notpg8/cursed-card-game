@@ -1,4 +1,4 @@
-# Cursed Card Game™
+# Cursed Card Game™ (definitely a real trademark)
 
 ### Meme card game:
 
